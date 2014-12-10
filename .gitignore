@@ -1,5 +1,4 @@
 # Cython files
-_cubature.c
 # local database
 *localDB*
 # text files
