@@ -1,25 +1,24 @@
-import os
-from subprocess import Popen
+import numpy
 from distutils.core import setup
 from distutils.extension import Extension
 
-#TODO I am sure there is a more elegant way to do this
-cwd = os.getcwd()
-os.chdir( os.path.join( os.getcwd(), 'cubature' ) )
-p = Popen('python setup.py build_ext -i clean', shell=True)
-p.wait()
-os.chdir( cwd )
-#
+try:
+    from Cython.Distutils import build_ext
+    ext_modules = [Extension('cubature._cubature', ['cubature/_cubature.pyx'])]
+    cmdclass = {'build_ext': build_ext}
+except ImportError:
+    ext_modules = [Extension('cubature._cubature', ['cubature/_cubature.c'])]
+    cmdclass = {}
+    pass
 
 setup(
-cmdclass = {},
+cmdclass = cmdclass,
+ext_modules = ext_modules,
+include_dirs = [numpy.get_include()],
 name = 'Cubature',
 version = '0.11.0',
 description = 'Numerical integration technique',
 packages = ['cubature'],
-package_data = {'cubature': ['__init__.py', '_cubature.pyd',
-                             '_cubature.pyx',
-                             'cubature.py', 'test_cubature.py']},
 author = 'Saullo G. P. Castro',
 author_email = 'saullogiovani@gmail.com',
 license = 'GNU-GPL',
