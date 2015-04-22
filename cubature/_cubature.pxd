@@ -46,3 +46,4 @@ cdef extern from './cpackage/cubature.h':
                     error_norm norm, unsigned *m,
                     double **buf, size_t *nbuf, size_t max_nbuf,
                     double *val, double *err)
+
