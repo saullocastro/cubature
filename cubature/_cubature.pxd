@@ -42,17 +42,3 @@ cdef extern from './cpackage/cubature.h':
                     error_norm norm, unsigned *m,
                     double **buf, size_t *nbuf, size_t max_nbuf,
                     double *val, double *err)
-
-#TODO these guys are needed as explained in Cython's "tricks an tips"
-cdef extern from *:
-    pass
-
-cdef extern from "./cpackage/hcubature.c":
-    #TODO this guy should not be here... but was needed to
-    #     avoid a link error at the end of the compilation
-    pass
-
-cdef extern from "./cpackage/pcubature.c":
-    #TODO this guy should not be here... but was needed to
-    #     avoid a link error at the end of the compilation
-    pass

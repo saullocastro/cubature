@@ -1,5 +1,5 @@
-cimport numpy as np
 import numpy as np
+cimport numpy as np
 import cython
 from cpython cimport tuple, bool
 from _cubature cimport (error_norm, integrand, integrand_v, hcubature,
