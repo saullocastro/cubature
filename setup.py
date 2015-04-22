@@ -1,6 +1,13 @@
+import re
+import ast
+from setuptools import setup, Extension
 import numpy
-from distutils.core import setup
-from distutils.extension import Extension
+
+_version_re = re.compile(r'__version__\s+=\s+(.*)')
+
+with open('cubature/__init__.py', 'rb') as f:
+    version = str(ast.literal_eval(_version_re.search(
+        f.read().decode('utf-8')).group(1)))
 
 try:
     from Cython.Distutils import build_ext
@@ -9,21 +16,21 @@ try:
 except ImportError:
     ext_modules = [Extension('cubature._cubature', ['cubature/_cubature.c'])]
     cmdclass = {}
-    pass
 
 setup(
-cmdclass = cmdclass,
-ext_modules = ext_modules,
-include_dirs = [numpy.get_include()],
-name = 'Cubature',
-version = '0.11.0',
-description = 'Numerical integration technique',
-packages = ['cubature'],
-author = 'Saullo G. P. Castro',
-author_email = 'saullogiovani@gmail.com',
-license = 'GNU-GPL',
-keywords =  'numerical integration, integration, '
-            'multi-dimensional integration',
-url = 'https://github.com/saullocastro/cubature',
-long_description = open('README.rst').read(),
+    name = 'cubature',
+    version = version,
+    cmdclass = cmdclass,
+    packages = ['cubature'],
+
+    ext_modules = ext_modules,
+    include_dirs = [numpy.get_include()],
+    author = 'Saullo G. P. Castro',
+    author_email = 'saullogiovani@gmail.com',
+    license = 'GNU-GPL',
+    keywords =  'numerical integration, integration, '
+                'multi-dimensional integration',
+    url = 'https://github.com/saullocastro/cubature',
+    description = 'Numerical integration technique',
+    long_description = open('README.rst').read(),
 )

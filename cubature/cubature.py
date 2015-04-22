@@ -1,5 +1,5 @@
 import numpy as np
-from _cubature import _cubature
+from ._cubature import _cubature
 
 def cubature(ndim, func, xmin, xmax, args=None, adaptive='h',
              abserr=1.e-8, relerr=1.e-8, norm=0, maxEval=0,
