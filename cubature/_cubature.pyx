@@ -1,125 +1,130 @@
 import numpy as np
 cimport numpy as np
 import cython
-from cpython cimport tuple, bool
+from cpython cimport tuple, bool, array
 from _cubature cimport (error_norm, integrand, integrand_v, hcubature,
                         pcubature, hcubature_v, pcubature_v)
 
-DOUBLE = np.float64
-ctypedef np.double_t cDOUBLE
+cdef class Integrand:
+    cdef object f, data
+    cdef unsigned int ndim, fdim
 
-cdef object f
-cdef np.ndarray x_buffer
+    def __cinit__(self, object f, unsigned ndim, unsigned fdim):
+        self.f = f
+        self.ndim = ndim
+        self.fdim = fdim
 
-#TODO list
-# - try to avoid the x_buffer
-# - generalize and test the case when a Cython function defined by:
-#   cdef AND cpdef is passed as the integrand function
-# integrand_cb means integrand_callback, one way to pass the Python function
-# to the C code
+    def __init__(self, *args, **kwargs):
+        if not callable(self.f):
+            raise ValueError('first argument not callable')
+    
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
+    cdef int call(self, const double *x, double *fval):
+        cdef double [:] _x = <double [:self.xdim]>x 
+        cdef double [:] _f = <double [:self.fdim]>fval 
+        cdef int error
+
+        try:
+            _f = self.f(_x)
+            error = 0
+        except Exception:
+            error = -1
+
+        return error
+
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
+    cdef int vcall(self, unsigned npts, const double *x, double *fval):
+        cdef double [:, :] _x = <double [:npts, :self.xdim]>x 
+        cdef double [:, :] _f = <double [:npts, :self.fdim]>fval 
+        cdef int error
+
+        try:
+            _f = self.f(_x)
+            error = 0
+        except Exception:
+            error = -1
+
+        return error
+
+cdef int integrand_wrapper(unsigned int ndim, double *x, void *fdata, 
+        unsigned int fdim, double *fval):
+    wrapped = <Integrand>fdata;
+    wrapped.call(x, fval) 
+
+cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x, 
+        void *fdata, unsigned int fdim, double *fval):
+    wrapped = <Integrand>fdata;
+    wrapped.vcall(npts, x, fval) 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef int integrand_cb(unsigned ndim, double *x, void *fdata,
-                      unsigned fdim, double *fval):
-    global f, x_buffer
-    cdef np.ndarray[cDOUBLE, ndim=1] fval_buffer
-    cdef unsigned int j, k
-    for j in range(ndim):
-        x_buffer[j] = x[j]
-    fval_buffer = (<object>f)(x_buffer, *<tuple>fdata)
-    for k in range(fdim):
-        fval[k] = fval_buffer[k]
-    return 0
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef int integrand_v_cb(unsigned ndim, size_t npt, double *x, void *fdata,
-                        unsigned fdim, double *fval):
-    global f
-    cdef np.ndarray[cDOUBLE, ndim=1] fval_buffer, x_buffer
-    cdef unsigned int i
-    x_buffer = np.empty((ndim*npt), dtype=DOUBLE)
-    for i in range(npt*ndim):
-        x_buffer[i] = x[i]
-    fval_buffer = (<object>f)(x_buffer, npt, *<tuple>fdata)
-    for i in range(npt*fdim):
-        fval[i] = fval_buffer[i]
-    return 0
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-def _cubature(pythonf,
+def _cubature(callable,
+              unsigned ndim,
               unsigned fdim,
-              np.ndarray[cDOUBLE, ndim=1] xmin,
-              np.ndarray[cDOUBLE, ndim=1] xmax,
-              fdata,
-              str adaptive,
-              double abserr, double relerr, int norm,
+              double [:] xmin,
+              double [:] xmax,
+              str method,
+              double abserr, 
+              double relerr, 
+              error_norm norm,
               unsigned maxEval,
-              bool vectorized,
-              np.ndarray[cDOUBLE, ndim=1] val,
-              np.ndarray[cDOUBLE, ndim=1] err,
              ):
 
-    global f, x_buffer
-    cdef int ans
-    cdef unsigned ndim
-    ndim = xmin.shape[0]
-    f  = pythonf
-    if adaptive == 'h':
-        if vectorized:
-            ans =  hcubature_v(fdim,
-                               <integrand_v> integrand_v_cb,
-                               <void *> fdata,
+    wrapper = Integrand(callable, ndim, fdim) 
+    cdef double [:] val = array('d', range(fdim))
+    cdef double [:] err = array('d', range(fdim)) 
+
+    if method == 'hcubature_v':
+        ans =  hcubature_v(fdim, <integrand_v>integrand_wrapper_v,
+                               <void *> wrapper,
                                ndim,
-                               <double *> xmin.data,
-                               <double *> xmax.data,
+                               &xmin[0],
+                               &xmax[0],
                                maxEval,
                                abserr,
                                relerr,
                                <error_norm> norm,
-                               <double *> val.data,
-                               <double *> err.data)
-        else:
-            x_buffer = np.empty((ndim), dtype=DOUBLE)
-            ans =  hcubature(fdim,
-                             <integrand> integrand_cb,
-                             <void *> fdata,
-                             ndim,
-                             <double *> xmin.data,
-                             <double *> xmax.data,
-                             maxEval,
-                             abserr,
-                             relerr,
-                             <error_norm> norm,
-                             <double *> val.data,
-                             <double *> err.data)
+                               &val[0],
+                               &err[0])
+    elif method == 'hcubature':
+        ans =  hcubature(fdim, <integrand>integrand_wrapper,
+                               <void *> wrapper,
+                               ndim,
+                               &xmin[0],
+                               &xmax[0],
+                               maxEval,
+                               abserr,
+                               relerr,
+                               <error_norm> norm,
+                               &val[0],
+                               &err[0])
+    elif method == 'pcubature_v':
+        ans =  pcubature_v(fdim, <integrand_v>integrand_wrapper_v,
+                               <void *> wrapper,
+                               ndim,
+                               &xmin[0],
+                               &xmax[0],
+                               maxEval,
+                               abserr,
+                               relerr,
+                               <error_norm> norm,
+                               &val[0],
+                               &err[0])
+    elif method == 'pcubature':
+        ans =  pcubature(fdim, <integrand>integrand_wrapper,
+                               <void *> wrapper,
+                               ndim,
+                               &xmin[0],
+                               &xmax[0],
+                               maxEval,
+                               abserr,
+                               relerr,
+                               <error_norm> norm,
+                               &val[0],
+                               &err[0])
     else:
-        if vectorized:
-            ans =  pcubature_v(fdim,
-                               <integrand_v> integrand_v_cb,
-                               <void *> fdata,
-                               ndim,
-                               <double *> xmin.data,
-                               <double *> xmax.data,
-                               maxEval,
-                               abserr,
-                               relerr,
-                               <error_norm> norm,
-                               <double *> val.data,
-                               <double *> err.data)
-        else:
-            x_buffer = np.empty((ndim), dtype=DOUBLE)
-            ans =  pcubature(fdim,
-                             <integrand> integrand_cb,
-                             <void *> fdata,
-                             ndim,
-                             <double *> xmin.data,
-                             <double *> xmax.data,
-                             maxEval,
-                             abserr,
-                             relerr,
-                             <error_norm> norm,
-                             <double *> val.data,
-                             <double *> err.data)
+        raise ValueError('unknown integration method')
+
     return ans
