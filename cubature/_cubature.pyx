@@ -2,7 +2,6 @@
 import numpy as np
 cimport numpy as np
 import cython
-from cpython cimport tuple, bool
 from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
 
@@ -41,7 +40,7 @@ cdef class Integrand:
             np.asarray(_f)[:] = self.f(np.asarray(_x))
             error = 0
         except Exception as e:
-            error = 1
+            error = -1
             raise e
         return error
 
@@ -86,25 +85,21 @@ def _cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
     wrapper = Integrand(callable, ndim, fdim) 
 
     if method == 'hcubature_v':
-        print('calling hcubature_v')
         error = hcubature_v(fdim, <integrand_v>integrand_wrapper_v, 
                 <void *> wrapper, ndim, &_xmin[0], &_xmax[0], maxEval, abserr, 
                 relerr, <error_norm> norm, &val[0], &err[0])
 
     elif method == 'hcubature':
-        print('calling hcubature')
         error = hcubature(fdim, <integrand>integrand_wrapper, <void *> wrapper,
                 ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr, 
                 <error_norm> norm, &val[0], &err[0])
 
     elif method == 'pcubature_v':
-        print('calling pcubature_v')
         error = pcubature_v(fdim, <integrand_v>integrand_wrapper_v, 
                 <void *> wrapper, ndim, &_xmin[0], &_xmax[0], maxEval, abserr,
                 relerr, <error_norm> norm, &val[0], &err[0])
 
     elif method == 'pcubature':
-        print('calling pcubature')
         error = pcubature(fdim, <integrand>integrand_wrapper, <void *> wrapper,
                 ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr, 
                 <error_norm> norm, &val[0], &err[0])
