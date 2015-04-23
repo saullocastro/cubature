@@ -2,17 +2,20 @@
 import numpy as np
 cimport numpy as np
 import cython
-from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
+from .cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
 
 cdef class Integrand:
-    cdef object f, data
+    cdef object f, args, kwargs
     cdef unsigned int ndim, fdim
 
-    def __cinit__(self, object f, unsigned ndim, unsigned fdim):
+    def __cinit__(self, object f, unsigned ndim, unsigned fdim, *args,
+            **kwargs):
         self.f = f
         self.ndim = ndim
         self.fdim = fdim
+        self.args = args
+        self.kwargs = kwargs
 
     def __init__(self, *args, **kwargs):
         if not callable(self.f):
@@ -24,7 +27,7 @@ cdef class Integrand:
         cdef int error
 
         try:
-            np.asarray(_f)[:] = self.f(np.asarray(_x))
+            np.asarray(_f)[:] = self.f(np.asarray(_x), *self.args, **self.kwargs)
             error = 0
         except Exception as e:
             error = -1
@@ -37,7 +40,7 @@ cdef class Integrand:
         cdef int error
 
         try:
-            np.asarray(_f)[:] = self.f(np.asarray(_x))
+            np.asarray(_f)[:] = self.f(np.asarray(_x), *self.args, **self.kwargs)
             error = 0
         except Exception as e:
             error = -1
@@ -73,7 +76,7 @@ cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def _cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method, 
+def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method, 
         double abserr, double relerr, int norm, unsigned maxEval):
 
     cdef double [:] _xmin = np.array(xmin, dtype=np.float64)

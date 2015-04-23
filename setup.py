@@ -12,15 +12,15 @@ with open('cubature/__init__.py', 'rb') as f:
 try:
     from Cython.Distutils import build_ext
     ext_modules = [Extension(
-        'cubature._cubature',
+        'cubature.cubature',
         sources = [
-            'cubature/_cubature.pyx',
+            'cubature/cubature.pyx',
             'cubature/cpackage/hcubature.c',
             'cubature/cpackage/pcubature.c'],
         )]
     cmdclass = {'build_ext': build_ext}
 except ImportError:
-    ext_modules = [Extension('cubature._cubature', ['cubature/_cubature.c'])]
+    ext_modules = [Extension('cubature.cubature', ['cubature/cubature.c'])]
     cmdclass = {}
 
 setup(
