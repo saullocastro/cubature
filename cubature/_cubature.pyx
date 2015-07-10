@@ -2,7 +2,7 @@
 import numpy as np
 cimport numpy as np
 import cython
-from .cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
+from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
 
 cdef class Integrand:
@@ -108,7 +108,7 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
                 <error_norm> norm, &val[0], &err[0])
 
     else:
-        raise ValueError('unknown integration method')
+        raise ValueError('unknown integration method `{:s}`'.format(method))
 
     if error != 0:
         raise RuntimeError('integration failed')
