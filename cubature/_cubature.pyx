@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-import numpy as np
 cimport numpy as np
+import numpy as np
 import cython
 from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)

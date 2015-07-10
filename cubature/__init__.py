@@ -2,7 +2,7 @@ import os
 import shutil
 import subprocess
 
-from .cubature import cubature, Integrand
+from .cubature import cubature
 from .test_cubature import main
 
 __version__ = '0.12.0'

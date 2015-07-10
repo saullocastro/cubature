@@ -1,5 +1,5 @@
 import numpy as np
-from _cubature import cubature as _cython_cubature
+from ._cubature import cubature as _cython_cubature
 
 ERROR_INDIVIDUAL = 0
 ERROR_PAIRED = 1
