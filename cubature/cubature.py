@@ -1,6 +1,9 @@
 import numpy as np
 from ._cubature import cubature as _cython_cubature
 
+__all__ = ['ERROR_INDIVIDUAL', 'ERROR_PAIRED', 'ERROR_L2', 'ERROR_L1', 
+        'ERROR_LINF', 'cubature']
+
 ERROR_INDIVIDUAL = 0
 ERROR_PAIRED = 1
 ERROR_L2 = 2
@@ -175,17 +178,19 @@ def cubature(func, ndim, xmin, xmax, args=tuple(), kwargs=dict(),
         raise ValueError('The input function must return a 1-D array!')
 
     method = _call_map.get((adaptive, vectorized), None)
-    if fcall is None:
+    if method is None:
         s = 'unknown combination of adaptive (`{!r}`) and vectorized (`{!r}`).'
         s = s.format(adaptive, vectorized)
         raise ValueError(s)
     else:
-        val, err = _cython_cubature(func, ndim, xmin, xmax, method, abserr,
-                relerr, norm, maxEval)
+        #val, err = _cython_cubature(func, ndim, xmin, xmax, method, abserr,
+        #        relerr, norm, maxEval)
+        pass
     
-    return val, err
+    #return val, err
 
 #TODO
 # - implement multiprocessing dividing the integration interval and spawning
 # - a thread for each sub-interval...
 # - perform a cProfile to see where the bottle nech actually is
+

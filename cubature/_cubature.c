@@ -2404,14 +2404,14 @@ static int __pyx_f_8cubature_9_cubature_9Integrand__call(struct __pyx_obj_8cubat
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
-    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
+    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
+    __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
 
     /* "cubature\_cubature.pyx":31
  *             np.asarray(_f)[:] = self.f(np.asarray(_x), *self.args, **self.kwargs)
@@ -2716,13 +2716,13 @@ static int __pyx_f_8cubature_9_cubature_9Integrand__vcall(struct __pyx_obj_8cuba
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
+    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_t_4, 1);
 
     /* "cubature\_cubature.pyx":44
