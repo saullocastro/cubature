@@ -1,4 +1,4 @@
-# cython: profile=True
+# cython: profile=False
 
 cimport numpy as np
 import numpy as np

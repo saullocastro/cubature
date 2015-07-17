@@ -84,10 +84,11 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                                 is increased
         The 'p-adaptive' scheme is often better for smoth functions in
         low dimensions.
-    epsabs : double
-        The maximum number of function evaluations.
-    epsrel : double
-        The maxmum number of function evaluations.
+    abserr : double
+        Integration stops when estimated absolute error is below this threshold
+    relerr : double
+        Integration stops when estimated error in integral value is below this 
+        threshold
     norm : integer
         Specifies the norm that is used to measure the error and
         determine convergence properties (irrelevant for
