@@ -26,6 +26,18 @@ def test_genz_oscillatory_d2():
     calculated = ti.genz_oscillatory(x, a, u)
     assert np.allclose([exact], [calculated])
 
+def test_genz_oscillatory_c_d2():
+    x = np.array([17, 201], dtype=float)
+    a = np.array([41, 1/11], dtype=float)
+    u = 1/51
+
+    exact = np.cos(7868/11 + 2*np.pi/51)
+    calculated = ti.genz_oscillatory(x, a, u)
+    calculated_2 = ti.genz_oscillatory_c(x, a, u)
+
+    assert np.allclose([exact], [calculated_2])
+    assert np.allclose([calculated], [calculated_2])
+
 def test_hcubature_genz_oscillatory_d2():
     u = 2*np.pi*15/609
     a = np.array([15.51, 2], dtype=float)
