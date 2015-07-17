@@ -9,7 +9,7 @@ import cubature._test_integrands as ti
 
 u = 2*np.pi*15/609
 a = np.array([19.51, 2], dtype=float)
-n = 1
+n = 3
 
 xmin = np.zeros((2,))
 xmax = np.ones((2,)) * n

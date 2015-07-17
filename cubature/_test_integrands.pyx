@@ -1,48 +1,56 @@
-# cython: profile=False
 import numpy as np
 cimport numpy as np
 from libc.math cimport cos
 from libc.math cimport M_PI as pi
 
 cimport cython
-#from cpython.array cimport array
-#cdef array double_template = array('d')
+from cpython.array cimport array, clone
+cdef array double_template = array('d')
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef genz_oscillatory(np.ndarray x,  np.ndarray a, double u):
-    return np.cos(2*np.pi*u + np.sum(a*x))
+cpdef double genz_oscillatory(double [:] x,  double [:] a, double u):
+    cdef double sum = 0.
+    cdef unsigned int i
+    for i in range(x.shape[0]):
+        sum += x[i]*a[i]
+    return np.cos(2*np.pi*u + sum)
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef double genz_oscillatory_fast(unsigned int n, double *args):
     # there should be 2*d + 1 parameters
     cdef unsigned int d = (n - 1)//2
-    cdef double [:] vargs = <double [:n]>args
-    cdef double [:] x = vargs[:d]
-    cdef double [:] a = vargs[d:n-1]
-    cdef double u = vargs[n-1]
-
     cdef double val = 0.
 
+    cdef unsigned int i
     for i in range(d): 
-        val += a[i]*x[i]
+        val += args[i]*args[d+i]
     
-    val = cos(2*pi*u + val)
+    val = cos(2*pi*args[n-1] + val)
 
     return val
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef genz_oscillatory_c(np.ndarray x,  np.ndarray a, double u):
+cpdef double genz_oscillatory_c(double [:] x,  double [:] a, double u):
     cdef unsigned int d = x.shape[0]
-    cdef unsigned int n = 2*d + 1
-    cdef np.ndarray[dtype=np.float64_t, ndim=1] args = np.empty((n,),
-            dtype=float)
-    args[:d] = x[:d]
-    args[d:2*d] = a[:d]
-    args[n-1] = u
-    return genz_oscillatory_fast(n, <double *>args.data)
+    #cdef unsigned int n = 2*d + 1
+    
+    #cdef array[double] args = clone(double_template, n, 0)
+    #for i in range(d):
+    #    args[i] = x[i]
+    #    args[d+i] = a[i]
+    #args[n-1] = u
+    #return genz_oscillatory_fast(n, args.data.as_doubles)
+
+    cdef double val = 0.
+    cdef unsigned int i
+    for i in range(d): 
+        val += x[i]*a[i]
+    
+    val = cos(2*pi*u + val)
+    return val
 
 cpdef genz_oscillatory_exact(double n, np.ndarray a,
         double u):

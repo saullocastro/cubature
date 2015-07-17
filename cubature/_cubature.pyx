@@ -33,7 +33,7 @@ cdef class Integrand:
         cdef int error
 
         try:
-            np.asarray(_f)[:] = self.f(np.asarray(_x), *self.args, **self.kwargs)
+            _f[:] = self.f(_x, *self.args, **self.kwargs)
             error = 0
         except Exception as e:
             error = -1
@@ -46,7 +46,7 @@ cdef class Integrand:
         cdef int error
 
         try:
-            np.asarray(_f)[:] = self.f(np.asarray(_x), *self.args, **self.kwargs)
+            _f[:] = self.f(_x, *self.args, **self.kwargs)
             error = 0
         except Exception as e:
             error = -1
