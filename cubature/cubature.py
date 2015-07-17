@@ -19,7 +19,7 @@ _call_map = {
     ('p', False): 'pcubature',
     }
 
-def cubature(func, ndim, xmin, xmax, args=tuple(), kwargs=dict(),
+def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
              abserr=1.e-8, relerr=1.e-8, norm=ERROR_INDIVIDUAL, maxEval=0,
              adaptive='h', vectorized=False):
     r"""Numerical-integration using cubature technique.
@@ -162,20 +162,6 @@ def cubature(func, ndim, xmin, xmax, args=tuple(), kwargs=dict(),
         assert xmax.shape[0] == ndim
     except:
         raise ValueError('xmax.shape[0] is not equal ndim')
-    # getting fdim and checking function
-    if vectorized:
-        npt = 10
-        dummy_x = np.ones((ndim*npt), dtype=np.float64)
-        val = func(dummy_x, npt, *args)
-        fdim = val.shape[0]//npt
-    else:
-        dummy_x = np.zeros((ndim), dtype=np.float64)
-        val = func(dummy_x, *args)
-        fdim = val.shape[0]
-    try:
-        assert val.ndim == 1
-    except:
-        raise ValueError('The input function must return a 1-D array!')
 
     method = _call_map.get((adaptive, vectorized), None)
     if method is None:
@@ -183,11 +169,10 @@ def cubature(func, ndim, xmin, xmax, args=tuple(), kwargs=dict(),
         s = s.format(adaptive, vectorized)
         raise ValueError(s)
     else:
-        #val, err = _cython_cubature(func, ndim, xmin, xmax, method, abserr,
-        #        relerr, norm, maxEval)
-        pass
+        val, err = _cython_cubature(func, ndim, fdim, xmin, xmax, method, abserr,
+                relerr, norm, maxEval, args=args, kwargs=kwargs)
     
-    #return val, err
+    return val, err
 
 #TODO
 # - implement multiprocessing dividing the integration interval and spawning

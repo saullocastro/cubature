@@ -1,3 +1,5 @@
+# cython: profile=True
+
 cimport numpy as np
 import numpy as np
 import cython
@@ -8,8 +10,8 @@ cdef class Integrand:
     cdef object f, args, kwargs
     cdef unsigned int ndim, fdim
 
-    def __cinit__(self, object f, unsigned ndim, unsigned fdim, *args,
-            **kwargs):
+    def __cinit__(self, object f, unsigned ndim, unsigned fdim, object args,
+            object kwargs):
         self.f = f
         self.ndim = ndim
         self.fdim = fdim
@@ -20,6 +22,11 @@ cdef class Integrand:
         if not callable(self.f):
             raise ValueError('first argument not callable')
     
+    def __str__(self):
+        s = 'Integrand(f = {!r}, ndim = {!r}, fdim = {!r}, args = {!r}, kwargs = {!r})'\
+             .format(self.f, self.ndim, self.fdim, self.args, self.kwargs)
+        return s
+
     cdef int _call(self, const double *x, double *fval) except -1:
         cdef double [:] _x = <double [:self.ndim]>x 
         cdef double [:] _f = <double [:self.fdim]>fval 
@@ -64,19 +71,20 @@ cdef class Integrand:
         return np.asarray(fval)
 
 cdef int integrand_wrapper(unsigned int ndim, double *x, void *fdata, 
-        unsigned int fdim, double *fval) except -1:
+        unsigned int fdim, double *fval):
     wrapped = <Integrand>fdata;
     return wrapped._call(x, fval) 
 
 cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x, 
-        void *fdata, unsigned int fdim, double *fval) except -1:
+        void *fdata, unsigned int fdim, double *fval):
     wrapped = <Integrand>fdata;
     return wrapped._vcall(npts, x, fval) 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method, 
-        double abserr, double relerr, int norm, unsigned maxEval):
+        double abserr, double relerr, int norm, unsigned maxEval, args=(),
+        kwargs={}):
 
     cdef double [:] _xmin = np.array(xmin, dtype=np.float64)
     cdef double [:] _xmax = np.array(xmax, dtype=np.float64)
@@ -84,7 +92,7 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
     cdef double [:] val = np.empty((fdim,), dtype=np.float64)
     cdef double [:] err = np.empty((fdim,), dtype=np.float64)
 
-    wrapper = Integrand(callable, ndim, fdim) 
+    wrapper = Integrand(callable, ndim, fdim, args, kwargs) 
 
     if method == 'hcubature_v':
         error = hcubature_v(fdim, <integrand_v>integrand_wrapper_v, 
@@ -107,7 +115,7 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
                 <error_norm> norm, &val[0], &err[0])
 
     else:
-        raise ValueError('unknown integration method `{:s}`'.format(method))
+        raise ValueError('unknown integration method `{!s}`'.format(method))
 
     if error != 0:
         raise RuntimeError('integration failed')
