@@ -2468,10 +2468,10 @@ __pyx_t_4.strides[0] = __pyx_v__f.strides[0];
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
+    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
 
     /* "cubature/_cubature.pyx":38
  *             _f[:] = self.f(_x, *self.args, **self.kwargs)
@@ -2740,10 +2740,10 @@ __pyx_t_4.strides[1] = __pyx_v__f.strides[1];
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
+    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_XDECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
 
     /* "cubature/_cubature.pyx":51
  *             _f[:] = self.f(_x, *self.args, **self.kwargs)
