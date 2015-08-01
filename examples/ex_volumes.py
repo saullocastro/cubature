@@ -2,26 +2,24 @@ import numpy as np
 from numpy import pi, sin
 
 from cubature import cubature
+from cubature._cubature import Integrand
 
-def integrand_brick(x_array, *args):
-    x, y, z = x_array
-    return np.array([1.])
+def integrand_brick(x_array):
+    return 1.
 
-def integrand_sphere(x_array, *args):
+def integrand_sphere(x_array):
     r, theta, phi = x_array
-    return np.array([r**2*sin(phi)])
+    return r**2*sin(phi)
 
-def integrand_ellipsoid(x_array, *args):
-    a, b, c = args
-    ro, phi, theta = x_array
-    return np.array([a*b*c*ro**2*sin(theta)])
+def integrand_ellipsoid(x_array, a, b, c):
+    rho, phi, theta = x_array
+    return a*b*c*rho**2*sin(theta)
 
-def integrand_ellipsoid_v(x_array, npt, *args):
-    a, b, c = args
-    ro = x_array[0::3]
-    phi = x_array[1::3]
-    theta = x_array[2::3]
-    return a*b*c*ro**2*sin(theta)
+def integrand_ellipsoid_v(x_array, a, b, c):
+    rho = np.array(x_array[:, 0])
+    phi = np.array(x_array[:, 1])
+    theta = np.array(x_array[:, 2])
+    return a*b*c*rho**2*sin(theta)
 
 def exact_brick(a, b, c):
     return a*b*c
@@ -38,9 +36,9 @@ if __name__ == '__main__':
     print('')
     print('Brick')
     a, b, c = 1., 2., 3.
-    xmin = np.array([0, 0, 0], np.float64)
-    xmax = np.array([a, b, c], np.float64)
-    val, err = cubature(3, integrand_brick, xmin, xmax)
+    xmin = np.zeros((3,), dtype=float)
+    xmax = np.array([a, b, c], dtype=float)
+    val, err = cubature(integrand_brick, 3, 1, xmin, xmax)
     print('Approximated: {0}'.format(val))
     print('Exact: {0}'.format(exact_brick(a,b,c)))
     # sphere
@@ -50,7 +48,7 @@ if __name__ == '__main__':
     radius = 1.
     xmin = np.array([0, 0, 0], np.float64)
     xmax = np.array([radius, 2*pi, pi], np.float64)
-    val, err = cubature(3, integrand_sphere, xmin, xmax)
+    val, err = cubature(integrand_sphere, 3, 1, xmin, xmax)
     print('Approximated: {0}'.format(val))
     print('Exact: {0}'.format(exact_sphere(radius)))
     # ellipsoid
@@ -60,7 +58,7 @@ if __name__ == '__main__':
     a, b, c = 1., 2., 3.
     xmin = np.array([0, 0, 0], np.float64)
     xmax = np.array([1., 2*pi, pi], np.float64)
-    val, err = cubature(3, integrand_ellipsoid, xmin, xmax, args=(a,b,c))
+    val, err = cubature(integrand_ellipsoid, 3, 1, xmin, xmax, args=(a,b,c))
     print('Approximated: {0}'.format(val))
     print('Exact: {0}'.format(exact_ellipsoid(a,b,c)))
     print('_________________')
@@ -71,8 +69,8 @@ if __name__ == '__main__':
     a, b, c = 1., 2., 3.
     xmin = np.array([0, 0, 0], np.float64)
     xmax = np.array([1., 2*pi, pi], np.float64)
-    val, err = cubature(3, integrand_ellipsoid_v, xmin, xmax, args=(a,b,c),
-            vectorized=True)
+    val, err = cubature(integrand_ellipsoid_v, 3, 1, xmin, xmax, args=(a,b,c),
+        vectorized=True)
     print('Approximated: {0}'.format(val))
     print('Exact: {0}'.format(exact_ellipsoid(a,b,c)))
     print('_________________')
