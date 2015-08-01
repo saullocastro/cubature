@@ -129,5 +129,6 @@ def test_hcubature_cubature_two():
     exact = ti.cubature_two_exact(d - 1, radius)
 
     val, err = cubature(ti.cubature_two, d, 1, xmin, xmax, args=(radius,),
-            abserr=1e-8, relerr=1e-8)
-    assert np.allclose([exact], [val])
+            abserr=1e-4, relerr=1e-4, maxEval=1000000)
+    true_error = np.abs(val - exact)
+    assert true_error < 1e-4

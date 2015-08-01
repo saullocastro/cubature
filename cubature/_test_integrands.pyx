@@ -145,4 +145,3 @@ cpdef double cubature_three(double [:] x):
     for i in range(d):
         prod *= 2*x[i]
     return prod
-
