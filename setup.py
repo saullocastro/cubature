@@ -36,7 +36,7 @@ setup(
 
     ext_modules = ext_modules,
     include_dirs = [numpy.get_include()],
-    author = 'Saullo G. P. Castro',
+    author = 'Saullo G. P. Castro and Anton Loukianov',
     author_email = 'saullogiovani@gmail.com',
     license = 'GNU-GPL',
     keywords =  'numerical integration, integration, '

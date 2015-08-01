@@ -51,47 +51,12 @@ If you want to build only a local ``_cubature.pyd`` file, go to
 Running the tests
 -----------------
 
-The Python wrapper has been proven using the testing functions
-given in ``./cubature/cpackage/test.c``.
+The Python wrapper has been proven using test integrands from the C
+package and some additional testing functions from Genz. The integrands 
+were implemented in Cython and verified with Mathematica. 
 
-To run the full test:
-
-.. code::
-  
-   import cubature
-   cubature.run_test()
-
-A ``test_cubature.txt`` file will be created in the current directory.
-
-The test parameters are:
-
-.. code::
-
-    ndim - integer, number of dimensions to integrate over
-    tol - float, error tolerance
-    functions - list, with integers from 0 to 7
-    maxEval - integer, maximum number of function calls
-    fdim - length of the vector returned by the vector-valued integrand
-
-In the full test the following parameters are used:
-
-.. code::
-
-    ndim = 3
-    tol = 1.e-5
-    functions = [0, 1, 2, 3, 4, 5, 6, 7]
-    maxEval = 1000000
-    fdim = 5
-
-Alternatively, the user may pass another set of parameters to the test
-script, by calling:
-
-.. code::
-
-    cubature.run_test(ndim, tol, functions, maxEval, fdim)
-
-More details about the test procedure are given in the `C Pacakge README
-file <https://github.com/saullocastro/cubature/tree/master/cubature/cpackage/README>`_
+After building cubature, run the unit tests with the ```pytest``` package in 
+the package directory. Be aware that this takes several minutes.
 
 Examples
 --------
@@ -102,7 +67,7 @@ Fork me!
 --------
 
 You are welcome to fork this repository and modify it in whatever way you
-want. It will also be nice if you could send a push request here in case
+want. It will also be nice if you could send a pull request here in case
 you think your modifications is valuable for another person.
 
 License
