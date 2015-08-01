@@ -3,6 +3,7 @@ import pytest
 import cubature._test_integrands as ti
 from cubature import cubature
 import numpy as np
+import math
 
 # test that the Genz oscillatory exact formula actually agrees at an 
 # even and odd dimension
@@ -136,3 +137,84 @@ def test_hcubature_cubature_two():
             abserr=1e-4, relerr=1e-4, maxEval=1000000)
     true_error = np.abs(val - exact)
     assert true_error < 1e-4
+
+def test_cubature_three_exact():
+    d = 8
+    xmin = -np.ones((d,))
+    xmax = np.ones((d,))
+
+    val = ti.cubature_three_exact(xmin, xmax)
+    assert np.abs(val) < 1e-14
+
+    xmin = np.zeros((d,))
+    xmax = np.ones((d,))
+
+    val = ti.cubature_three_exact(xmin, xmax)
+    assert np.abs(val - 1) < 1e-14
+
+def test_hcubature_cubature_three():
+    d = 8
+    xmin = np.zeros((d,))
+    xmax = np.ones((d,))
+
+    exact = ti.cubature_three_exact(xmin, xmax)
+
+    val, err = cubature(ti.cubature_three, d, 1, xmin, xmax)
+
+    assert np.allclose([exact], [val])
+
+def test_genz_gaussian_exact():
+    u = np.array([1, 21, 2], dtype=float)
+    a = np.array([1/10, 1/100, 1/500], dtype=float)
+    val = ti.genz_gaussian_exact(u, a)
+    exact = 62500*pow(np.pi, 3/2)*math.erf(1/10)*(math.erf(1/250) -
+            math.erf(1/500))*(math.erf(21/100) - math.erf(1/5))
+
+    assert np.allclose([val], [exact])
+
+def test_hcubature_genz_gaussian():
+    u = np.array([1, 21, 2], dtype=float)
+    a = np.array([1/10, 1/100, 1/500], dtype=float)
+
+    xmin = np.zeros_like(u)
+    xmax = np.ones_like(u)
+
+    exact = ti.genz_gaussian_exact(u, a)
+
+    val, err = cubature(ti.genz_gaussian, u.shape[0], 1, xmin, xmax, args=(u, a),
+            adaptive='h')
+
+    assert np.allclose([exact], [val])
+
+def test_hcubature_cubature_five():
+    d = 3
+    xmin = -np.ones((d,))
+    xmax = np.ones((d,))
+
+    exact = 1.
+
+    val, err = cubature(ti.cubature_five, d, 1, xmin, xmax)
+
+    assert np.allclose([exact], [val])
+
+def test_hcubature_cubature_six():
+    d = 3
+    xmin = np.zeros((d,))
+    xmax = np.ones((d,))
+
+    exact = 1.
+
+    val, err = cubature(ti.cubature_six, d, 1, xmin, xmax)
+
+    assert np.allclose([exact], [val])
+
+def test_hcubature_cubature_seven():
+    d = 4
+    xmin = np.zeros((d,))
+    xmax = np.ones((d,))
+
+    exact = 1.
+
+    val, err = cubature(ti.cubature_seven, d, 1, xmin, xmax)
+
+    assert np.allclose([exact], [val])
