@@ -1,4 +1,6 @@
 # cython: profile=False
+# cython: boundscheck=False
+# cython: wraparound=False
 
 cimport numpy as np
 import numpy as np
@@ -27,26 +29,44 @@ cdef class Integrand:
              .format(self.f, self.ndim, self.fdim, self.args, self.kwargs)
         return s
 
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
     cdef int _call(self, const double *x, double *fval) except -1:
         cdef double [:] _x = <double [:self.ndim]>x 
         cdef double [:] _f = <double [:self.fdim]>fval 
         cdef int error
+        cdef unsigned i
 
         try:
-            _f[:] = self.f(_x, *self.args, **self.kwargs)
+            tmp = self.f(_x, *self.args, **self.kwargs)
+            if self.fdim == 1:
+                _f[i] = tmp
+            else:
+                for i in range(self.fdim):
+                    _f[i] = tmp[i]
             error = 0
         except Exception as e:
             error = -1
             raise e
         return error
 
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
     cdef int _vcall(self, unsigned npts, const double *x, double *fval) except -1:
         cdef double [:, :] _x = <double [:npts, :self.ndim]>x 
         cdef double [:, :] _f = <double [:npts, :self.fdim]>fval 
         cdef int error
+        cdef unsigned i,j
 
         try:
-            _f[:] = self.f(_x, *self.args, **self.kwargs)
+            tmp = self.f(_x, *self.args, **self.kwargs)
+            if self.fdim == 1:
+                for i in range(npts):
+                    _f[i] = tmp[i]
+            else:
+                for i in range(npts):
+                    for j in range(self.fdim):
+                        _f[i,j] = tmp[i,j]
             error = 0
         except Exception as e:
             error = -1
@@ -70,11 +90,15 @@ cdef class Integrand:
             raise RuntimeError('error while calling vcall()')
         return np.asarray(fval)
 
+@cython.boundscheck(False)
+@cython.wraparound(False)
 cdef int integrand_wrapper(unsigned int ndim, double *x, void *fdata, 
         unsigned int fdim, double *fval):
     wrapped = <Integrand>fdata;
     return wrapped._call(x, fval) 
 
+@cython.boundscheck(False)
+@cython.wraparound(False)
 cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x, 
         void *fdata, unsigned int fdim, double *fval):
     wrapped = <Integrand>fdata;
