@@ -109,24 +109,28 @@ def test_cubature_two_exact():
     radius = 1.
 
     d = 1
-    exact = np.pi
+    exact = 2
     val = ti.cubature_two_exact(d, radius)
     assert np.allclose([exact], [val])
 
     d = 2
-    exact = 4*np.pi/3
+    exact = np.pi
+    val = ti.cubature_two_exact(d, radius)
+    assert np.allclose([exact], [val])
+
+    d = 3
+    exact = 4/3*np.pi
     val = ti.cubature_two_exact(d, radius)
     assert np.allclose([exact], [val])
 
 @pytest.mark.slow
 def test_hcubature_cubature_two():
     radius = 0.68244456511919859846 
-    #radius = 1
     d = 2
     xmin = -np.ones((d,))
     xmax = np.ones((d,))
 
-    exact = ti.cubature_two_exact(d - 1, radius)
+    exact = ti.cubature_two_exact(d, radius)
 
     val, err = cubature(ti.cubature_two, d, 1, xmin, xmax, args=(radius,),
             abserr=1e-4, relerr=1e-4, maxEval=1000000)

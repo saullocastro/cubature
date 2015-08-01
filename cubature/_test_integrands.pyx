@@ -127,12 +127,12 @@ cpdef double cubature_two(double [:] x, double radius):
 
     return 1. if val < radius*radius else 0.
 
-cdef double nsphere_surface_area(unsigned int d, double radius):
-    d = d+1
+cpdef double nsphere_surface_area(unsigned int d, double radius):
+    d += 1
     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
 
 cpdef double cubature_two_exact(unsigned int d, double radius):
-    return nsphere_surface_area(d, radius)/(d + 1)
+    return nsphere_surface_area(d-1, radius)/d
 
 
 @cython.boundscheck(False)

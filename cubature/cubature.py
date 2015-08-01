@@ -11,7 +11,6 @@ ERROR_L1 = 3
 ERROR_LINF = 4
 
 # maps (adaptive, vectorized) to appropriate function call
-# in 
 _call_map = {
     ('h', True): 'hcubature_v',
     ('h', False): 'hcubature',
