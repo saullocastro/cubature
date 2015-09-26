@@ -1627,13 +1627,9 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_zero(__Pyx_memviewsl
 static double __pyx_f_8cubature_16_test_integrands_cubature_zero_exact(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_one(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_one_exact(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_cubature_two(__Pyx_memviewslice, double, int __pyx_skip_dispatch); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_nsphere_surface_area(unsigned int, double); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_cubature_two_exact(unsigned int, double, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_genz_gaussian_exact(__Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
@@ -1737,7 +1733,6 @@ static char __pyx_k_encode[] = "encode";
 static char __pyx_k_format[] = "format";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_name_2[] = "__name__";
-static char __pyx_k_radius[] = "radius";
 static char __pyx_k_struct[] = "struct";
 static char __pyx_k_unpack[] = "unpack";
 static char __pyx_k_fortran[] = "fortran";
@@ -1848,7 +1843,6 @@ static PyObject *__pyx_n_s_pi;
 static PyObject *__pyx_n_s_prod;
 static PyObject *__pyx_n_s_pyx_getbuffer;
 static PyObject *__pyx_n_s_pyx_vtable;
-static PyObject *__pyx_n_s_radius;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_shape;
 static PyObject *__pyx_n_s_sin;
@@ -1877,15 +1871,12 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_6cubature_zero(CYTHON_UNU
 static PyObject *__pyx_pf_8cubature_16_test_integrands_8cubature_zero_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
 static PyObject *__pyx_pf_8cubature_16_test_integrands_10cubature_one(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
 static PyObject *__pyx_pf_8cubature_16_test_integrands_12cubature_one_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_14cubature_two(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x, double __pyx_v_radius); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_16cubature_two_exact(CYTHON_UNUSED PyObject *__pyx_self, unsigned int __pyx_v_d, double __pyx_v_radius); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_18cubature_three(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_three_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_xmin, __Pyx_memviewslice __pyx_v_xmax); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_22genz_gaussian(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_24genz_gaussian_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_26cubature_five(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_28cubature_six(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
-static PyObject *__pyx_pf_8cubature_16_test_integrands_30cubature_seven(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
+static PyObject *__pyx_pf_8cubature_16_test_integrands_14cubature_three(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
+static PyObject *__pyx_pf_8cubature_16_test_integrands_16cubature_three_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_xmin, __Pyx_memviewslice __pyx_v_xmax); /* proto */
+static PyObject *__pyx_pf_8cubature_16_test_integrands_18genz_gaussian(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a); /* proto */
+static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_five(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
+static PyObject *__pyx_pf_8cubature_16_test_integrands_22cubature_six(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
+static PyObject *__pyx_pf_8cubature_16_test_integrands_24cubature_seven(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x); /* proto */
 static int __pyx_pf_7cpython_5array_5array___getbuffer__(arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info, CYTHON_UNUSED int __pyx_v_flags); /* proto */
 static void __pyx_pf_7cpython_5array_5array_2__releasebuffer__(CYTHON_UNUSED arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
@@ -3482,425 +3473,12 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_12cubature_one_exact(CYTH
 /* "cubature\_test_integrands.pyx":121
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * cpdef double cubature_two(double [:] x, double radius):             # <<<<<<<<<<<<<<
- *     cdef unsigned int d = x.shape[0]
- *     cdef double val = 0.
- */
-
-static PyObject *__pyx_pw_8cubature_16_test_integrands_15cubature_two(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_cubature_two(__Pyx_memviewslice __pyx_v_x, double __pyx_v_radius, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  unsigned int __pyx_v_d;
-  double __pyx_v_val;
-  unsigned int __pyx_v_i;
-  double __pyx_r;
-  __Pyx_RefNannyDeclarations
-  unsigned int __pyx_t_1;
-  unsigned int __pyx_t_2;
-  size_t __pyx_t_3;
-  size_t __pyx_t_4;
-  double __pyx_t_5;
-  __Pyx_RefNannySetupContext("cubature_two", 0);
-
-  /* "cubature\_test_integrands.pyx":122
- * @cython.wraparound(False)
- * cpdef double cubature_two(double [:] x, double radius):
- *     cdef unsigned int d = x.shape[0]             # <<<<<<<<<<<<<<
- *     cdef double val = 0.
- * 
- */
-  __pyx_v_d = (__pyx_v_x.shape[0]);
-
-  /* "cubature\_test_integrands.pyx":123
- * cpdef double cubature_two(double [:] x, double radius):
- *     cdef unsigned int d = x.shape[0]
- *     cdef double val = 0.             # <<<<<<<<<<<<<<
- * 
- *     for i in range(d):
- */
-  __pyx_v_val = 0.;
-
-  /* "cubature\_test_integrands.pyx":125
- *     cdef double val = 0.
- * 
- *     for i in range(d):             # <<<<<<<<<<<<<<
- *         val += x[i]*x[i]
- * 
- */
-  __pyx_t_1 = __pyx_v_d;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
-
-    /* "cubature\_test_integrands.pyx":126
- * 
- *     for i in range(d):
- *         val += x[i]*x[i]             # <<<<<<<<<<<<<<
- * 
- *     return 1. if val < radius*radius else 0.
- */
-    __pyx_t_3 = __pyx_v_i;
-    __pyx_t_4 = __pyx_v_i;
-    __pyx_v_val = (__pyx_v_val + ((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_3 * __pyx_v_x.strides[0]) ))) * (*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_4 * __pyx_v_x.strides[0]) )))));
-  }
-
-  /* "cubature\_test_integrands.pyx":128
- *         val += x[i]*x[i]
- * 
- *     return 1. if val < radius*radius else 0.             # <<<<<<<<<<<<<<
- * 
- * cdef double nsphere_surface_area(unsigned int d, double radius):
- */
-  if (((__pyx_v_val < (__pyx_v_radius * __pyx_v_radius)) != 0)) {
-    __pyx_t_5 = 1.;
-  } else {
-    __pyx_t_5 = 0.;
-  }
-  __pyx_r = __pyx_t_5;
-  goto __pyx_L0;
-
-  /* "cubature\_test_integrands.pyx":121
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cpdef double cubature_two(double [:] x, double radius):             # <<<<<<<<<<<<<<
- *     cdef unsigned int d = x.shape[0]
- *     cdef double val = 0.
- */
-
-  /* function exit code */
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_15cubature_two(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_15cubature_two(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  __Pyx_memviewslice __pyx_v_x = { 0, 0, { 0 }, { 0 }, { 0 } };
-  double __pyx_v_radius;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("cubature_two (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_x,&__pyx_n_s_radius,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_x)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_radius)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("cubature_two", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cubature_two") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0]); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_radius = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_radius == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cubature_two", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cubature._test_integrands.cubature_two", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_14cubature_two(__pyx_self, __pyx_v_x, __pyx_v_radius);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_8cubature_16_test_integrands_14cubature_two(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x, double __pyx_v_radius) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cubature_two", 0);
-  __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_two(__pyx_v_x, __pyx_v_radius, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cubature._test_integrands.cubature_two", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __PYX_XDEC_MEMVIEW(&__pyx_v_x, 1);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "cubature\_test_integrands.pyx":130
- *     return 1. if val < radius*radius else 0.
- * 
- * cdef double nsphere_surface_area(unsigned int d, double radius):             # <<<<<<<<<<<<<<
- *     d += 1
- *     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
- */
-
-static double __pyx_f_8cubature_16_test_integrands_nsphere_surface_area(unsigned int __pyx_v_d, double __pyx_v_radius) {
-  double __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  double __pyx_t_5;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("nsphere_surface_area", 0);
-
-  /* "cubature\_test_integrands.pyx":131
- * 
- * cdef double nsphere_surface_area(unsigned int d, double radius):
- *     d += 1             # <<<<<<<<<<<<<<
- *     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
- * 
- */
-  __pyx_v_d = (__pyx_v_d + 1);
-
-  /* "cubature\_test_integrands.pyx":132
- * cdef double nsphere_surface_area(unsigned int d, double radius):
- *     d += 1
- *     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)             # <<<<<<<<<<<<<<
- * 
- * cpdef double cubature_two_exact(unsigned int d, double radius):
- */
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_d); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(M_PI); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble((0.5 * __pyx_v_d)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyNumber_Power2(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyFloat_FromDouble(tgamma(((0.5 * __pyx_v_d) + 1.0))); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_radius); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_d); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyNumber_Power2(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_r = __pyx_t_5;
-  goto __pyx_L0;
-
-  /* "cubature\_test_integrands.pyx":130
- *     return 1. if val < radius*radius else 0.
- * 
- * cdef double nsphere_surface_area(unsigned int d, double radius):             # <<<<<<<<<<<<<<
- *     d += 1
- *     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_WriteUnraisable("cubature._test_integrands.nsphere_surface_area", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "cubature\_test_integrands.pyx":134
- *     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
- * 
- * cpdef double cubature_two_exact(unsigned int d, double radius):             # <<<<<<<<<<<<<<
- *     return nsphere_surface_area(d-1, radius)/d
- * 
- */
-
-static PyObject *__pyx_pw_8cubature_16_test_integrands_17cubature_two_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_cubature_two_exact(unsigned int __pyx_v_d, double __pyx_v_radius, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  double __pyx_r;
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cubature_two_exact", 0);
-
-  /* "cubature\_test_integrands.pyx":135
- * 
- * cpdef double cubature_two_exact(unsigned int d, double radius):
- *     return nsphere_surface_area(d-1, radius)/d             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __pyx_t_1 = __pyx_f_8cubature_16_test_integrands_nsphere_surface_area((__pyx_v_d - 1), __pyx_v_radius);
-  if (unlikely(__pyx_v_d == 0)) {
-    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  }
-  __pyx_r = (__pyx_t_1 / __pyx_v_d);
-  goto __pyx_L0;
-
-  /* "cubature\_test_integrands.pyx":134
- *     return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
- * 
- * cpdef double cubature_two_exact(unsigned int d, double radius):             # <<<<<<<<<<<<<<
- *     return nsphere_surface_area(d-1, radius)/d
- * 
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_WriteUnraisable("cubature._test_integrands.cubature_two_exact", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_17cubature_two_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_17cubature_two_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  unsigned int __pyx_v_d;
-  double __pyx_v_radius;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("cubature_two_exact (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_d,&__pyx_n_s_radius,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_d)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_radius)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("cubature_two_exact", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cubature_two_exact") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_d = __Pyx_PyInt_As_unsigned_int(values[0]); if (unlikely((__pyx_v_d == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_radius = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_radius == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cubature_two_exact", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cubature._test_integrands.cubature_two_exact", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_16cubature_two_exact(__pyx_self, __pyx_v_d, __pyx_v_radius);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_8cubature_16_test_integrands_16cubature_two_exact(CYTHON_UNUSED PyObject *__pyx_self, unsigned int __pyx_v_d, double __pyx_v_radius) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cubature_two_exact", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_two_exact(__pyx_v_d, __pyx_v_radius, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cubature._test_integrands.cubature_two_exact", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "cubature\_test_integrands.pyx":139
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
  * cpdef double cubature_three(double [:] x):             # <<<<<<<<<<<<<<
  *     cdef unsigned int d = x.shape[0]
  *     cdef double prod = 1.
  */
 
-static PyObject *__pyx_pw_8cubature_16_test_integrands_19cubature_three(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_15cubature_three(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviewslice __pyx_v_x, CYTHON_UNUSED int __pyx_skip_dispatch) {
   unsigned int __pyx_v_d;
   double __pyx_v_prod;
@@ -3912,7 +3490,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
   size_t __pyx_t_3;
   __Pyx_RefNannySetupContext("cubature_three", 0);
 
-  /* "cubature\_test_integrands.pyx":140
+  /* "cubature\_test_integrands.pyx":122
  * @cython.wraparound(False)
  * cpdef double cubature_three(double [:] x):
  *     cdef unsigned int d = x.shape[0]             # <<<<<<<<<<<<<<
@@ -3921,7 +3499,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
  */
   __pyx_v_d = (__pyx_v_x.shape[0]);
 
-  /* "cubature\_test_integrands.pyx":141
+  /* "cubature\_test_integrands.pyx":123
  * cpdef double cubature_three(double [:] x):
  *     cdef unsigned int d = x.shape[0]
  *     cdef double prod = 1.             # <<<<<<<<<<<<<<
@@ -3930,7 +3508,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
  */
   __pyx_v_prod = 1.;
 
-  /* "cubature\_test_integrands.pyx":144
+  /* "cubature\_test_integrands.pyx":126
  *     cdef unsigned int i
  * 
  *     for i in range(d):             # <<<<<<<<<<<<<<
@@ -3941,7 +3519,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "cubature\_test_integrands.pyx":145
+    /* "cubature\_test_integrands.pyx":127
  * 
  *     for i in range(d):
  *         prod *= 2*x[i]             # <<<<<<<<<<<<<<
@@ -3952,7 +3530,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
     __pyx_v_prod = (__pyx_v_prod * (2.0 * (*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_3 * __pyx_v_x.strides[0]) )))));
   }
 
-  /* "cubature\_test_integrands.pyx":146
+  /* "cubature\_test_integrands.pyx":128
  *     for i in range(d):
  *         prod *= 2*x[i]
  *     return prod             # <<<<<<<<<<<<<<
@@ -3962,7 +3540,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
   __pyx_r = __pyx_v_prod;
   goto __pyx_L0;
 
-  /* "cubature\_test_integrands.pyx":139
+  /* "cubature\_test_integrands.pyx":121
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_three(double [:] x):             # <<<<<<<<<<<<<<
@@ -3977,8 +3555,8 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three(__Pyx_memviews
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_19cubature_three(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_19cubature_three(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
+static PyObject *__pyx_pw_8cubature_16_test_integrands_15cubature_three(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_15cubature_three(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
   __Pyx_memviewslice __pyx_v_x = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -3987,7 +3565,7 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_19cubature_three(PyObject
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cubature_three (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3995,14 +3573,14 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_19cubature_three(PyObject
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_18cubature_three(__pyx_self, __pyx_v_x);
+  __pyx_r = __pyx_pf_8cubature_16_test_integrands_14cubature_three(__pyx_self, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8cubature_16_test_integrands_18cubature_three(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
+static PyObject *__pyx_pf_8cubature_16_test_integrands_14cubature_three(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4011,8 +3589,8 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_18cubature_three(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_three", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_three(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_three(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4030,7 +3608,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_18cubature_three(CYTHON_U
   return __pyx_r;
 }
 
-/* "cubature\_test_integrands.pyx":150
+/* "cubature\_test_integrands.pyx":132
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_three_exact(double [:] xmin, double [:] xmax):             # <<<<<<<<<<<<<<
@@ -4038,7 +3616,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_18cubature_three(CYTHON_U
  *     cdef unsigned int i
  */
 
-static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_three_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_17cubature_three_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_memviewslice __pyx_v_xmin, __Pyx_memviewslice __pyx_v_xmax, CYTHON_UNUSED int __pyx_skip_dispatch) {
   unsigned int __pyx_v_d;
   unsigned int __pyx_v_i;
@@ -4054,7 +3632,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
   size_t __pyx_t_6;
   __Pyx_RefNannySetupContext("cubature_three_exact", 0);
 
-  /* "cubature\_test_integrands.pyx":151
+  /* "cubature\_test_integrands.pyx":133
  * @cython.wraparound(False)
  * cpdef double cubature_three_exact(double [:] xmin, double [:] xmax):
  *     cdef unsigned int d = xmin.shape[0]             # <<<<<<<<<<<<<<
@@ -4063,7 +3641,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
  */
   __pyx_v_d = (__pyx_v_xmin.shape[0]);
 
-  /* "cubature\_test_integrands.pyx":153
+  /* "cubature\_test_integrands.pyx":135
  *     cdef unsigned int d = xmin.shape[0]
  *     cdef unsigned int i
  *     cdef double prod_min = 1., prod_max=1             # <<<<<<<<<<<<<<
@@ -4073,7 +3651,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
   __pyx_v_prod_min = 1.;
   __pyx_v_prod_max = 1.0;
 
-  /* "cubature\_test_integrands.pyx":155
+  /* "cubature\_test_integrands.pyx":137
  *     cdef double prod_min = 1., prod_max=1
  * 
  *     for i in range(d):             # <<<<<<<<<<<<<<
@@ -4084,7 +3662,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "cubature\_test_integrands.pyx":156
+    /* "cubature\_test_integrands.pyx":138
  * 
  *     for i in range(d):
  *         prod_min *= xmin[i]*xmin[i]             # <<<<<<<<<<<<<<
@@ -4095,7 +3673,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_prod_min = (__pyx_v_prod_min * ((*((double *) ( /* dim=0 */ (__pyx_v_xmin.data + __pyx_t_3 * __pyx_v_xmin.strides[0]) ))) * (*((double *) ( /* dim=0 */ (__pyx_v_xmin.data + __pyx_t_4 * __pyx_v_xmin.strides[0]) )))));
 
-    /* "cubature\_test_integrands.pyx":157
+    /* "cubature\_test_integrands.pyx":139
  *     for i in range(d):
  *         prod_min *= xmin[i]*xmin[i]
  *         prod_max *= xmax[i]*xmax[i]             # <<<<<<<<<<<<<<
@@ -4107,7 +3685,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
     __pyx_v_prod_max = (__pyx_v_prod_max * ((*((double *) ( /* dim=0 */ (__pyx_v_xmax.data + __pyx_t_5 * __pyx_v_xmax.strides[0]) ))) * (*((double *) ( /* dim=0 */ (__pyx_v_xmax.data + __pyx_t_6 * __pyx_v_xmax.strides[0]) )))));
   }
 
-  /* "cubature\_test_integrands.pyx":159
+  /* "cubature\_test_integrands.pyx":141
  *         prod_max *= xmax[i]*xmax[i]
  * 
  *     return prod_max - prod_min             # <<<<<<<<<<<<<<
@@ -4117,7 +3695,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
   __pyx_r = (__pyx_v_prod_max - __pyx_v_prod_min);
   goto __pyx_L0;
 
-  /* "cubature\_test_integrands.pyx":150
+  /* "cubature\_test_integrands.pyx":132
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_three_exact(double [:] xmin, double [:] xmax):             # <<<<<<<<<<<<<<
@@ -4132,8 +3710,8 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_three_exact(__Pyx_me
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_three_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_three_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8cubature_16_test_integrands_17cubature_three_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_17cubature_three_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_xmin = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_xmax = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_lineno = 0;
@@ -4162,11 +3740,11 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_three_exact(Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_xmax)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cubature_three_exact", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("cubature_three_exact", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cubature_three_exact") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cubature_three_exact") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4174,25 +3752,25 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_three_exact(Py
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_xmin = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0]); if (unlikely(!__pyx_v_xmin.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_xmax = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1]); if (unlikely(!__pyx_v_xmax.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_xmin = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0]); if (unlikely(!__pyx_v_xmin.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_xmax = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1]); if (unlikely(!__pyx_v_xmax.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cubature_three_exact", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("cubature_three_exact", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("cubature._test_integrands.cubature_three_exact", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_20cubature_three_exact(__pyx_self, __pyx_v_xmin, __pyx_v_xmax);
+  __pyx_r = __pyx_pf_8cubature_16_test_integrands_16cubature_three_exact(__pyx_self, __pyx_v_xmin, __pyx_v_xmax);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_three_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_xmin, __Pyx_memviewslice __pyx_v_xmax) {
+static PyObject *__pyx_pf_8cubature_16_test_integrands_16cubature_three_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_xmin, __Pyx_memviewslice __pyx_v_xmax) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4201,9 +3779,9 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_three_exact(CY
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_three_exact", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_xmin.memview)) { __Pyx_RaiseUnboundLocalError("xmin"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_xmax.memview)) { __Pyx_RaiseUnboundLocalError("xmax"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_three_exact(__pyx_v_xmin, __pyx_v_xmax, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_xmin.memview)) { __Pyx_RaiseUnboundLocalError("xmin"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_xmax.memview)) { __Pyx_RaiseUnboundLocalError("xmax"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_three_exact(__pyx_v_xmin, __pyx_v_xmax, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4222,7 +3800,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_three_exact(CY
   return __pyx_r;
 }
 
-/* "cubature\_test_integrands.pyx":163
+/* "cubature\_test_integrands.pyx":145
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double genz_gaussian(double [:] x, double [:] u, double [:] a):             # <<<<<<<<<<<<<<
@@ -4230,7 +3808,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_three_exact(CY
  *     cdef unsigned int d = x.shape[0]
  */
 
-static PyObject *__pyx_pw_8cubature_16_test_integrands_23genz_gaussian(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_19genz_gaussian(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a, CYTHON_UNUSED int __pyx_skip_dispatch) {
   unsigned int __pyx_v_i;
   unsigned int __pyx_v_d;
@@ -4247,7 +3825,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
   size_t __pyx_t_6;
   __Pyx_RefNannySetupContext("genz_gaussian", 0);
 
-  /* "cubature\_test_integrands.pyx":165
+  /* "cubature\_test_integrands.pyx":147
  * cpdef double genz_gaussian(double [:] x, double [:] u, double [:] a):
  *     cdef unsigned int i
  *     cdef unsigned int d = x.shape[0]             # <<<<<<<<<<<<<<
@@ -4256,7 +3834,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
  */
   __pyx_v_d = (__pyx_v_x.shape[0]);
 
-  /* "cubature\_test_integrands.pyx":166
+  /* "cubature\_test_integrands.pyx":148
  *     cdef unsigned int i
  *     cdef unsigned int d = x.shape[0]
  *     cdef double val = 0., dx = 0., a2 = 0.             # <<<<<<<<<<<<<<
@@ -4267,7 +3845,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
   __pyx_v_dx = 0.;
   __pyx_v_a2 = 0.;
 
-  /* "cubature\_test_integrands.pyx":168
+  /* "cubature\_test_integrands.pyx":150
  *     cdef double val = 0., dx = 0., a2 = 0.
  * 
  *     for i in range(d):             # <<<<<<<<<<<<<<
@@ -4278,7 +3856,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "cubature\_test_integrands.pyx":169
+    /* "cubature\_test_integrands.pyx":151
  * 
  *     for i in range(d):
  *         dx = x[i] - u[i]             # <<<<<<<<<<<<<<
@@ -4289,7 +3867,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_dx = ((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_3 * __pyx_v_x.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_u.data + __pyx_t_4 * __pyx_v_u.strides[0]) ))));
 
-    /* "cubature\_test_integrands.pyx":170
+    /* "cubature\_test_integrands.pyx":152
  *     for i in range(d):
  *         dx = x[i] - u[i]
  *         a2 = a[i] * a[i]             # <<<<<<<<<<<<<<
@@ -4300,7 +3878,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
     __pyx_t_6 = __pyx_v_i;
     __pyx_v_a2 = ((*((double *) ( /* dim=0 */ (__pyx_v_a.data + __pyx_t_5 * __pyx_v_a.strides[0]) ))) * (*((double *) ( /* dim=0 */ (__pyx_v_a.data + __pyx_t_6 * __pyx_v_a.strides[0]) ))));
 
-    /* "cubature\_test_integrands.pyx":171
+    /* "cubature\_test_integrands.pyx":153
  *         dx = x[i] - u[i]
  *         a2 = a[i] * a[i]
  *         val += a2*dx*dx             # <<<<<<<<<<<<<<
@@ -4310,7 +3888,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
     __pyx_v_val = (__pyx_v_val + ((__pyx_v_a2 * __pyx_v_dx) * __pyx_v_dx));
   }
 
-  /* "cubature\_test_integrands.pyx":173
+  /* "cubature\_test_integrands.pyx":155
  *         val += a2*dx*dx
  * 
  *     return exp(-val)             # <<<<<<<<<<<<<<
@@ -4320,7 +3898,7 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
   __pyx_r = exp((-__pyx_v_val));
   goto __pyx_L0;
 
-  /* "cubature\_test_integrands.pyx":163
+  /* "cubature\_test_integrands.pyx":145
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double genz_gaussian(double [:] x, double [:] u, double [:] a):             # <<<<<<<<<<<<<<
@@ -4335,8 +3913,8 @@ static double __pyx_f_8cubature_16_test_integrands_genz_gaussian(__Pyx_memviewsl
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_23genz_gaussian(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_23genz_gaussian(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8cubature_16_test_integrands_19genz_gaussian(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_19genz_gaussian(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_x = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_u = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_a = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -4367,16 +3945,16 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_23genz_gaussian(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_u)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("genz_gaussian", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("genz_gaussian", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("genz_gaussian", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("genz_gaussian", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "genz_gaussian") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "genz_gaussian") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4385,26 +3963,26 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_23genz_gaussian(PyObject 
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0]); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_u = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1]); if (unlikely(!__pyx_v_u.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_a = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2]); if (unlikely(!__pyx_v_a.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0]); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_u = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1]); if (unlikely(!__pyx_v_u.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_a = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2]); if (unlikely(!__pyx_v_a.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("genz_gaussian", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("genz_gaussian", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("cubature._test_integrands.genz_gaussian", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_22genz_gaussian(__pyx_self, __pyx_v_x, __pyx_v_u, __pyx_v_a);
+  __pyx_r = __pyx_pf_8cubature_16_test_integrands_18genz_gaussian(__pyx_self, __pyx_v_x, __pyx_v_u, __pyx_v_a);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8cubature_16_test_integrands_22genz_gaussian(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a) {
+static PyObject *__pyx_pf_8cubature_16_test_integrands_18genz_gaussian(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4413,10 +3991,10 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_22genz_gaussian(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("genz_gaussian", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_u.memview)) { __Pyx_RaiseUnboundLocalError("u"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_a.memview)) { __Pyx_RaiseUnboundLocalError("a"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_genz_gaussian(__pyx_v_x, __pyx_v_u, __pyx_v_a, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_u.memview)) { __Pyx_RaiseUnboundLocalError("u"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_a.memview)) { __Pyx_RaiseUnboundLocalError("a"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_genz_gaussian(__pyx_v_x, __pyx_v_u, __pyx_v_a, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4436,221 +4014,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_22genz_gaussian(CYTHON_UN
   return __pyx_r;
 }
 
-/* "cubature\_test_integrands.pyx":177
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cpdef double genz_gaussian_exact(double [:] u, double [:] a):             # <<<<<<<<<<<<<<
- *     cdef unsigned int d = a.shape[0]
- *     cdef double val = 1., prod = 0.
- */
-
-static PyObject *__pyx_pw_8cubature_16_test_integrands_25genz_gaussian_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static double __pyx_f_8cubature_16_test_integrands_genz_gaussian_exact(__Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  unsigned int __pyx_v_d;
-  double __pyx_v_val;
-  double __pyx_v_prod;
-  unsigned int __pyx_v_i;
-  double __pyx_v_spi;
-  double __pyx_r;
-  __Pyx_RefNannyDeclarations
-  unsigned int __pyx_t_1;
-  unsigned int __pyx_t_2;
-  size_t __pyx_t_3;
-  size_t __pyx_t_4;
-  size_t __pyx_t_5;
-  double __pyx_t_6;
-  size_t __pyx_t_7;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("genz_gaussian_exact", 0);
-
-  /* "cubature\_test_integrands.pyx":178
- * @cython.wraparound(False)
- * cpdef double genz_gaussian_exact(double [:] u, double [:] a):
- *     cdef unsigned int d = a.shape[0]             # <<<<<<<<<<<<<<
- *     cdef double val = 1., prod = 0.
- *     cdef unsigned int i
- */
-  __pyx_v_d = (__pyx_v_a.shape[0]);
-
-  /* "cubature\_test_integrands.pyx":179
- * cpdef double genz_gaussian_exact(double [:] u, double [:] a):
- *     cdef unsigned int d = a.shape[0]
- *     cdef double val = 1., prod = 0.             # <<<<<<<<<<<<<<
- *     cdef unsigned int i
- * 
- */
-  __pyx_v_val = 1.;
-  __pyx_v_prod = 0.;
-
-  /* "cubature\_test_integrands.pyx":182
- *     cdef unsigned int i
- * 
- *     spi = sqrt(pi)             # <<<<<<<<<<<<<<
- * 
- *     for i in range(d):
- */
-  __pyx_v_spi = sqrt(M_PI);
-
-  /* "cubature\_test_integrands.pyx":184
- *     spi = sqrt(pi)
- * 
- *     for i in range(d):             # <<<<<<<<<<<<<<
- *         prod = u[i]*a[i]
- *         val *= spi/(2*a[i])*(erf(prod) + erf(a[i] - prod))
- */
-  __pyx_t_1 = __pyx_v_d;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
-
-    /* "cubature\_test_integrands.pyx":185
- * 
- *     for i in range(d):
- *         prod = u[i]*a[i]             # <<<<<<<<<<<<<<
- *         val *= spi/(2*a[i])*(erf(prod) + erf(a[i] - prod))
- * 
- */
-    __pyx_t_3 = __pyx_v_i;
-    __pyx_t_4 = __pyx_v_i;
-    __pyx_v_prod = ((*((double *) ( /* dim=0 */ (__pyx_v_u.data + __pyx_t_3 * __pyx_v_u.strides[0]) ))) * (*((double *) ( /* dim=0 */ (__pyx_v_a.data + __pyx_t_4 * __pyx_v_a.strides[0]) ))));
-
-    /* "cubature\_test_integrands.pyx":186
- *     for i in range(d):
- *         prod = u[i]*a[i]
- *         val *= spi/(2*a[i])*(erf(prod) + erf(a[i] - prod))             # <<<<<<<<<<<<<<
- * 
- *     return val
- */
-    __pyx_t_5 = __pyx_v_i;
-    __pyx_t_6 = (2.0 * (*((double *) ( /* dim=0 */ (__pyx_v_a.data + __pyx_t_5 * __pyx_v_a.strides[0]) ))));
-    if (unlikely(__pyx_t_6 == 0)) {
-      PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    }
-    __pyx_t_7 = __pyx_v_i;
-    __pyx_v_val = (__pyx_v_val * ((__pyx_v_spi / __pyx_t_6) * (erf(__pyx_v_prod) + erf(((*((double *) ( /* dim=0 */ (__pyx_v_a.data + __pyx_t_7 * __pyx_v_a.strides[0]) ))) - __pyx_v_prod)))));
-  }
-
-  /* "cubature\_test_integrands.pyx":188
- *         val *= spi/(2*a[i])*(erf(prod) + erf(a[i] - prod))
- * 
- *     return val             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __pyx_r = __pyx_v_val;
-  goto __pyx_L0;
-
-  /* "cubature\_test_integrands.pyx":177
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cpdef double genz_gaussian_exact(double [:] u, double [:] a):             # <<<<<<<<<<<<<<
- *     cdef unsigned int d = a.shape[0]
- *     cdef double val = 1., prod = 0.
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_WriteUnraisable("cubature._test_integrands.genz_gaussian_exact", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_25genz_gaussian_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_25genz_gaussian_exact(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  __Pyx_memviewslice __pyx_v_u = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_v_a = { 0, 0, { 0 }, { 0 }, { 0 } };
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("genz_gaussian_exact (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_u,&__pyx_n_s_a,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_u)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("genz_gaussian_exact", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "genz_gaussian_exact") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_u = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0]); if (unlikely(!__pyx_v_u.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_a = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1]); if (unlikely(!__pyx_v_a.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("genz_gaussian_exact", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("cubature._test_integrands.genz_gaussian_exact", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_24genz_gaussian_exact(__pyx_self, __pyx_v_u, __pyx_v_a);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_8cubature_16_test_integrands_24genz_gaussian_exact(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_u, __Pyx_memviewslice __pyx_v_a) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("genz_gaussian_exact", 0);
-  __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_u.memview)) { __Pyx_RaiseUnboundLocalError("u"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_a.memview)) { __Pyx_RaiseUnboundLocalError("a"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_genz_gaussian_exact(__pyx_v_u, __pyx_v_a, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cubature._test_integrands.genz_gaussian_exact", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __PYX_XDEC_MEMVIEW(&__pyx_v_u, 1);
-  __PYX_XDEC_MEMVIEW(&__pyx_v_a, 1);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "cubature\_test_integrands.pyx":192
+/* "cubature\_test_integrands.pyx":159
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_five(double [:] x):             # <<<<<<<<<<<<<<
@@ -4658,7 +4022,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_24genz_gaussian_exact(CYT
  *     cdef double dx1 = 0., dx2 = 0., sum1 = 0., sum2 = 0.
  */
 
-static PyObject *__pyx_pw_8cubature_16_test_integrands_27cubature_five(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_five(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewslice __pyx_v_x, CYTHON_UNUSED int __pyx_skip_dispatch) {
   unsigned int __pyx_v_d;
   double __pyx_v_dx1;
@@ -4684,7 +4048,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_five", 0);
 
-  /* "cubature\_test_integrands.pyx":193
+  /* "cubature\_test_integrands.pyx":160
  * @cython.wraparound(False)
  * cpdef double cubature_five(double [:] x):
  *     cdef unsigned int d = x.shape[0]             # <<<<<<<<<<<<<<
@@ -4693,7 +4057,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
  */
   __pyx_v_d = (__pyx_v_x.shape[0]);
 
-  /* "cubature\_test_integrands.pyx":194
+  /* "cubature\_test_integrands.pyx":161
  * cpdef double cubature_five(double [:] x):
  *     cdef unsigned int d = x.shape[0]
  *     cdef double dx1 = 0., dx2 = 0., sum1 = 0., sum2 = 0.             # <<<<<<<<<<<<<<
@@ -4705,7 +4069,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
   __pyx_v_sum1 = 0.;
   __pyx_v_sum2 = 0.;
 
-  /* "cubature\_test_integrands.pyx":196
+  /* "cubature\_test_integrands.pyx":163
  *     cdef double dx1 = 0., dx2 = 0., sum1 = 0., sum2 = 0.
  *     cdef unsigned int i
  *     cdef double a = 0.1             # <<<<<<<<<<<<<<
@@ -4714,7 +4078,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
  */
   __pyx_v_a = 0.1;
 
-  /* "cubature\_test_integrands.pyx":197
+  /* "cubature\_test_integrands.pyx":164
  *     cdef unsigned int i
  *     cdef double a = 0.1
  *     cdef double a2 = a*a             # <<<<<<<<<<<<<<
@@ -4723,7 +4087,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
  */
   __pyx_v_a2 = (__pyx_v_a * __pyx_v_a);
 
-  /* "cubature\_test_integrands.pyx":199
+  /* "cubature\_test_integrands.pyx":166
  *     cdef double a2 = a*a
  * 
  *     for i in range(d):             # <<<<<<<<<<<<<<
@@ -4734,7 +4098,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "cubature\_test_integrands.pyx":200
+    /* "cubature\_test_integrands.pyx":167
  * 
  *     for i in range(d):
  *         dx1 = x[i] - 1./3.             # <<<<<<<<<<<<<<
@@ -4744,7 +4108,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
     __pyx_t_3 = __pyx_v_i;
     __pyx_v_dx1 = ((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_3 * __pyx_v_x.strides[0]) ))) - (1. / 3.));
 
-    /* "cubature\_test_integrands.pyx":201
+    /* "cubature\_test_integrands.pyx":168
  *     for i in range(d):
  *         dx1 = x[i] - 1./3.
  *         dx2 = x[i] - 2./3.             # <<<<<<<<<<<<<<
@@ -4754,7 +4118,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_dx2 = ((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_4 * __pyx_v_x.strides[0]) ))) - (2. / 3.));
 
-    /* "cubature\_test_integrands.pyx":202
+    /* "cubature\_test_integrands.pyx":169
  *         dx1 = x[i] - 1./3.
  *         dx2 = x[i] - 2./3.
  *         sum1 += dx1*dx1             # <<<<<<<<<<<<<<
@@ -4763,7 +4127,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
  */
     __pyx_v_sum1 = (__pyx_v_sum1 + (__pyx_v_dx1 * __pyx_v_dx1));
 
-    /* "cubature\_test_integrands.pyx":203
+    /* "cubature\_test_integrands.pyx":170
  *         dx2 = x[i] - 2./3.
  *         sum1 += dx1*dx1
  *         sum2 += dx2*dx2             # <<<<<<<<<<<<<<
@@ -4773,7 +4137,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
     __pyx_v_sum2 = (__pyx_v_sum2 + (__pyx_v_dx2 * __pyx_v_dx2));
   }
 
-  /* "cubature\_test_integrands.pyx":205
+  /* "cubature\_test_integrands.pyx":172
  *         sum2 += dx2*dx2
  * 
  *     return 0.5*pow(k2sqrtpi / (2*a), d) * (exp(-sum1 / a2) + exp(-sum2 / a2))             # <<<<<<<<<<<<<<
@@ -4783,41 +4147,41 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
   __pyx_t_5 = (2.0 * __pyx_v_a);
   if (unlikely(__pyx_t_5 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
-  __pyx_t_6 = PyFloat_FromDouble((__pyx_v_8cubature_16_test_integrands_k2sqrtpi / __pyx_t_5)); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyFloat_FromDouble((__pyx_v_8cubature_16_test_integrands_k2sqrtpi / __pyx_t_5)); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyInt_From_unsigned_int(__pyx_v_d); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_From_unsigned_int(__pyx_v_d); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyNumber_Power2(__pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyNumber_Power2(__pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Multiply(__pyx_float_0_5, __pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyNumber_Multiply(__pyx_float_0_5, __pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_t_5 = (-__pyx_v_sum1);
   if (unlikely(__pyx_v_a2 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_t_9 = (-__pyx_v_sum2);
   if (unlikely(__pyx_v_a2 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
-  __pyx_t_8 = PyFloat_FromDouble((exp((__pyx_t_5 / __pyx_v_a2)) + exp((__pyx_t_9 / __pyx_v_a2)))); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyFloat_FromDouble((exp((__pyx_t_5 / __pyx_v_a2)) + exp((__pyx_t_9 / __pyx_v_a2)))); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = __pyx_t_9;
   goto __pyx_L0;
 
-  /* "cubature\_test_integrands.pyx":192
+  /* "cubature\_test_integrands.pyx":159
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_five(double [:] x):             # <<<<<<<<<<<<<<
@@ -4838,8 +4202,8 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_five(__Pyx_memviewsl
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_27cubature_five(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_27cubature_five(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
+static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_five(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_21cubature_five(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
   __Pyx_memviewslice __pyx_v_x = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -4848,7 +4212,7 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_27cubature_five(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cubature_five (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4856,14 +4220,14 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_27cubature_five(PyObject 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_26cubature_five(__pyx_self, __pyx_v_x);
+  __pyx_r = __pyx_pf_8cubature_16_test_integrands_20cubature_five(__pyx_self, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8cubature_16_test_integrands_26cubature_five(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
+static PyObject *__pyx_pf_8cubature_16_test_integrands_20cubature_five(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4872,8 +4236,8 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_26cubature_five(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_five", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_five(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_five(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4891,7 +4255,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_26cubature_five(CYTHON_UN
   return __pyx_r;
 }
 
-/* "cubature\_test_integrands.pyx":209
+/* "cubature\_test_integrands.pyx":176
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_six(double [:] x):             # <<<<<<<<<<<<<<
@@ -4899,7 +4263,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_26cubature_five(CYTHON_UN
  *     cdef unsigned int d = x.shape[0]
  */
 
-static PyObject *__pyx_pw_8cubature_16_test_integrands_29cubature_six(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_23cubature_six(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewslice __pyx_v_x, CYTHON_UNUSED int __pyx_skip_dispatch) {
   unsigned int __pyx_v_i;
   unsigned int __pyx_v_d;
@@ -4921,7 +4285,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_six", 0);
 
-  /* "cubature\_test_integrands.pyx":211
+  /* "cubature\_test_integrands.pyx":178
  * cpdef double cubature_six(double [:] x):
  *     cdef unsigned int i
  *     cdef unsigned int d = x.shape[0]             # <<<<<<<<<<<<<<
@@ -4930,7 +4294,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
  */
   __pyx_v_d = (__pyx_v_x.shape[0]);
 
-  /* "cubature\_test_integrands.pyx":212
+  /* "cubature\_test_integrands.pyx":179
  *     cdef unsigned int i
  *     cdef unsigned int d = x.shape[0]
  *     cdef double val = 1.             # <<<<<<<<<<<<<<
@@ -4939,7 +4303,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
  */
   __pyx_v_val = 1.;
 
-  /* "cubature\_test_integrands.pyx":213
+  /* "cubature\_test_integrands.pyx":180
  *     cdef unsigned int d = x.shape[0]
  *     cdef double val = 1.
  *     cdef double c = 1. + 10.**0.5/9.             # <<<<<<<<<<<<<<
@@ -4948,7 +4312,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
  */
   __pyx_v_c = (1. + (pow(10., 0.5) / 9.));
 
-  /* "cubature\_test_integrands.pyx":214
+  /* "cubature\_test_integrands.pyx":181
  *     cdef double val = 1.
  *     cdef double c = 1. + 10.**0.5/9.
  *     for i in range(d):             # <<<<<<<<<<<<<<
@@ -4959,48 +4323,48 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "cubature\_test_integrands.pyx":215
+    /* "cubature\_test_integrands.pyx":182
  *     cdef double c = 1. + 10.**0.5/9.
  *     for i in range(d):
  *         val *= c/(c+1) * pow((c+1)/(c + x[i]), 2)             # <<<<<<<<<<<<<<
  *     return val
  * 
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_val); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_val); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = (__pyx_v_c + 1.0);
     if (unlikely(__pyx_t_4 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_c / __pyx_t_4)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_c / __pyx_t_4)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_4 = (__pyx_v_c + 1.0);
     __pyx_t_6 = __pyx_v_i;
     __pyx_t_7 = (__pyx_v_c + (*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_6 * __pyx_v_x.strides[0]) ))));
     if (unlikely(__pyx_t_7 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_8 = PyFloat_FromDouble((__pyx_t_4 / __pyx_t_7)); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyFloat_FromDouble((__pyx_t_4 / __pyx_t_7)); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_9 = __Pyx_PyNumber_Power2(__pyx_t_8, __pyx_int_2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyNumber_Power2(__pyx_t_8, __pyx_int_2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyNumber_Multiply(__pyx_t_5, __pyx_t_9); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyNumber_Multiply(__pyx_t_5, __pyx_t_9); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyNumber_InPlaceMultiply(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = PyNumber_InPlaceMultiply(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_9); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_9); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_v_val = __pyx_t_7;
   }
 
-  /* "cubature\_test_integrands.pyx":216
+  /* "cubature\_test_integrands.pyx":183
  *     for i in range(d):
  *         val *= c/(c+1) * pow((c+1)/(c + x[i]), 2)
  *     return val             # <<<<<<<<<<<<<<
@@ -5010,7 +4374,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
   __pyx_r = __pyx_v_val;
   goto __pyx_L0;
 
-  /* "cubature\_test_integrands.pyx":209
+  /* "cubature\_test_integrands.pyx":176
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_six(double [:] x):             # <<<<<<<<<<<<<<
@@ -5032,8 +4396,8 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_six(__Pyx_memviewsli
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_29cubature_six(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_29cubature_six(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
+static PyObject *__pyx_pw_8cubature_16_test_integrands_23cubature_six(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_23cubature_six(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
   __Pyx_memviewslice __pyx_v_x = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -5042,7 +4406,7 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_29cubature_six(PyObject *
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cubature_six (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5050,14 +4414,14 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_29cubature_six(PyObject *
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_28cubature_six(__pyx_self, __pyx_v_x);
+  __pyx_r = __pyx_pf_8cubature_16_test_integrands_22cubature_six(__pyx_self, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8cubature_16_test_integrands_28cubature_six(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
+static PyObject *__pyx_pf_8cubature_16_test_integrands_22cubature_six(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5066,8 +4430,8 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_28cubature_six(CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_six", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_six(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_six(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5085,7 +4449,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_28cubature_six(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "cubature\_test_integrands.pyx":220
+/* "cubature\_test_integrands.pyx":187
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_seven(double [:] x):             # <<<<<<<<<<<<<<
@@ -5093,7 +4457,7 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_28cubature_six(CYTHON_UNU
  *     cdef unsigned int d = x.shape[0]
  */
 
-static PyObject *__pyx_pw_8cubature_16_test_integrands_31cubature_seven(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_25cubature_seven(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
 static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviewslice __pyx_v_x, CYTHON_UNUSED int __pyx_skip_dispatch) {
   unsigned int __pyx_v_i;
   unsigned int __pyx_v_d;
@@ -5114,7 +4478,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviews
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_seven", 0);
 
-  /* "cubature\_test_integrands.pyx":222
+  /* "cubature\_test_integrands.pyx":189
  * cpdef double cubature_seven(double [:] x):
  *     cdef unsigned int i
  *     cdef unsigned int d = x.shape[0]             # <<<<<<<<<<<<<<
@@ -5123,7 +4487,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviews
  */
   __pyx_v_d = (__pyx_v_x.shape[0]);
 
-  /* "cubature\_test_integrands.pyx":223
+  /* "cubature\_test_integrands.pyx":190
  *     cdef unsigned int i
  *     cdef unsigned int d = x.shape[0]
  *     cdef double p = 1. / d             # <<<<<<<<<<<<<<
@@ -5132,30 +4496,30 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviews
  */
   if (unlikely(__pyx_v_d == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_v_p = (1. / __pyx_v_d);
 
-  /* "cubature\_test_integrands.pyx":224
+  /* "cubature\_test_integrands.pyx":191
  *     cdef unsigned int d = x.shape[0]
  *     cdef double p = 1. / d
  *     cdef double val = pow(1+p, d)             # <<<<<<<<<<<<<<
  * 
  *     for i in range(d):
  */
-  __pyx_t_1 = PyFloat_FromDouble((1.0 + __pyx_v_p)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble((1.0 + __pyx_v_p)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_d); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_d); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyNumber_Power2(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyNumber_Power2(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_val = __pyx_t_4;
 
-  /* "cubature\_test_integrands.pyx":226
+  /* "cubature\_test_integrands.pyx":193
  *     cdef double val = pow(1+p, d)
  * 
  *     for i in range(d):             # <<<<<<<<<<<<<<
@@ -5166,34 +4530,34 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviews
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "cubature\_test_integrands.pyx":227
+    /* "cubature\_test_integrands.pyx":194
  * 
  *     for i in range(d):
  *         val *= pow(x[i], p)             # <<<<<<<<<<<<<<
  * 
  *     return val
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_val); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_val); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_7 = __pyx_v_i;
-    __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_7 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_7 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyNumber_Power2(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyNumber_Power2(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_InPlaceMultiply(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyNumber_InPlaceMultiply(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_val = __pyx_t_4;
   }
 
-  /* "cubature\_test_integrands.pyx":229
+  /* "cubature\_test_integrands.pyx":196
  *         val *= pow(x[i], p)
  * 
  *     return val             # <<<<<<<<<<<<<<
@@ -5201,7 +4565,7 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviews
   __pyx_r = __pyx_v_val;
   goto __pyx_L0;
 
-  /* "cubature\_test_integrands.pyx":220
+  /* "cubature\_test_integrands.pyx":187
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef double cubature_seven(double [:] x):             # <<<<<<<<<<<<<<
@@ -5223,8 +4587,8 @@ static double __pyx_f_8cubature_16_test_integrands_cubature_seven(__Pyx_memviews
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8cubature_16_test_integrands_31cubature_seven(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
-static PyObject *__pyx_pw_8cubature_16_test_integrands_31cubature_seven(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
+static PyObject *__pyx_pw_8cubature_16_test_integrands_25cubature_seven(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
+static PyObject *__pyx_pw_8cubature_16_test_integrands_25cubature_seven(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
   __Pyx_memviewslice __pyx_v_x = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -5233,7 +4597,7 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_31cubature_seven(PyObject
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cubature_seven (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_x = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_arg_x); if (unlikely(!__pyx_v_x.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5241,14 +4605,14 @@ static PyObject *__pyx_pw_8cubature_16_test_integrands_31cubature_seven(PyObject
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8cubature_16_test_integrands_30cubature_seven(__pyx_self, __pyx_v_x);
+  __pyx_r = __pyx_pf_8cubature_16_test_integrands_24cubature_seven(__pyx_self, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8cubature_16_test_integrands_30cubature_seven(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
+static PyObject *__pyx_pf_8cubature_16_test_integrands_24cubature_seven(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_x) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5257,8 +4621,8 @@ static PyObject *__pyx_pf_8cubature_16_test_integrands_30cubature_seven(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cubature_seven", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_seven(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_x.memview)) { __Pyx_RaiseUnboundLocalError("x"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8cubature_16_test_integrands_cubature_seven(__pyx_v_x, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20256,15 +19620,12 @@ static PyMethodDef __pyx_methods[] = {
   {"cubature_zero_exact", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_9cubature_zero_exact, METH_O, __pyx_doc_8cubature_16_test_integrands_8cubature_zero_exact},
   {"cubature_one", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_11cubature_one, METH_O, __pyx_doc_8cubature_16_test_integrands_10cubature_one},
   {"cubature_one_exact", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_13cubature_one_exact, METH_O, 0},
-  {"cubature_two", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_15cubature_two, METH_VARARGS|METH_KEYWORDS, 0},
-  {"cubature_two_exact", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_17cubature_two_exact, METH_VARARGS|METH_KEYWORDS, 0},
-  {"cubature_three", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_19cubature_three, METH_O, 0},
-  {"cubature_three_exact", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_21cubature_three_exact, METH_VARARGS|METH_KEYWORDS, 0},
-  {"genz_gaussian", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_23genz_gaussian, METH_VARARGS|METH_KEYWORDS, 0},
-  {"genz_gaussian_exact", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_25genz_gaussian_exact, METH_VARARGS|METH_KEYWORDS, 0},
-  {"cubature_five", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_27cubature_five, METH_O, 0},
-  {"cubature_six", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_29cubature_six, METH_O, 0},
-  {"cubature_seven", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_31cubature_seven, METH_O, 0},
+  {"cubature_three", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_15cubature_three, METH_O, 0},
+  {"cubature_three_exact", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_17cubature_three_exact, METH_VARARGS|METH_KEYWORDS, 0},
+  {"genz_gaussian", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_19genz_gaussian, METH_VARARGS|METH_KEYWORDS, 0},
+  {"cubature_five", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_21cubature_five, METH_O, 0},
+  {"cubature_six", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_23cubature_six, METH_O, 0},
+  {"cubature_seven", (PyCFunction)__pyx_pw_8cubature_16_test_integrands_25cubature_seven, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -20349,7 +19710,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_prod, __pyx_k_prod, sizeof(__pyx_k_prod), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_getbuffer, __pyx_k_pyx_getbuffer, sizeof(__pyx_k_pyx_getbuffer), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
-  {&__pyx_n_s_radius, __pyx_k_radius, sizeof(__pyx_k_radius), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_shape, __pyx_k_shape, sizeof(__pyx_k_shape), 0, 0, 1, 1},
   {&__pyx_n_s_sin, __pyx_k_sin, sizeof(__pyx_k_sin), 0, 0, 1, 1},
@@ -20833,7 +20193,7 @@ PyMODINIT_FUNC PyInit__test_integrands(void)
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
- * from libc.math cimport cos, sin, exp, tgamma, erf, sqrt
+ * from libc.math cimport cos, sin, exp, sqrt
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
