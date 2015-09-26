@@ -1,6 +1,4 @@
 /* vectorized wrapper around non-vectorized integrands */
-#ifndef VWRAPPER_H
-#define VWRAPPER_H
 typedef struct fv_data_s { integrand f; void *fdata; } fv_data;
 static int fv(unsigned ndim, size_t npt,
 	      const double *x, void *d_,
@@ -16,4 +14,3 @@ static int fv(unsigned ndim, size_t npt,
 	       return FAILURE;
      return SUCCESS;
 }
-#endif /* VWRAPPER_H */

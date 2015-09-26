@@ -1,3 +1,30 @@
+Fri Nov  7 09:10:17 EST 2014  stevenj@alum.mit.edu
+  * silence compiler warning
+
+    M ./hcubature.c +1
+
+Fri Nov  7 09:08:21 EST 2014  stevenj@alum.mit.edu
+  * fix memory leak in BSD realloc(p, 0); fix stevengj/Cubature.jl#7"
+
+    M ./NEWS +5
+    M ./hcubature.c -1 +7
+
+Thu May 23 15:07:44 EDT 2013  stevenj@alum.mit.edu
+  * 1.0.1 version bump
+
+    M ./NEWS +4
+
+Thu May 23 15:05:51 EDT 2013  stevenj@alum.mit.edu
+  * cubature.h should include stdlib.h to make sure it has the definition of size_t
+
+    M ./cubature.h +2
+
+Fri Mar  1 22:08:46 EST 2013  stevenj@alum.mit.edu
+  * add version number 1.0 and NEWS
+
+    M ./Makefile -8 +6
+    A ./NEWS
+
 Thu Feb 28 23:13:23 EST 2013  stevenj@alum.mit.edu
   * dylib rules
 

@@ -192,6 +192,7 @@ static region make_region(const hypercube *h, unsigned fdim)
      R.splitDim = 0;
      R.fdim = fdim;
      R.ee = R.h.data ? (esterr *) malloc(sizeof(esterr) * fdim) : NULL;
+     R.errmax = HUGE_VAL;
      return R;
 }
 
@@ -781,7 +782,13 @@ typedef struct {
 static void heap_resize(heap *h, size_t nalloc)
 {
      h->nalloc = nalloc;
-     h->items = (heap_item *) realloc(h->items, sizeof(heap_item) * nalloc);
+     if (nalloc)
+         h->items = (heap_item *) realloc(h->items, sizeof(heap_item)*nalloc);
+     else {
+         /* BSD realloc does not free for a zero-sized reallocation */
+         free(h->items);
+         h->items = NULL;
+     }
 }
 
 static heap heap_alloc(size_t nalloc, unsigned fdim)
@@ -884,7 +891,7 @@ static heap_item heap_pop(heap *h)
 
 /***************************************************************************/
 
-static int hconverged(unsigned fdim, const esterr *ee,
+static int converged(unsigned fdim, const esterr *ee,
 		     double reqAbsError, double reqRelError, error_norm norm)
 #define ERR(j) ee[j].err
 #define VAL(j) ee[j].val
@@ -929,7 +936,7 @@ static int rulecubature(rule *r, unsigned fdim,
      numEval += r->num_points;
      
      while (numEval < maxEval || !maxEval) {
-	  if (hconverged(fdim, regions.ee, reqAbsError, reqRelError, norm))
+	  if (converged(fdim, regions.ee, reqAbsError, reqRelError, norm))
 	       break;
 
 	  if (parallel) { /* maximize potential parallelism */
@@ -973,7 +980,7 @@ static int rulecubature(rule *r, unsigned fdim,
 		    if (cut_region(R+nR, R+nR+1)) goto bad;
 		    numEval += r->num_points * 2;
 		    nR += 2;
-		    if (hconverged(fdim, ee, reqAbsError, reqRelError, norm))
+		    if (converged(fdim, ee, reqAbsError, reqRelError, norm))
 			 break; /* other regions have small errs */
 	       } while (regions.n > 0 && (numEval < maxEval || !maxEval));
 	       if (eval_regions(nR, R, f, fdata, r)

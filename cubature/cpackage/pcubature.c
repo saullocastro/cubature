@@ -274,7 +274,7 @@ static void eval_integral(valcache vc, const unsigned *m,
 
 /***************************************************************************/
 
-static int pconverged(unsigned fdim, const double *vals, const double *errs,
+static int converged(unsigned fdim, const double *vals, const double *errs,
 		     double reqAbsError, double reqRelError, error_norm norm)
 #define ERR(j) errs[j]
 #define VAL(j) vals[j]
@@ -347,7 +347,7 @@ int pcubature_v_buf(unsigned fdim, integrand_v f, void *fdata,
 	  unsigned mi;
 
 	  eval_integral(vc, m, fdim, dim, V, &mi, val, err, val1);
-	  if (pconverged(fdim, val, err, reqAbsError, reqRelError, norm)
+	  if (converged(fdim, val, err, reqAbsError, reqRelError, norm)
 	      || (numEval > maxEval && maxEval)) {
 	       ret = SUCCESS;
 	       goto done;
@@ -378,7 +378,7 @@ done:
 
 /***************************************************************************/
 
-#define DEFAULT_MAX_NBUF (1U << 30) // original is 1U << 20
+#define DEFAULT_MAX_NBUF (1U << 20)
 
 int pcubature_v(unsigned fdim, integrand_v f, void *fdata,
 		unsigned dim, const double *xmin, const double *xmax,
