@@ -11,8 +11,8 @@ What is Cubature?
 -----------------
 
 It is a numerical integration technique.  From
-`MathWorld <http://mathworld.wolfram.com/Cubature.html>`_, 
-Ueberhuber (1997, p. 71) and Krommer and Ueberhuber 
+`MathWorld <http://mathworld.wolfram.com/Cubature.html>`_,
+Ueberhuber (1997, p. 71) and Krommer and Ueberhuber
 (1998, pp. 49 and 155-165) use the word "quadrature" to mean numerical
 computation of a univariate integral, and "cubature" to mean numerical
 computation of a multiple integral.
@@ -34,28 +34,29 @@ To install in the ``site-packages`` directory and make it importable from
 anywhere:
 
 .. code::
-   
+
     python setup.py install
 
-If you are changing the ``_cubature.pyx`` file, you must have Cython
-installed in order to create a new ``_cubature.c`` file. The ``setup.py``
-script will automatically try to use the Cython compiler first.
+If you are changing ``_cubature.pyx``, you must have Cython installed in order
+to create a new ``_cubature.c`` file (the same is valid for
+``_test_integrands.pyx``). The ``setup.py`` script will automatically try to
+use the Cython compiler first.
 
-If you want to build only a local ``_cubature.pyd`` file, go to
-``./cubature`` and type:
+If you want to build it locally (without installing in Python's
+``site-packages``) just type:
 
 .. code::
-   
-    python setup.py build_ext -i
+
+    python setup.py build_ext --inplace clean
 
 Running the tests
 -----------------
 
 The Python wrapper has been proven using test integrands from the C
-package and some additional testing functions from Genz. The integrands 
-were implemented in Cython and verified with Mathematica. 
+package and some additional testing functions from Genz. The integrands
+were implemented in Cython and verified with Mathematica.
 
-After building cubature, run the unit tests with the ```pytest``` package in 
+After building cubature, run the unit tests with the ```pytest``` package in
 the package directory. Be aware that this takes several minutes.
 
 Examples
