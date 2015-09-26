@@ -57,7 +57,11 @@ package and some additional testing functions from Genz. The integrands
 were implemented in Cython and verified with Mathematica.
 
 After building cubature, run the unit tests with the ```pytest``` package in
-the package directory. Be aware that this takes several minutes.
+the package directory. Be aware that this takes several minutes:
+
+.. code::
+
+    python -m pytest test_cubature.py
 
 Examples
 --------
