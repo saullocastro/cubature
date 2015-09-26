@@ -1,3 +1,7 @@
+# Build files
+build
+cubature.egg*
+dist
 # Cython files
 # local database
 *localDB*
