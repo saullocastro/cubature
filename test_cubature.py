@@ -5,7 +5,7 @@ from cubature import cubature
 import numpy as np
 import math
 
-# test that the Genz oscillatory exact formula actually agrees at an 
+# test that the Genz oscillatory exact formula actually agrees at an
 # even and odd dimension
 def test_genz_oscillatory_exact_d3():
     exact = 4 * np.cos(1056 + np.pi/7)*np.sin(12)*np.sin(306)*np.sin(738)/6273
@@ -53,16 +53,16 @@ def test_hcubature_genz_oscillatory_d2():
 
     # check that integrand is callable
     ti.genz_oscillatory(np.ones((2,), dtype=float), a, u)
-    
+
     val, err = cubature(ti.genz_oscillatory, 2, 1, xmin, xmax, args=(a, u),
             adaptive='h')
-    assert np.allclose(exact, val) 
+    assert np.allclose(exact, val)
 
 def test_cubature_zero_exact():
     d = 1
     xmin = np.zeros((d,), dtype=float)
     xmax = np.ones((d,), dtype=float)*np.pi/2
-    
+
     assert np.allclose(0., ti.cubature_zero_exact(xmin))
     assert np.allclose(1., ti.cubature_zero_exact(xmax))
 
@@ -80,7 +80,7 @@ def test_cubature_zero():
     d = 5
     k = 2/np.sqrt(np.pi)
     x = np.ones((d,), dtype=float)
-    expected = k**d 
+    expected = k**d
     assert np.allclose(ti.cubature_one(x), expected)
 
 
@@ -106,38 +106,6 @@ def test_hcubature_cubature_one():
     val, err = cubature(ti.cubature_one, d, 1, xmin, xmax)
     assert np.allclose([exact], [val])
 
-def test_cubature_two_exact():
-    radius = 1.
-
-    d = 1
-    exact = 2
-    val = ti.cubature_two_exact(d, radius)
-    assert np.allclose([exact], [val])
-
-    d = 2
-    exact = np.pi
-    val = ti.cubature_two_exact(d, radius)
-    assert np.allclose([exact], [val])
-
-    d = 3
-    exact = 4/3*np.pi
-    val = ti.cubature_two_exact(d, radius)
-    assert np.allclose([exact], [val])
-
-@pytest.mark.slow
-def test_hcubature_cubature_two():
-    radius = 0.68244456511919859846 
-    d = 2
-    xmin = -np.ones((d,))
-    xmax = np.ones((d,))
-
-    exact = ti.cubature_two_exact(d, radius)
-
-    val, err = cubature(ti.cubature_two, d, 1, xmin, xmax, args=(radius,),
-            abserr=1e-4, relerr=1e-4, maxEval=1000000)
-    true_error = np.abs(val - exact)
-    assert true_error < 1e-4
-
 def test_cubature_three_exact():
     d = 8
     xmin = -np.ones((d,))
@@ -160,29 +128,6 @@ def test_hcubature_cubature_three():
     exact = ti.cubature_three_exact(xmin, xmax)
 
     val, err = cubature(ti.cubature_three, d, 1, xmin, xmax)
-
-    assert np.allclose([exact], [val])
-
-def test_genz_gaussian_exact():
-    u = np.array([1, 21, 2], dtype=float)
-    a = np.array([1/10, 1/100, 1/500], dtype=float)
-    val = ti.genz_gaussian_exact(u, a)
-    exact = 62500*pow(np.pi, 3/2)*math.erf(1/10)*(math.erf(1/250) -
-            math.erf(1/500))*(math.erf(21/100) - math.erf(1/5))
-
-    assert np.allclose([val], [exact])
-
-def test_hcubature_genz_gaussian():
-    u = np.array([1, 21, 2], dtype=float)
-    a = np.array([1/10, 1/100, 1/500], dtype=float)
-
-    xmin = np.zeros_like(u)
-    xmax = np.ones_like(u)
-
-    exact = ti.genz_gaussian_exact(u, a)
-
-    val, err = cubature(ti.genz_gaussian, u.shape[0], 1, xmin, xmax, args=(u, a),
-            adaptive='h')
 
     assert np.allclose([exact], [val])
 
