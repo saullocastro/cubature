@@ -67,10 +67,10 @@ Linux:
     python setup.py install --prefix=$anydirectory
 
 
-It will create an `.egg` file that will go to
-`$anydirectory\Lib\site-packages`.  This file can be unzipped to obtain the
-importable module, OR, the full path to this `.egg` can be added to
-`$PYTHONPATH` (which can be also done inside a script through
+It will create an ``.egg`` file that will go to
+``$anydirectory\Lib\site-packages``.  This file can be unzipped to obtain the
+importable module, OR, the full path to this ``.egg`` can be added to
+``$PYTHONPATH`` (which can be also done inside a script through
 sys.path.append().
 
 
