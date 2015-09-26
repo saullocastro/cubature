@@ -30,6 +30,14 @@ Python wrapper for the referred C package.
 Installation
 ------------
 
+If you are changing ``_cubature.pyx``, you must have Cython installed in order
+to create a new ``_cubature.c`` file (the same is valid for
+``_test_integrands.pyx``). The ``setup.py`` script will automatically try to
+use the Cython compiler first.
+
+Install to Python's site-package
+................................
+
 To install in the ``site-packages`` directory and make it importable from
 anywhere:
 
@@ -37,10 +45,37 @@ anywhere:
 
     python setup.py install
 
-If you are changing ``_cubature.pyx``, you must have Cython installed in order
-to create a new ``_cubature.c`` file (the same is valid for
-``_test_integrands.pyx``). The ``setup.py`` script will automatically try to
-use the Cython compiler first.
+Install to a customized site-package
+....................................
+
+Windows:
+
+.. code::
+
+    set prefix=anydirectory
+    set PYTHONPATH=%anydirectory%\Lib\site-packages;%PYTHONPATH%
+    mkdir %anydirectory%
+    python setup.py install --prefix="%anydirectory%"
+
+Linux:
+
+.. code::
+
+    export prefix=anydirectory
+    export PYTHONPATH=$anydirectory/Lib/site-packages;$PYTHONPATH
+    mkdir $anydirectory
+    python setup.py install --prefix=$anydirectory
+
+
+It will create an `.egg` file that will go to
+`$anydirectory\Lib\site-packages`.  This file can be unzipped to obtain the
+importable module, OR, the full path to this `.egg` can be added to
+`$PYTHONPATH` (which can be also done inside a script through
+sys.path.append().
+
+
+Build locally
+.............
 
 If you want to build it locally (without installing in Python's
 ``site-packages``) just type:
