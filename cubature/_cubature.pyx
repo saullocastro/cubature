@@ -8,6 +8,7 @@ import cython
 from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
 
+
 cdef class Integrand:
     cdef object f, args, kwargs
     cdef unsigned int ndim, fdim
@@ -23,7 +24,7 @@ cdef class Integrand:
     def __init__(self, *args, **kwargs):
         if not callable(self.f):
             raise ValueError('first argument not callable')
-    
+
     def __str__(self):
         s = 'Integrand(f = {!r}, ndim = {!r}, fdim = {!r}, args = {!r}, kwargs = {!r})'\
              .format(self.f, self.ndim, self.fdim, self.args, self.kwargs)
@@ -32,15 +33,15 @@ cdef class Integrand:
     @cython.boundscheck(False)
     @cython.wraparound(False)
     cdef int _call(self, const double *x, double *fval) except -1:
-        cdef double [:] _x = <double [:self.ndim]>x 
-        cdef double [:] _f = <double [:self.fdim]>fval 
+        cdef double [:] _x = <double [:self.ndim]>x
+        cdef double [:] _f = <double [:self.fdim]>fval
         cdef int error
         cdef unsigned i
 
         try:
             tmp = self.f(_x, *self.args, **self.kwargs)
             if self.fdim == 1:
-                _f[i] = tmp
+                _f[0] = tmp
             else:
                 for i in range(self.fdim):
                     _f[i] = tmp[i]
@@ -53,8 +54,8 @@ cdef class Integrand:
     @cython.boundscheck(False)
     @cython.wraparound(False)
     cdef int _vcall(self, unsigned npts, const double *x, double *fval) except -1:
-        cdef double [:, :] _x = <double [:npts, :self.ndim]>x 
-        cdef double [:, :] _f = <double [:npts, :self.fdim]>fval 
+        cdef double [:, :] _x = <double [:npts, :self.ndim]>x
+        cdef double [:, :] _f = <double [:npts, :self.fdim]>fval
         cdef int error
         cdef unsigned i,j
 
@@ -90,23 +91,26 @@ cdef class Integrand:
             raise RuntimeError('error while calling vcall()')
         return np.asarray(fval)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef int integrand_wrapper(unsigned int ndim, double *x, void *fdata, 
+cdef int integrand_wrapper(unsigned int ndim, double *x, void *fdata,
         unsigned int fdim, double *fval):
     wrapped = <Integrand>fdata;
-    return wrapped._call(x, fval) 
+    return wrapped._call(x, fval)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x, 
+cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x,
         void *fdata, unsigned int fdim, double *fval):
     wrapped = <Integrand>fdata;
-    return wrapped._vcall(npts, x, fval) 
+    return wrapped._vcall(npts, x, fval)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method, 
+def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
         double abserr, double relerr, int norm, unsigned maxEval, args=(),
         kwargs={}):
 
@@ -116,26 +120,26 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
     cdef double [:] val = np.empty((fdim,), dtype=np.float64)
     cdef double [:] err = np.empty((fdim,), dtype=np.float64)
 
-    wrapper = Integrand(callable, ndim, fdim, args, kwargs) 
+    wrapper = Integrand(callable, ndim, fdim, args, kwargs)
 
     if method == 'hcubature_v':
-        error = hcubature_v(fdim, <integrand_v>integrand_wrapper_v, 
-                <void *> wrapper, ndim, &_xmin[0], &_xmax[0], maxEval, abserr, 
+        error = hcubature_v(fdim, <integrand_v>integrand_wrapper_v,
+                <void *> wrapper, ndim, &_xmin[0], &_xmax[0], maxEval, abserr,
                 relerr, <error_norm> norm, &val[0], &err[0])
 
     elif method == 'hcubature':
         error = hcubature(fdim, <integrand>integrand_wrapper, <void *> wrapper,
-                ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr, 
+                ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr,
                 <error_norm> norm, &val[0], &err[0])
 
     elif method == 'pcubature_v':
-        error = pcubature_v(fdim, <integrand_v>integrand_wrapper_v, 
+        error = pcubature_v(fdim, <integrand_v>integrand_wrapper_v,
                 <void *> wrapper, ndim, &_xmin[0], &_xmax[0], maxEval, abserr,
                 relerr, <error_norm> norm, &val[0], &err[0])
 
     elif method == 'pcubature':
         error = pcubature(fdim, <integrand>integrand_wrapper, <void *> wrapper,
-                ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr, 
+                ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr,
                 <error_norm> norm, &val[0], &err[0])
 
     else:
