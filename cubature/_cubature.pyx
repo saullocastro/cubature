@@ -8,6 +8,7 @@ import cython
 from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
 
+include "_cubature.pxd"
 
 cdef class Integrand:
     cdef object f, args, kwargs
@@ -39,7 +40,7 @@ cdef class Integrand:
         cdef unsigned i
 
         try:
-            tmp = self.f(_x, *self.args, **self.kwargs)
+            tmp = self.f(np.asarray(_x), *self.args, **self.kwargs)
             if self.fdim == 1:
                 _f[0] = tmp
             else:
@@ -60,7 +61,7 @@ cdef class Integrand:
         cdef unsigned i,j
 
         try:
-            tmp = self.f(_x, *self.args, **self.kwargs)
+            tmp = self.f(np.asarray(_x), *self.args, **self.kwargs)
             if self.fdim == 1:
                 for i in range(npts):
                     _f[i] = tmp[i]
