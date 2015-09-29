@@ -20,8 +20,8 @@ computation of a multiple integral.
 Documentation
 -------------
 
-Please, <`MathWorld see the module documentation here
-          <http://saullocastro.github.io/cubature/`_.
+Please, `see the module documentation here
+          <http://saullocastro.github.io/cubature/>`_.
 
 Python wrapper for the Cubature package
 ---------------------------------------
