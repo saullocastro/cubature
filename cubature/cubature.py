@@ -39,9 +39,11 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
               required by the function
             - the function must return a 1-D `np.ndarray` object
             - example::
+
                   def func(x_array, *args, **kwargs):
                       x, y = x_array
                       return np.array([x**2-y**2, x*y, x*y**2])
+
         If ``vectorized=True`` the function must have the form:
             ``f(x_array, *args, **kwargs)``
 
@@ -55,17 +57,17 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
             - example::
 
                   # function that returns a vector with 3 values
-
                   fdim = 3
                   def func(x_array, *args, **kwargs):
+                      # note that here ndim=2 (2 variables)
                       x = x_array[:, 0]
                       y = x_array[:, 1]
                       fdim = 3
                       npt = x_array.shape[0]
-                      out = np.zeros(fdim*npt)
-                      out[0::fdim] = x**2 - y**2
-                      out[1::fdim] = x*y
-                      out[2::fdim] = x*y**2
+                      out = np.zeros((npt, fdim))
+                      out[:, 0] = x**2 - y**2
+                      out[:, 1] = x*y
+                      out[:, 2] = x*y**2
                       return out
 
         The results from both vectorized and non-vectorized examples
@@ -74,19 +76,21 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
         capabilities.
     ndim : integer
         Number dimensions or number of variables being integrated.
-    xmin : numpy.ndarray
+    fdim : integer
+        Length of the output vector given by `func`.
+    xmin : array-like
         A 1-D array carring the minimum integration limit for each
         variable being integrated. It must be have:
         ``xmin.shape[0]=ndim``.
-    xmax : numpy.ndarray
+    xmax : array-like
         A 1-D array carring the maximum integration limit for each
         variable being integrated. It must be have:
         ``xmax.shape[0]=ndim``.
-    args : tuple or list
+    args : tuple or list, optional
         Contains the extra arguments required by `func`.
-    kwargs : dict-like
+    kwargs : dict-like, optional
         Contains the extra keyword arguments passed to `func`.
-    adaptive : string
+    adaptive : string, optional
         The adaptive scheme used along the adaptive integration:
 
         - 'h' means 'h-adaptive', where the domain is partitioned
@@ -95,12 +99,12 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
 
         The 'p-adaptive' scheme is often better for smoth functions in
         low dimensions.
-    abserr : double
+    abserr : double, optional
         Integration stops when estimated absolute error is below this threshold
-    relerr : double
+    relerr : double, optional
         Integration stops when estimated error in integral value is below this
         threshold
-    norm : integer
+    norm : integer, optional
         Specifies the norm that is used to measure the error and
         determine convergence properties (irrelevant for
         single-valued functions).
@@ -127,9 +131,9 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
             root mean square of the components, and in the L-infinity
             norm is the maximum absolute value of the components).
 
-    maxEval : integer
+    maxEval : integer, optional
         The maximum number of function evaluations.
-    vectorized : boolean
+    vectorized : boolean, optional
         If ``vectorized=True`` the integration points are passed to the
         integrand function as an array of points, allowing parallel
         evaluation of different points.
@@ -174,6 +178,8 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
 
     """
     # checking xmin and xmax
+    xmin = np.asarray(xmin)
+    xmax = np.asarray(xmax)
     try:
         assert xmin.shape[0] == ndim
     except:
@@ -182,6 +188,32 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
         assert xmax.shape[0] == ndim
     except:
         raise ValueError('xmax.shape[0] is not equal ndim')
+
+    # checking fdim
+    if not vectorized:
+        out = func(np.ones(ndim), *args, **kwargs)
+        try:
+            if isinstance(out, float) or isinstance(out, int):
+                out = np.array([out])
+            assert out.shape[0] == fdim
+        except:
+            raise ValueError(
+                'Length of func ouptut vector is different than fdim')
+    else:
+        out = func(np.ones((7, ndim)), *args, **kwargs)
+        if fdim > 1:
+            try:
+                assert out.shape[0] == 7
+                assert out.shape[1] == fdim
+            except:
+                raise ValueError(
+                    'Output vector does not have shape=(:, fdim)')
+        else:
+            try:
+                assert out.shape[0] == 7
+            except:
+                raise ValueError(
+                    'Output vector does not return a valid array')
 
     method = _call_map.get((adaptive, vectorized), None)
     if method is None:
