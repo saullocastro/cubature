@@ -17,6 +17,12 @@ Ueberhuber (1997, p. 71) and Krommer and Ueberhuber
 computation of a univariate integral, and "cubature" to mean numerical
 computation of a multiple integral.
 
+Documentation
+-------------
+
+Please, <`MathWorld see the module documentation here
+          <http://saullocastro.github.io/cubature/`_.
+
 Python wrapper for the Cubature package
 ---------------------------------------
 
