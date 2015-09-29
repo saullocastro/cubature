@@ -1,7 +1,7 @@
 import numpy as np
 from ._cubature import cubature as _cython_cubature
 
-__all__ = ['ERROR_INDIVIDUAL', 'ERROR_PAIRED', 'ERROR_L2', 'ERROR_L1', 
+__all__ = ['ERROR_INDIVIDUAL', 'ERROR_PAIRED', 'ERROR_L2', 'ERROR_L1',
         'ERROR_LINF', 'cubature']
 
 ERROR_INDIVIDUAL = 0
@@ -21,12 +21,16 @@ _call_map = {
 def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
              abserr=1.e-8, relerr=1.e-8, norm=ERROR_INDIVIDUAL, maxEval=0,
              adaptive='h', vectorized=False):
-    r"""Numerical-integration using cubature technique.
+    r"""Numerical-integration using the cubature method.
+
     Parameters
     ----------
     func : callable
         If ``vectorized=False`` the callable must have the form:
             ``f(x_array, *args, **kwargs)``
+
+            where:
+
             - `x_array` in an array containing the `ndim` variables
                being integrated
             - `args` is a tuple containing any other arguments
@@ -39,29 +43,35 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                       x, y = x_array
                       return np.array([x**2-y**2, x*y, x*y**2])
         If ``vectorized=True`` the function must have the form:
-            ``f(x_array, npt, *args, **kwargs)``
-            - `x_array` has ``shape[0]=ndim*npt``
-            - `npt` tells the number of points passed to the function
+            ``f(x_array, *args, **kwargs)``
+
+            where:
+
+            - `x_array` has ``shape=(npt, ndim)``
             - `args` is a tuple containing any other arguments
               required by the function
             - `kwargs` is a dict containing any keyword arguments
               required by the function
             - example::
-                  def func(x_array, npt, *args, **kwargs):
-                      ndim = 2
+
+                  # function that returns a vector with 3 values
+
+                  fdim = 3
+                  def func(x_array, *args, **kwargs):
+                      x = x_array[:, 0]
+                      y = x_array[:, 1]
                       fdim = 3
+                      npt = x_array.shape[0]
                       out = np.zeros(fdim*npt)
-                      for i in range(npt):
-                          x = x_array[i*ndim]
-                          y = x_array[i*ndim+1]
-                          out[i*fdim] = x**2-y**2
-                          out[i*fdim+1] = x*y
-                          out[i*fdim+2] = x*y**2
+                      out[0::fdim] = x**2 - y**2
+                      out[1::fdim] = x*y
+                      out[2::fdim] = x*y**2
                       return out
+
         The results from both vectorized and non-vectorized examples
         above should be the same, but the vectorized implementation
-        allows more control for the user to parallelize the computation
-        of the integration points.
+        is much faster since it will take advantage of NumPy's vectorization
+        capabilities.
     ndim : integer
         Number dimensions or number of variables being integrated.
     xmin : numpy.ndarray
@@ -74,25 +84,28 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
         ``xmax.shape[0]=ndim``.
     args : tuple or list
         Contains the extra arguments required by `func`.
-    kwargs : dict-like 
+    kwargs : dict-like
         Contains the extra keyword arguments passed to `func`.
     adaptive : string
-        The adaptive scheme used along the adaptive integration.
-        'h' means 'h-adaptive', where the domain is partitioned
-        'p' means 'p-adaptive', where the order of the integration rule
-                                is increased
+        The adaptive scheme used along the adaptive integration:
+
+        - 'h' means 'h-adaptive', where the domain is partitioned
+        - 'p' means 'p-adaptive', where the order of the integration rule is
+          increased
+
         The 'p-adaptive' scheme is often better for smoth functions in
         low dimensions.
     abserr : double
         Integration stops when estimated absolute error is below this threshold
     relerr : double
-        Integration stops when estimated error in integral value is below this 
+        Integration stops when estimated error in integral value is below this
         threshold
     norm : integer
         Specifies the norm that is used to measure the error and
         determine convergence properties (irrelevant for
         single-valued functions).
         The `norm` argument takes one of the values:
+
         - ERROR_INDIVIDUAL: convergence is achieved only when each
             integrand individually satisfies the requested error
             tolerances;
@@ -113,12 +126,14 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
             absolute values of the components, in the L2 norm is the
             root mean square of the components, and in the L-infinity
             norm is the maximum absolute value of the components).
+
     maxEval : integer
         The maximum number of function evaluations.
     vectorized : boolean
         If ``vectorized=True`` the integration points are passed to the
         integrand function as an array of points, allowing parallel
         evaluation of different points.
+
     Returns
     -------
     val : numpy.ndarray
@@ -127,16 +142,20 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
         The 1-D array of length ``fdim`` with the estimated errors. For
         smooth functions this estimate is usually conservative (see the
         results from the ``test_cubature.py`` script.
+
     Notes
     -----
     * The supplied function must return a 1-D ``np.ndarray`` object,
       even for single-valued functions
+
     References
     ----------
     .. [1] `Cubature (Multi-dimensional integration)
            <http://ab-initio.mit.edu/wiki/index.php/Cubature>`_.
+
     Examples
     --------
+
     >>> import numpy as np
     >>> from cubature import cubature
     Volume of a sphere:
@@ -152,6 +171,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     >>> xmax = np.array([radius, 2*pi, pi], float)
     >>> val, err = cubature(integrand_sphere, 3, xmin, xmax)
     More examples in ./examples/*.py
+
     """
     # checking xmin and xmax
     try:
@@ -171,7 +191,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     else:
         val, err = _cython_cubature(func, ndim, fdim, xmin, xmax, method, abserr,
                 relerr, norm, maxEval, args=args, kwargs=kwargs)
-    
+
     return val, err
 
 #TODO
