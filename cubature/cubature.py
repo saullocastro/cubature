@@ -38,11 +38,21 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
             - `kwargs` is a dict containing any keyword arguments
               required by the function
             - the function must return a 1-D `np.ndarray` object
-            - example::
+            - example 1, vector valued function::
 
+                  fdim = 3
                   def func(x_array, *args, **kwargs):
+                      # note that here ndim=2 (2 variables)
                       x, y = x_array
                       return np.array([x**2-y**2, x*y, x*y**2])
+
+            - example 2, scalar function::
+
+                  fdim = 1
+                  def func(x_array, *args, **kwargs):
+                      # note that here ndim=2 (2 variables)
+                      x, y = x_array
+                      return x**2-y**2
 
         If ``vectorized=True`` the function must have the form:
             ``f(x_array, *args, **kwargs)``
@@ -54,7 +64,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
               required by the function
             - `kwargs` is a dict containing any keyword arguments
               required by the function
-            - example::
+            - example 1, vector valued function::
 
                   # function that returns a vector with 3 values
                   fdim = 3
@@ -62,13 +72,22 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                       # note that here ndim=2 (2 variables)
                       x = x_array[:, 0]
                       y = x_array[:, 1]
-                      fdim = 3
                       npt = x_array.shape[0]
                       out = np.zeros((npt, fdim))
                       out[:, 0] = x**2 - y**2
                       out[:, 1] = x*y
                       out[:, 2] = x*y**2
                       return out
+
+            - example 2, scalar function::
+
+                  fdim = 1
+                  def func(x_array, *args, **kwargs):
+                      # note that here ndim=3 (3 variables)
+                      x = x_array[:, 0]
+                      y = x_array[:, 1]
+                      z = x_array[:, 2]
+                      return x**2 + y**2 + z**2
 
         The results from both vectorized and non-vectorized examples
         above should be the same, but the vectorized implementation
@@ -164,16 +183,17 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     >>> from cubature import cubature
     Volume of a sphere:
     >>>
-    >>> ndim = 3
-    >>> xmin = np.zeros(ndim)
     >>> def integrand_sphere(x_array, *args):
     >>>     r, theta, phi = x_array
     >>>     return np.array([r**2*sin(phi)])
     >>>
+    >>> ndim = 3
+    >>> fdim = 1
     >>> radius = 1.
-    >>> xmin = np.array([0, 0, 0], float)
-    >>> xmax = np.array([radius, 2*pi, pi], float)
-    >>> val, err = cubature(integrand_sphere, 3, xmin, xmax)
+    >>> xmin = np.array([0, 0, 0])
+    >>> xmax = np.array([radius, 2*pi, pi])
+    >>> val, err = cubature(integrand_sphere, ndim, fdim, xmin, xmax)
+
     More examples in ./examples/*.py
 
     """
@@ -230,4 +250,3 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
 # - implement multiprocessing dividing the integration interval and spawning
 # - a thread for each sub-interval...
 # - perform a cProfile to see where the bottle nech actually is
-
