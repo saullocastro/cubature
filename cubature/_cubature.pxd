@@ -7,7 +7,7 @@ cdef extern from './cpackage/cubature.h':
         ERROR_L1
         ERROR_LINF
 
-    ctypedef int (*integrand) (unsigned ndim, const double *x, void *fdata, 
+    ctypedef int (*integrand) (unsigned ndim, const double *x, void *fdata,
                                unsigned fdim, double *fval)
 
     ctypedef int (*integrand_v) (unsigned ndim, size_t npt, const double *x,
