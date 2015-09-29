@@ -96,7 +96,8 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     ndim : integer
         Number dimensions or number of variables being integrated.
     fdim : integer
-        Length of the output vector given by `func`.
+        Length of the output vector given by `func`. It should be `1` if the
+        function returns a scalar.
     xmin : array-like
         A 1-D array carring the minimum integration limit for each
         variable being integrated. It must be have:
@@ -193,8 +194,6 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     >>> xmin = np.array([0, 0, 0])
     >>> xmax = np.array([radius, 2*pi, pi])
     >>> val, err = cubature(integrand_sphere, ndim, fdim, xmin, xmax)
-
-    More examples in ./examples/*.py
 
     """
     # checking xmin and xmax

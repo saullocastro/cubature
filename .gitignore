@@ -2,6 +2,7 @@
 build
 cubature.egg*
 dist
+.cache
 # Cython files
 # local database
 *localDB*
