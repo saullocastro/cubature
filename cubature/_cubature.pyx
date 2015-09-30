@@ -8,8 +8,6 @@ import cython
 from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
 
-include "_cubature.pxd"
-
 cdef class Integrand:
     cdef object f, args, kwargs
     cdef unsigned int ndim, fdim
