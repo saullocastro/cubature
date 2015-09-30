@@ -180,14 +180,14 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     Examples
     --------
 
+    >>> # Volume of a sphere:
     >>> import numpy as np
     >>> from cubature import cubature
-    Volume of a sphere:
-    >>>
+
     >>> def integrand_sphere(x_array, *args):
     >>>     r, theta, phi = x_array
     >>>     return np.array([r**2*sin(phi)])
-    >>>
+
     >>> ndim = 3
     >>> fdim = 1
     >>> radius = 1.
@@ -229,6 +229,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                     'Output vector does not have shape=(:, fdim)')
         else:
             try:
+                assert out.ndim == 1
                 assert out.shape[0] == 7
             except:
                 raise ValueError(
