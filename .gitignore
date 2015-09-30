@@ -1,3 +1,6 @@
+# Cython generated C files
+_cubature.c
+_test_integrands.c
 # Build files
 build
 cubature.egg*
