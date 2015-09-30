@@ -31,6 +31,7 @@ More Examples
 =============
 
 .. literalinclude:: ../../examples/ex_volumes.py
+.. literalinclude:: ../../examples/ex_areas.py
 
 
 

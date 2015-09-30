@@ -2,7 +2,6 @@ import numpy as np
 from numpy import pi, sin
 
 from cubature import cubature
-from cubature._cubature import Integrand
 
 def integrand_brick(x_array):
     return 1.
