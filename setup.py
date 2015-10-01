@@ -23,7 +23,7 @@ try:
     cmdclass = {'build_ext': build_ext}
 except ImportError:
     ext_modules = [
-            Extension('cubature._cubature', ['cubature/_cubature.c']), 
+            Extension('cubature._cubature', ['cubature/_cubature.c']),
             Extension('cubature._test_integrands', ['cubature/_test_integrands.c'])
             ]
     cmdclass = {}
