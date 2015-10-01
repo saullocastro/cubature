@@ -1,10 +1,6 @@
-from __future__ import division
-import pytest
-
 import cubature._test_integrands as ti
 from cubature import cubature
 import numpy as np
-import math
 
 # test that the Genz oscillatory exact formula actually agrees at an
 # even and odd dimension
