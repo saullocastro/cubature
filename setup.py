@@ -33,7 +33,6 @@ setup(
     version = version,
     cmdclass = cmdclass,
     packages = ['cubature'],
-
     ext_modules = ext_modules,
     include_dirs = [numpy.get_include()],
     author = 'Saullo G. P. Castro and Anton Loukianov',
