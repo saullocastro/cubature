@@ -3,6 +3,9 @@
 
 import numpy as np
 cimport numpy as np
+# from bug #12, this gives compilation errors? I'm using the 
+# python built in ones.
+from math import erf, tgamma
 from libc.math cimport cos, sin, exp, sqrt
 from libc.math cimport M_PI as pi
 
@@ -10,7 +13,7 @@ cimport cython
 from cpython.array cimport array, clone
 cdef array double_template = array('d')
 
-cdef double k2sqrtpi = 1.12837916709551257390
+cdef double k2sqrtpi = 1.12837916709551257390 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -29,9 +32,9 @@ cdef double genz_oscillatory_fast(unsigned int n, double *args):
     cdef double val = 0.
 
     cdef unsigned int i
-    for i in range(d):
+    for i in range(d): 
         val += args[i]*args[d+i]
-
+    
     val = cos(2*pi*args[n-1] + val)
 
     return val
@@ -41,7 +44,7 @@ cdef double genz_oscillatory_fast(unsigned int n, double *args):
 cpdef double genz_oscillatory_c(double [:] x,  double [:] a, double u):
     cdef unsigned int d = x.shape[0]
     #cdef unsigned int n = 2*d + 1
-
+    
     #cdef array[double] args = clone(double_template, n, 0)
     #for i in range(d):
     #    args[i] = x[i]
@@ -51,9 +54,9 @@ cpdef double genz_oscillatory_c(double [:] x,  double [:] a, double u):
 
     cdef double val = 0.
     cdef unsigned int i
-    for i in range(d):
+    for i in range(d): 
         val += x[i]*a[i]
-
+    
     val = cos(2*pi*u + val)
     return val
 
@@ -101,7 +104,7 @@ cpdef double cubature_one(double [:] x):
     cdef unsigned int d = x.shape[0]
     cdef unsigned int i
     cdef double sum = 0., z, scale = 1.
-
+    
     for i in range(d):
         if x[i] > 0.:
             z = (1 - x[i])/x[i] # rescale to unit interval
@@ -116,6 +119,24 @@ cpdef double cubature_one(double [:] x):
 @cython.wraparound(False)
 cpdef double cubature_one_exact(double [:] x):
     return 1.
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef double cubature_two(double [:] x, double radius):
+    cdef unsigned int d = x.shape[0]
+    cdef double val = 0.
+
+    for i in range(d):
+        val += x[i]*x[i]
+
+    return 1. if val < radius*radius else 0.
+
+cdef double nsphere_surface_area(unsigned int d, double radius):
+    d += 1
+    return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
+
+cpdef double cubature_two_exact(unsigned int d, double radius):
+    return nsphere_surface_area(d-1, radius)/d
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -150,10 +171,25 @@ cpdef double genz_gaussian(double [:] x, double [:] u, double [:] a):
 
     for i in range(d):
         dx = x[i] - u[i]
-        a2 = a[i] * a[i]
+        a2 = a[i] * a[i] 
         val += a2*dx*dx
 
     return exp(-val)
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef double genz_gaussian_exact(double [:] u, double [:] a):
+    cdef unsigned int d = a.shape[0]
+    cdef double val = 1., prod = 0.
+    cdef unsigned int i
+
+    spi = sqrt(pi)
+
+    for i in range(d):
+        prod = u[i]*a[i]
+        val *= spi/(2*a[i])*(erf(prod) + erf(a[i] - prod))
+
+    return val
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
