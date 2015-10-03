@@ -1,3 +1,5 @@
+from __future__ import division
+
 import cubature._test_integrands as ti
 from cubature import cubature
 import numpy as np
