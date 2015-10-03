@@ -5,6 +5,11 @@
 Cubature
 ========
 
+|Build status|
+
+.. |Build status| image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
+    :target: https://travis-ci.org/saullocastro/cubature
+    
 .. contents::
 
 What is Cubature?
