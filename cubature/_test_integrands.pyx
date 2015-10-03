@@ -5,7 +5,7 @@ import numpy as np
 cimport numpy as np
 # from bug #12, this gives compilation errors? I'm using the 
 # python built in ones.
-from math import erf, tgamma
+from math import erf, gamma
 from libc.math cimport cos, sin, exp, sqrt
 from libc.math cimport M_PI as pi
 
@@ -133,7 +133,7 @@ cpdef double cubature_two(double [:] x, double radius):
 
 cdef double nsphere_surface_area(unsigned int d, double radius):
     d += 1
-    return d*pow(pi, 0.5*d)/tgamma(0.5*d + 1) * pow(radius, d)
+    return d*pow(pi, 0.5*d)/gamma(0.5*d + 1) * pow(radius, d)
 
 cpdef double cubature_two_exact(unsigned int d, double radius):
     return nsphere_surface_area(d-1, radius)/d

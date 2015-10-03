@@ -1,9 +1,9 @@
-import pytest
+from __future__ import division
 
 import cubature._test_integrands as ti
 from cubature import cubature
-import numpy as np
 import math
+import numpy as np
 
 # test that the Genz oscillatory exact formula actually agrees at an 
 # even and odd dimension
@@ -53,16 +53,16 @@ def test_hcubature_genz_oscillatory_d2():
 
     # check that integrand is callable
     ti.genz_oscillatory(np.ones((2,), dtype=float), a, u)
-    
+
     val, err = cubature(ti.genz_oscillatory, 2, 1, xmin, xmax, args=(a, u),
             adaptive='h')
-    assert np.allclose(exact, val) 
+    assert np.allclose(exact, val)
 
 def test_cubature_zero_exact():
     d = 1
     xmin = np.zeros((d,), dtype=float)
     xmax = np.ones((d,), dtype=float)*np.pi/2
-    
+
     assert np.allclose(0., ti.cubature_zero_exact(xmin))
     assert np.allclose(1., ti.cubature_zero_exact(xmax))
 
@@ -80,7 +80,7 @@ def test_cubature_zero():
     d = 5
     k = 2/np.sqrt(np.pi)
     x = np.ones((d,), dtype=float)
-    expected = k**d 
+    expected = k**d
     assert np.allclose(ti.cubature_one(x), expected)
 
 
@@ -124,7 +124,6 @@ def test_cubature_two_exact():
     val = ti.cubature_two_exact(d, radius)
     assert np.allclose([exact], [val])
 
-@pytest.mark.slow
 def test_hcubature_cubature_two():
     radius = 0.68244456511919859846 
     d = 2
