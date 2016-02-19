@@ -5,8 +5,12 @@
 cimport numpy as np
 import numpy as np
 import cython
+from cpython.ref cimport PyObject
 from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
         hcubature_v, pcubature_v)
+
+cdef extern from "get_ptr.h":
+    void *get_ctypes_function_pointer(PyObject *obj)
 
 cdef class Integrand:
     cdef object f, args, kwargs
@@ -138,6 +142,46 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
 
     elif method == 'pcubature':
         error = pcubature(fdim, <integrand>integrand_wrapper, <void *> wrapper,
+                ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr,
+                <error_norm> norm, &val[0], &err[0])
+
+    else:
+        raise ValueError('unknown integration method `{!s}`'.format(method))
+
+    if error != 0:
+        raise RuntimeError('integration failed')
+
+    return np.asarray(val), np.asarray(err)
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def cubature_raw_callback(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
+        double abserr, double relerr, int norm, unsigned maxEval, args=(),
+        kwargs={}):
+
+    cdef double [:] _xmin = np.array(xmin, dtype=np.float64)
+    cdef double [:] _xmax = np.array(xmax, dtype=np.float64)
+
+    cdef double [:] val = np.empty((fdim,), dtype=np.float64)
+    cdef double [:] err = np.empty((fdim,), dtype=np.float64)
+
+    if method == 'hcubature_v':
+        error = hcubature_v(fdim, <integrand_v>get_ctypes_function_pointer(<PyObject *>callable),
+                NULL, ndim, &_xmin[0], &_xmax[0], maxEval, abserr,
+                relerr, <error_norm> norm, &val[0], &err[0])
+
+    elif method == 'hcubature':
+        error = hcubature(fdim, <integrand>get_ctypes_function_pointer(<PyObject *>callable), NULL,
+                ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr,
+                <error_norm> norm, &val[0], &err[0])
+
+    elif method == 'pcubature_v':
+        error = pcubature_v(fdim, <integrand_v>get_ctypes_function_pointer(<PyObject *>callable),
+                NULL, ndim, &_xmin[0], &_xmax[0], maxEval, abserr,
+                relerr, <error_norm> norm, &val[0], &err[0])
+
+    elif method == 'pcubature':
+        error = pcubature(fdim, <integrand>get_ctypes_function_pointer(<PyObject *>callable), NULL,
                 ndim, &_xmin[0], &_xmax[0], maxEval, abserr, relerr,
                 <error_norm> norm, &val[0], &err[0])
 

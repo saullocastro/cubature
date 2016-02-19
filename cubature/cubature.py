@@ -1,5 +1,7 @@
 import numpy as np
+import ctypes
 from ._cubature import cubature as _cython_cubature
+from ._cubature import cubature_raw_callback as _cython_cubature_raw_callback
 
 __all__ = ['ERROR_INDIVIDUAL', 'ERROR_PAIRED', 'ERROR_L2', 'ERROR_L1',
         'ERROR_LINF', 'cubature']
@@ -208,32 +210,35 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     except:
         raise ValueError('xmax.shape[0] is not equal ndim')
 
+    use_raw_callback = isinstance(func, ctypes._CFuncPtr)
+
     # checking fdim
-    if not vectorized:
-        out = func(np.ones(ndim), *args, **kwargs)
-        try:
-            if isinstance(out, float) or isinstance(out, int):
-                out = np.array([out])
-            assert out.shape[0] == fdim
-        except:
-            raise ValueError(
-                'Length of func ouptut vector is different than fdim')
-    else:
-        out = func(np.ones((7, ndim)), *args, **kwargs)
-        if fdim > 1:
+    if not use_raw_callback:
+        if not vectorized:
+            out = func(np.ones(ndim), *args, **kwargs)
             try:
-                assert out.shape[0] == 7
-                assert out.shape[1] == fdim
+                if isinstance(out, float) or isinstance(out, int):
+                    out = np.array([out])
+                assert out.shape[0] == fdim
             except:
                 raise ValueError(
-                    'Output vector does not have shape=(:, fdim)')
+                    'Length of func ouptut vector is different than fdim')
         else:
-            try:
-                assert out.ndim == 1
-                assert out.shape[0] == 7
-            except:
-                raise ValueError(
-                    'Output vector does not return a valid array')
+            out = func(np.ones((7, ndim)), *args, **kwargs)
+            if fdim > 1:
+                try:
+                    assert out.shape[0] == 7
+                    assert out.shape[1] == fdim
+                except:
+                    raise ValueError(
+                        'Output vector does not have shape=(:, fdim)')
+            else:
+                try:
+                    assert out.ndim == 1
+                    assert out.shape[0] == 7
+                except:
+                    raise ValueError(
+                        'Output vector does not return a valid array')
 
     method = _call_map.get((adaptive, vectorized), None)
     if method is None:
@@ -241,8 +246,12 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
         s = s.format(adaptive, vectorized)
         raise ValueError(s)
     else:
-        val, err = _cython_cubature(func, ndim, fdim, xmin, xmax, method, abserr,
-                relerr, norm, maxEval, args=args, kwargs=kwargs)
+        if use_raw_callback:
+            val, err = _cython_cubature_raw_callback(func, ndim, fdim, xmin, xmax,
+                    method, abserr, relerr, norm, maxEval, args=args, kwargs=kwargs)
+        else:
+            val, err = _cython_cubature(func, ndim, fdim, xmin, xmax, method, abserr,
+                    relerr, norm, maxEval, args=args, kwargs=kwargs)
 
     return val, err
 

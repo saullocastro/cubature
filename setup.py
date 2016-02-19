@@ -16,7 +16,8 @@ try:
             sources = [
                 'cubature/_cubature.pyx',
                 'cubature/cpackage/hcubature.c',
-                'cubature/cpackage/pcubature.c'],),
+                'cubature/cpackage/pcubature.c',
+                'cubature/get_ptr.c'],),
         Extension('cubature._test_integrands',
             sources = ['cubature/_test_integrands.pyx']),
     ]
