@@ -215,7 +215,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     # checking fdim
     if not use_raw_callback:
         if not vectorized:
-            out = func(np.ones(ndim), *args, **kwargs)
+            out = func(np.ones(ndim)*xmin, *args, **kwargs)
             try:
                 if isinstance(out, float) or isinstance(out, int):
                     out = np.array([out])
@@ -224,7 +224,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                 raise ValueError(
                     'Length of func ouptut vector is different than fdim')
         else:
-            out = func(np.ones((7, ndim)), *args, **kwargs)
+            out = func(np.ones((7, ndim))*xmin, *args, **kwargs)
             if fdim > 1:
                 try:
                     assert out.shape[0] == 7
