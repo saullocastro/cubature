@@ -9,6 +9,12 @@ Cubature
 
 .. |Build status| image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
     :target: https://travis-ci.org/saullocastro/cubature
+
+|Coverage|
+
+.. |Coverage| image:: https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master
+     :target: https://coveralls.io/github/saullocastro/cubature?branch=master
+
     
 .. contents::
 

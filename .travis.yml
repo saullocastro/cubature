@@ -29,4 +29,13 @@ install:
   - python setup.py build_ext --inplace
 
 script:
-  - py.test
+  - coverage run --source meshless -m py.test
+  - coverage report
+
+after_success:
+  - coveralls
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
