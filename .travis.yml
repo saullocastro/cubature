@@ -29,7 +29,7 @@ install:
   - python setup.py build_ext --inplace
 
 script:
-  - coverage run --source meshless -m py.test
+  - coverage run --source cubature -m py.test
   - coverage report
 
 after_success:
