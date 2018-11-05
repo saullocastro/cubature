@@ -124,7 +124,7 @@ helpful if you could cite the papers where this methods has been applied as
 well.
 
 Papers Using Cubature
-*********************
+.....................
 
 Used to integrate tangent stiffness matrices in computational solid mechanics
 
@@ -134,7 +134,7 @@ composite cylinders and cones with the Ritz method". Composite Structures, Vol. 
 Castro, S.G.P. et al. "A semi-analytical approach for linear and non-linear analysis of unstiffened laminated composite cylinders and cones under axial, torsion and pressure loads". Thin-Walled Structures, Vol. 90, 61-73, 2015.
 
 Cubature Library
-****************
+................
 
 Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". On-line: https://github.com/saullocastro/cubature/releases, Version 0.13.3, 2017.
 (check if the version and year are correct)
