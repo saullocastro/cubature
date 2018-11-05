@@ -115,6 +115,28 @@ the package directory. Be aware that this takes several minutes:
 
     python -m pytest test_cubature.py
 
+
+Cite Cubature
+--------------
+
+We kindly ask you to cite this Python library propertly. Also, it would be
+helpful if you could cite the papers where this methods has been applied as
+well.
+
+Papers: Used to integrate tangent stiffness matrices in computational solid mechanics
+***
+
+Castro, S.G.P. et al. "Evaluation of non-linear buckling loads of geometrically imperfect
+composite cylinders and cones with the Ritz method". Composite Structures, Vol. 122, 284-299, 2015.
+
+Castro, S.G.P. et al. "A semi-analytical approach for linear and non-linear analysis of unstiffened laminated composite cylinders and cones under axial, torsion and pressure loads". Thin-Walled Structures, Vol. 90, 61-73, 2015.
+
+The Python wrapper should be cited as
+***
+
+Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". On-line: https://github.com/saullocastro/cubature/releases, Version 0.13.3, 2017.
+(check if the version and year are correct)
+
 Examples
 --------
 
