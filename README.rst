@@ -78,7 +78,7 @@ Running the tests
 To run the tests you`d ratter download the source code. After installing as
 explained above, go to he source code root folder and run::
 
-    py.test
+    py.test .
 
 The Python wrapper has been proven using test integrands from the C
 package and some additional testing functions from Genz. The integrands
