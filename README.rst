@@ -92,7 +92,7 @@ We kindly ask you to cite this Python library propertly. Also, it would be
 helpful if you could cite the papers where this methods has been applied as
 well.
 
-Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". On-line: https://github.com/saullocastro/cubature/releases, Version 0.14.0, 2018. DOI:
+Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541562. Version 0.14.0, 2018.
 
 
 
