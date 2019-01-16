@@ -18,6 +18,7 @@ Cubature
     
 .. contents::
 
+
 What is Cubature?
 -----------------
 
@@ -47,102 +48,68 @@ Python wrapper for the referred C package.
 Installation
 ------------
 
-If you are changing ``_cubature.pyx``, you must have Cython installed in order
-to create a new ``_cubature.c`` file (the same is valid for
-``_test_integrands.pyx``). The ``setup.py`` script will automatically try to
-use the Cython compiler first.
+Installation from source code
+...
 
-Install to Python's site-package
-................................
+You must have Cython installed. Then do::
 
-To install in the ``site-packages`` directory and make it importable from
-anywhere:
+   python setup.py install 
 
-.. code::
+or (usually in Linux)::
 
-    python setup.py install
-
-Install to a customized site-package
-....................................
-
-Windows:
-
-.. code::
-
-    set prefix=anydirectory
-    set PYTHONPATH=%anydirectory%\Lib\site-packages;%PYTHONPATH%
-    mkdir %anydirectory%
-    python setup.py install --prefix="%anydirectory%"
-
-Linux:
-
-.. code::
-
-    export prefix=anydirectory
-    export PYTHONPATH=$anydirectory/Lib/site-packages;$PYTHONPATH
-    mkdir $anydirectory
-    python setup.py install --prefix=$anydirectory
+   python3 setup.py install
 
 
-It will create an ``.egg`` file that will go to
-``$anydirectory\Lib\site-packages``.  This file can be unzipped to obtain the
-importable module, OR, the full path to this ``.egg`` can be added to
-``$PYTHONPATH`` (which can be also done inside a script through
-sys.path.append().
+Installation from pip repository
+...
 
+Just do::
 
-Build locally
-.............
+   pip install cubature
 
-If you want to build it locally (without installing in Python's
-``site-packages``) just type:
+or (usually in Linux)::
 
-.. code::
+   pip3 install cubature
 
-    python setup.py build_ext --inplace clean
 
 Running the tests
 -----------------
+
+To run the tests you`d ratter download the source code. After installing as
+explained above, go to he source code root folder and run::
+
+    py.test
 
 The Python wrapper has been proven using test integrands from the C
 package and some additional testing functions from Genz. The integrands
 were implemented in Cython and verified with Mathematica.
 
-After building cubature, run the unit tests with the ```pytest``` package in
-the package directory. Be aware that this takes several minutes:
 
-.. code::
-
-    python -m pytest test_cubature.py
-
-
-Cite Cubature
---------------
+Citing this Python wrapper for Cubature
+---------------------------------------
 
 We kindly ask you to cite this Python library propertly. Also, it would be
 helpful if you could cite the papers where this methods has been applied as
 well.
 
-Papers Using Cubature
-.....................
+Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". On-line: https://github.com/saullocastro/cubature/releases, Version 0.14.0, 2018. DOI:
+
+
+
+Citing Papers using this Python wrapper for Cubature
+.....................................................
 
 Used to integrate tangent stiffness matrices in computational solid mechanics
 
-Castro, S.G.P. et al. "Evaluation of non-linear buckling loads of geometrically imperfect
-composite cylinders and cones with the Ritz method". Composite Structures, Vol. 122, 284-299, 2015.
+Castro, S.G.P. et al. "Evaluation of non-linear buckling loads of geometrically imperfect composite cylinders and cones with the Ritz method". Composite Structures, Vol. 122, 284-299, 2015.
 
 Castro, S.G.P. et al. "A semi-analytical approach for linear and non-linear analysis of unstiffened laminated composite cylinders and cones under axial, torsion and pressure loads". Thin-Walled Structures, Vol. 90, 61-73, 2015.
-
-Cubature Library
-................
-
-Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". On-line: https://github.com/saullocastro/cubature/releases, Version 0.13.3, 2017.
-(check if the version and year are correct)
 
 Examples
 --------
 
 Some examples are given in `./examples <https://github.com/saullocastro/cubature/tree/master/examples>`_.
+
 
 Fork me!
 --------
@@ -154,5 +121,4 @@ you think your modifications are valuable for another person.
 License
 -------
 
-This wrapper follows the GNU-GPL license terms discribed in the
-`C Package <https://github.com/saullocastro/cubature/tree/master/cubature/cpackage/COPYING>`_.
+This wrapper follows the GNU-GPL license terms of Steven G. Johnson discribed in the `C Package <https://github.com/saullocastro/cubature/tree/master/cubature/cpackage/COPYING>`_.
