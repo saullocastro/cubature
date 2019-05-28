@@ -75,8 +75,8 @@ or (usually in Linux)::
 Running the tests
 -----------------
 
-To run the tests you`d ratter download the source code. After installing as
-explained above, go to he source code root folder and run::
+To run the tests you will have to download the source code. After installing as
+explained above, go to the source code root folder and run::
 
     py.test .
 
@@ -88,7 +88,7 @@ were implemented in Cython and verified with Mathematica.
 Citing this Python wrapper for Cubature
 ---------------------------------------
 
-We kindly ask you to cite this Python library propertly. Also, it would be
+We kindly ask you to cite this Python library properly. Also, it would be
 helpful if you could cite the papers where this methods has been applied as
 well.
 
@@ -121,4 +121,4 @@ you think your modifications are valuable for another person.
 License
 -------
 
-This wrapper follows the GNU-GPL license terms of Steven G. Johnson discribed in the `C Package <https://github.com/saullocastro/cubature/tree/master/cubature/cpackage/COPYING>`_.
+This wrapper follows the GNU-GPL license terms of Steven G. Johnson described in the `C Package <https://github.com/saullocastro/cubature/tree/master/cubature/cpackage/COPYING>`_.
