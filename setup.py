@@ -17,9 +17,11 @@ try:
                 'cubature/_cubature.pyx',
                 'cubature/cpackage/hcubature.c',
                 'cubature/cpackage/pcubature.c',
-                'cubature/get_ptr.c'],),
+                'cubature/get_ptr.c'],
+            include_dirs = [numpy.get_include()]),
         Extension('cubature._test_integrands',
-            sources = ['cubature/_test_integrands.pyx']),
+            sources = ['cubature/_test_integrands.pyx'],
+            include_dirs = [numpy.get_include()]),
     ]
     cmdclass = {'build_ext': build_ext}
 except ImportError:
