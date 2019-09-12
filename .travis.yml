@@ -13,6 +13,8 @@ install:
   - pip3 install pytest
   - pip3 install coveralls
   - pip3 install coverage
+  # Fix required to get Cython working
+  - pip3 install --upgrade cython
   - python3 setup.py install
 
 script:
