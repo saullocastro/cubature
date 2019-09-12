@@ -5,6 +5,22 @@ import numpy
 
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
+CLASSIFIERS = """\
+
+Development Status :: 5 - Production/Stable
+Intended Audience :: Science/Research
+Intended Audience :: Developers
+Intended Audience :: Education
+Topic :: Scientific/Engineering :: Mathematics
+License :: OSI Approved :: BSD License
+Operating System :: Microsoft :: Windows
+Programming Language :: Python :: 3.5
+Programming Language :: Python :: 3.6
+Programming Language :: Python :: 3.7
+Operating System :: Unix
+
+"""
+
 with open('cubature/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
@@ -46,4 +62,5 @@ setup(
     url = 'https://github.com/saullocastro/cubature',
     description = 'Numerical integration technique',
     long_description = open('README.rst').read(),
+    classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
 )
