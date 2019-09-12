@@ -4,7 +4,6 @@ language: python
 sudo: false
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
-  - "3.4"
   - "3.5"
   - "3.6"
   - "3.7"
