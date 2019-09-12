@@ -1,27 +1,18 @@
-# Using the recipe from conda: http://conda.pydata.org/docs/travis.html
-
 language: python
+cache: false
 sudo: false
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "3.5"
   - "3.6"
   - "3.7"
-install:
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
 
-  # Create environment
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION cython pytest numpy coverage
-  - source activate test-environment
+install:
+  - sudo apt-get update
+  # Extra dependencies for testing and coverage
+  - pip3 install pytest
+  - pip3 install coveralls
+  - pip3 install coverage
   - python3 setup.py install
 
 script:
