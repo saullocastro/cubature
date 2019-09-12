@@ -21,6 +21,11 @@ Operating System :: Unix
 
 """
 
+install_requires = [
+        "numpy",
+        "cython",
+        ]
+
 with open('cubature/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
@@ -63,4 +68,5 @@ setup(
     description = 'Numerical integration technique',
     long_description = open('README.rst').read(),
     classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
+    install_requires=install_requires,
 )
