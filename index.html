@@ -1,32 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Cubature (cubature) &mdash; cubature 0.13.0-dev documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>Cubature (cubature) &#8212; cubature 0.14.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.13.0-dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="cubature 0.13.0-dev documentation" href="#" /> 
-  </head>
-  <body role="document">
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -34,12 +25,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cubature 0.13.0-dev documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">cubature 0.14.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,67 +37,59 @@
           <div class="body" role="main">
             
   <span class="target" id="module-cubature"></span><div class="section" id="cubature-cubature">
-<h1>Cubature (<a class="reference internal" href="#module-cubature" title="cubature"><code class="xref py py-mod docutils literal"><span class="pre">cubature</span></code></a>)<a class="headerlink" href="#cubature-cubature" title="Permalink to this headline">¶</a></h1>
+<h1>Cubature (<a class="reference internal" href="#module-cubature" title="cubature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code></a>)<a class="headerlink" href="#cubature-cubature" title="Permalink to this headline">¶</a></h1>
 <p>There is one function that embodies all functionalities offered by Cubature.</p>
 <p>One of the nice things about Cubature is that you can perform
 multi-dimensional integrations at once, which can be achieved by defining:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">ndim</span></code></li>
-<li><code class="docutils literal"><span class="pre">xmin</span></code></li>
-<li><code class="docutils literal"><span class="pre">xmax</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ndim</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xmin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xmax</span></code></p></li>
 </ul>
 <p>There are two types of refinement in the integration methods, both necessary
 to achieve a desired integration error threshold:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">h</span></code> additional integration points are added</li>
-<li><code class="docutils literal"><span class="pre">p</span></code> the order of the integration polynomials is increased</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h</span></code> additional integration points are added</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> the order of the integration polynomials is increased</p></li>
 </ul>
 <p>It allows the evaluation of vectorized functions, making it convenient to take
-advantage of NumPy&#8217;s speed (see examples with <code class="docutils literal"><span class="pre">vectorized=True</span></code>).</p>
+advantage of NumPy’s speed (see examples with <code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code>).</p>
 <p>See the detailed description below on how to use a vector valued fuction
 (function that returs an array) or a scalar function.</p>
 <dl class="function">
 <dt id="cubature.cubature">
-<code class="descclassname">cubature.</code><code class="descname">cubature</code><span class="sig-paren">(</span><em>func</em>, <em>ndim</em>, <em>fdim</em>, <em>xmin</em>, <em>xmax</em>, <em>args=()</em>, <em>kwargs={}</em>, <em>abserr=1e-08</em>, <em>relerr=1e-08</em>, <em>norm=0</em>, <em>maxEval=0</em>, <em>adaptive='h'</em>, <em>vectorized=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cubature/cubature.html#cubature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cubature.cubature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">cubature.</code><code class="sig-name descname">cubature</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">ndim</em>, <em class="sig-param">fdim</em>, <em class="sig-param">xmin</em>, <em class="sig-param">xmax</em>, <em class="sig-param">args=()</em>, <em class="sig-param">kwargs={}</em>, <em class="sig-param">abserr=1e-08</em>, <em class="sig-param">relerr=1e-08</em>, <em class="sig-param">norm=0</em>, <em class="sig-param">maxEval=0</em>, <em class="sig-param">adaptive='h'</em>, <em class="sig-param">vectorized=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cubature/cubature.html#cubature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cubature.cubature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical-integration using the cubature method.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>func</strong> : callable</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>If <code class="docutils literal"><span class="pre">vectorized=False</span></code> the callable must have the form:</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">f(x_array,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>func</strong><span class="classifier">callable</span></dt><dd><dl>
+<dt>If <code class="docutils literal notranslate"><span class="pre">vectorized=False</span></code> the callable must have the form:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">f(x_array,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p>
 <p>where:</p>
-<ul class="last">
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">x_array</span></code> in an array containing the <code class="docutils literal"><span class="pre">ndim</span></code> variables</dt>
-<dd><p class="first last">being integrated</p>
+<ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">x_array</span></code> in an array containing the <code class="docutils literal notranslate"><span class="pre">ndim</span></code> variables</dt><dd><p>being integrated</p>
 </dd>
 </dl>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">args</span></code> is a tuple containing any other arguments
-required by the function</p>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">kwargs</span></code> is a dict containing any keyword arguments
-required by the function</p>
-</li>
-<li><p class="first">the function must return a 1-D <code class="docutils literal"><span class="pre">np.ndarray</span></code> object</p>
-</li>
-<li><p class="first">example 1, vector valued function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">fdim</span> <span class="o">=</span> <span class="mi">3</span>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code> is a tuple containing any other arguments
+required by the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kwargs</span></code> is a dict containing any keyword arguments
+required by the function</p></li>
+<li><p>the function must return a 1-D <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code> object</p></li>
+<li><p>example 1, vector valued function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdim</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="c"># note that here ndim=2 (2 variables)</span>
+    <span class="c1"># note that here ndim=2 (2 variables)</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x_array</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">example 2, scalar function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">fdim</span> <span class="o">=</span> <span class="mi">1</span>
+<li><p>example 2, scalar function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdim</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="c"># note that here ndim=2 (2 variables)</span>
+    <span class="c1"># note that here ndim=2 (2 variables)</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x_array</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
@@ -117,23 +97,19 @@ required by the function</p>
 </li>
 </ul>
 </dd>
-<dt>If <code class="docutils literal"><span class="pre">vectorized=True</span></code> the function must have the form:</dt>
-<dd><p class="first"><code class="docutils literal"><span class="pre">f(x_array,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p>
+<dt>If <code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code> the function must have the form:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">f(x_array,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p>
 <p>where:</p>
-<ul class="last">
-<li><p class="first"><code class="docutils literal"><span class="pre">x_array</span></code> has <code class="docutils literal"><span class="pre">shape=(npt,</span> <span class="pre">ndim)</span></code></p>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">args</span></code> is a tuple containing any other arguments
-required by the function</p>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">kwargs</span></code> is a dict containing any keyword arguments
-required by the function</p>
-</li>
-<li><p class="first">example 1, vector valued function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># function that returns a vector with 3 values</span>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">x_array</span></code> has <code class="docutils literal notranslate"><span class="pre">shape=(npt,</span> <span class="pre">ndim)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code> is a tuple containing any other arguments
+required by the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kwargs</span></code> is a dict containing any keyword arguments
+required by the function</p></li>
+<li><p>example 1, vector valued function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># function that returns a vector with 3 values</span>
 <span class="n">fdim</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="c"># note that here ndim=2 (2 variables)</span>
+    <span class="c1"># note that here ndim=2 (2 variables)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">npt</span> <span class="o">=</span> <span class="n">x_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -145,10 +121,10 @@ required by the function</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">example 2, scalar function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">fdim</span> <span class="o">=</span> <span class="mi">1</span>
+<li><p>example 2, scalar function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdim</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="c"># note that here ndim=3 (3 variables)</span>
+    <span class="c1"># note that here ndim=3 (3 variables)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">x_array</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
@@ -161,75 +137,53 @@ required by the function</p>
 </dl>
 <p>The results from both vectorized and non-vectorized examples
 above should be the same, but the vectorized implementation
-is much faster since it will take advantage of NumPy&#8217;s vectorization
+is much faster since it will take advantage of NumPy’s vectorization
 capabilities.</p>
-</div></blockquote>
-<p><strong>ndim</strong> : integer</p>
-<blockquote>
-<div><p>Number dimensions or number of variables being integrated.</p>
-</div></blockquote>
-<p><strong>fdim</strong> : integer</p>
-<blockquote>
-<div><p>Length of the output vector given by <code class="docutils literal"><span class="pre">func</span></code>. It should be <code class="docutils literal"><span class="pre">1</span></code> if the
+</dd>
+<dt><strong>ndim</strong><span class="classifier">integer</span></dt><dd><p>Number dimensions or number of variables being integrated.</p>
+</dd>
+<dt><strong>fdim</strong><span class="classifier">integer</span></dt><dd><p>Length of the output vector given by <code class="docutils literal notranslate"><span class="pre">func</span></code>. It should be <code class="docutils literal notranslate"><span class="pre">1</span></code> if the
 function returns a scalar.</p>
-</div></blockquote>
-<p><strong>xmin</strong> : array-like</p>
-<blockquote>
-<div><p>A 1-D array carring the minimum integration limit for each
+</dd>
+<dt><strong>xmin</strong><span class="classifier">array-like</span></dt><dd><p>A 1-D array carring the minimum integration limit for each
 variable being integrated. It must be have:
-<code class="docutils literal"><span class="pre">xmin.shape[0]=ndim</span></code>.</p>
-</div></blockquote>
-<p><strong>xmax</strong> : array-like</p>
-<blockquote>
-<div><p>A 1-D array carring the maximum integration limit for each
+<code class="docutils literal notranslate"><span class="pre">xmin.shape[0]=ndim</span></code>.</p>
+</dd>
+<dt><strong>xmax</strong><span class="classifier">array-like</span></dt><dd><p>A 1-D array carring the maximum integration limit for each
 variable being integrated. It must be have:
-<code class="docutils literal"><span class="pre">xmax.shape[0]=ndim</span></code>.</p>
-</div></blockquote>
-<p><strong>args</strong> : tuple or list, optional</p>
-<blockquote>
-<div><p>Contains the extra arguments required by <code class="docutils literal"><span class="pre">func</span></code>.</p>
-</div></blockquote>
-<p><strong>kwargs</strong> : dict-like, optional</p>
-<blockquote>
-<div><p>Contains the extra keyword arguments passed to <code class="docutils literal"><span class="pre">func</span></code>.</p>
-</div></blockquote>
-<p><strong>adaptive</strong> : string, optional</p>
-<blockquote>
-<div><p>The adaptive scheme used along the adaptive integration:</p>
+<code class="docutils literal notranslate"><span class="pre">xmax.shape[0]=ndim</span></code>.</p>
+</dd>
+<dt><strong>args</strong><span class="classifier">tuple or list, optional</span></dt><dd><p>Contains the extra arguments required by <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p>
+</dd>
+<dt><strong>kwargs</strong><span class="classifier">dict-like, optional</span></dt><dd><p>Contains the extra keyword arguments passed to <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p>
+</dd>
+<dt><strong>adaptive</strong><span class="classifier">string, optional</span></dt><dd><p>The adaptive scheme used along the adaptive integration:</p>
 <ul class="simple">
-<li>&#8216;h&#8217; means &#8216;h-adaptive&#8217;, where the domain is partitioned</li>
-<li>&#8216;p&#8217; means &#8216;p-adaptive&#8217;, where the order of the integration rule is
-increased</li>
+<li><p>‘h’ means ‘h-adaptive’, where the domain is partitioned</p></li>
+<li><p>‘p’ means ‘p-adaptive’, where the order of the integration rule is
+increased</p></li>
 </ul>
-<p>The &#8216;p-adaptive&#8217; scheme is often better for smoth functions in
+<p>The ‘p-adaptive’ scheme is often better for smoth functions in
 low dimensions.</p>
-</div></blockquote>
-<p><strong>abserr</strong> : double, optional</p>
-<blockquote>
-<div><p>Integration stops when estimated absolute error is below this threshold</p>
-</div></blockquote>
-<p><strong>relerr</strong> : double, optional</p>
-<blockquote>
-<div><p>Integration stops when estimated error in integral value is below this
+</dd>
+<dt><strong>abserr</strong><span class="classifier">double, optional</span></dt><dd><p>Integration stops when estimated absolute error is below this threshold</p>
+</dd>
+<dt><strong>relerr</strong><span class="classifier">double, optional</span></dt><dd><p>Integration stops when estimated error in integral value is below this
 threshold</p>
-</div></blockquote>
-<p><strong>norm</strong> : integer, optional</p>
-<blockquote>
-<div><p>Specifies the norm that is used to measure the error and
+</dd>
+<dt><strong>norm</strong><span class="classifier">integer, optional</span></dt><dd><p>Specifies the norm that is used to measure the error and
 determine convergence properties (irrelevant for
 single-valued functions).
-The <code class="docutils literal"><span class="pre">norm</span></code> argument takes one of the values:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>ERROR_INDIVIDUAL: convergence is achieved only when each</dt>
-<dd><p class="first last">integrand individually satisfies the requested error
+The <code class="docutils literal notranslate"><span class="pre">norm</span></code> argument takes one of the values:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>ERROR_INDIVIDUAL: convergence is achieved only when each</dt><dd><p>integrand individually satisfies the requested error
 tolerances;</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>ERROR_PAIRED: like ERROR_INDIVIDUAL, except that the</dt>
-<dd><p class="first last">integrands are grouped into consecutive pairs, with the error
+<li><dl class="simple">
+<dt>ERROR_PAIRED: like ERROR_INDIVIDUAL, except that the</dt><dd><p>integrands are grouped into consecutive pairs, with the error
 tolerance applied in a L2 sense to each pair. This option is
 mainly useful for integrating vectors of complex numbers,
 where each consecutive pair of real integrans is the real
@@ -239,13 +193,10 @@ the error in the real and imaginary parts separately;</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">ERROR_L2</p>
-</li>
-<li><p class="first">ERROR_L1</p>
-</li>
-<li><dl class="first docutils">
-<dt>ERROR_LINF</dt>
-<dd><p class="first last">the absolute error is measured as <a href="#id2"><span class="problematic" id="id3">|e|</span></a> and the relative error
+<li><p>ERROR_L2</p></li>
+<li><p>ERROR_L1</p></li>
+<li><dl class="simple">
+<dt>ERROR_LINF</dt><dd><p>the absolute error is measured as <a href="#id2"><span class="problematic" id="id3">|e|</span></a> and the relative error
 as <a href="#id4"><span class="problematic" id="id5">|err|</span></a>/<a href="#id6"><span class="problematic" id="id7">|val|</span></a>, where <a href="#id8"><span class="problematic" id="id9">|...|</span></a> is the L1, L2, or L-infinity
 norm, respectively.  (<a href="#id10"><span class="problematic" id="id11">|x|</span></a> in the L1 norm is the sum of the
 absolute values of the components, in the L2 norm is the
@@ -255,55 +206,49 @@ norm is the maximum absolute value of the components).</p>
 </dl>
 </li>
 </ul>
-</div></blockquote>
-<p><strong>maxEval</strong> : integer, optional</p>
-<blockquote>
-<div><p>The maximum number of function evaluations.</p>
-</div></blockquote>
-<p><strong>vectorized</strong> : boolean, optional</p>
-<blockquote>
-<div><p>If <code class="docutils literal"><span class="pre">vectorized=True</span></code> the integration points are passed to the
+</dd>
+<dt><strong>maxEval</strong><span class="classifier">integer, optional</span></dt><dd><p>The maximum number of function evaluations.</p>
+</dd>
+<dt><strong>vectorized</strong><span class="classifier">boolean, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code> the integration points are passed to the
 integrand function as an array of points, allowing parallel
 evaluation of different points.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>val</strong> : numpy.ndarray</p>
-<blockquote>
-<div><p>The 1-D array of length <code class="docutils literal"><span class="pre">fdim</span></code> with the computed integral values</p>
-</div></blockquote>
-<p><strong>err</strong> : numpy.ndarray</p>
-<blockquote class="last">
-<div><p>The 1-D array of length <code class="docutils literal"><span class="pre">fdim</span></code> with the estimated errors. For
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>val</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The 1-D array of length <code class="docutils literal notranslate"><span class="pre">fdim</span></code> with the computed integral values</p>
+</dd>
+<dt><strong>err</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The 1-D array of length <code class="docutils literal notranslate"><span class="pre">fdim</span></code> with the estimated errors. For
 smooth functions this estimate is usually conservative (see the
-results from the <code class="docutils literal"><span class="pre">test_cubature.py</span></code> script.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+results from the <code class="docutils literal notranslate"><span class="pre">test_cubature.py</span></code> script.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
-<li>The supplied function must return a 1-D <code class="docutils literal"><span class="pre">np.ndarray</span></code> object,
-even for single-valued functions</li>
+<li><p>The supplied function must return a 1-D <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code> object,
+even for single-valued functions</p></li>
 </ul>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td><a class="reference external" href="http://ab-initio.mit.edu/wiki/index.php/Cubature">Cubature (Multi-dimensional integration)</a>.</td></tr>
-</tbody>
-</table>
+<dl class="citation">
+<dt class="label" id="r5d13c21c0770-1"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="http://ab-initio.mit.edu/wiki/index.php/Cubature">Cubature (Multi-dimensional integration)</a>.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cubature</span> <span class="kn">import</span> <span class="n">cubature</span>
-<span class="go">Volume of a sphere:</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">integrand_sphere</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Volume of a sphere:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cubature</span> <span class="k">import</span> <span class="n">cubature</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">integrand_sphere</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">r</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">x_array</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)])</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ndim</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ndim</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fdim</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">radius</span> <span class="o">=</span> <span class="mf">1.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">xmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -316,11 +261,10 @@ even for single-valued functions</li>
 </div>
 <div class="section" id="more-examples">
 <h1>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
 
-<span class="kn">from</span> <span class="nn">cubature</span> <span class="kn">import</span> <span class="n">cubature</span>
-<span class="kn">from</span> <span class="nn">cubature._cubature</span> <span class="kn">import</span> <span class="n">Integrand</span>
+<span class="kn">from</span> <span class="nn">cubature</span> <span class="k">import</span> <span class="n">cubature</span>
 
 <span class="k">def</span> <span class="nf">integrand_brick</span><span class="p">(</span><span class="n">x_array</span><span class="p">):</span>
     <span class="k">return</span> <span class="mf">1.</span>
@@ -348,59 +292,130 @@ even for single-valued functions</li>
 <span class="k">def</span> <span class="nf">exact_ellipsoid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
     <span class="k">return</span> <span class="mf">4.</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="c"># brick</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;_________________&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Brick&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># brick</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Brick&#39;</span><span class="p">)</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span>
     <span class="n">xmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">xmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_brick</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Approximated: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Exact: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_brick</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
-    <span class="c"># sphere</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;_________________&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Sphere&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_brick</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
+    <span class="c1"># sphere</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sphere&#39;</span><span class="p">)</span>
     <span class="n">radius</span> <span class="o">=</span> <span class="mf">1.</span>
     <span class="n">xmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">xmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">radius</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_sphere</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Approximated: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Exact: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_sphere</span><span class="p">(</span><span class="n">radius</span><span class="p">)))</span>
-    <span class="c"># ellipsoid</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;_________________&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Ellipsoid&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_sphere</span><span class="p">(</span><span class="n">radius</span><span class="p">)))</span>
+    <span class="c1"># ellipsoid</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ellipsoid&#39;</span><span class="p">)</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span>
     <span class="n">xmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">xmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_ellipsoid</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Approximated: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Exact: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_ellipsoid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;_________________&#39;</span><span class="p">)</span>
-    <span class="c"># ellipsoid vectorized</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;_________________&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Ellipsoid Vectorized&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_ellipsoid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="c1"># ellipsoid vectorized</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ellipsoid Vectorized&#39;</span><span class="p">)</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span>
     <span class="n">xmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">xmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_ellipsoid_v</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">),</span>
-        <span class="n">vectorized</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Approximated: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Exact: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_ellipsoid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;_________________&#39;</span><span class="p">)</span>
+        <span class="n">vectorized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_ellipsoid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
+
+<span class="kn">from</span> <span class="nn">cubature</span> <span class="k">import</span> <span class="n">cubature</span>
+
+<span class="k">def</span> <span class="nf">integrand_rectangle</span><span class="p">(</span><span class="n">x_array</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.</span>
+
+<span class="k">def</span> <span class="nf">integrand_rectangle_v</span><span class="p">(</span><span class="n">x_array</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">integrand_circle</span><span class="p">(</span><span class="n">x_array</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">integrand_circle_v</span><span class="p">(</span><span class="n">x_array</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">exact_rectangle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">exact_circle</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># rectangle</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rectangle&#39;</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span>
+    <span class="n">xmin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_rectangle</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_rectangle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+    <span class="c1"># rectangle (vectorized)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rectangle (vectorized)&#39;</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span>
+    <span class="n">xmin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_rectangle_v</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_rectangle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+    <span class="c1"># circle</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Circle&#39;</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mf">3.</span>
+    <span class="n">xmin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">]</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_circle</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_circle</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="c1"># circle (vectorized)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Circle (vectorized)&#39;</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mf">3.</span>
+    <span class="n">xmin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">]</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cubature</span><span class="p">(</span><span class="n">integrand_circle_v</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approximated: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exact: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact_circle</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_________________&#39;</span><span class="p">)</span>
+
+
 </pre></div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </div>
 
@@ -410,9 +425,9 @@ even for single-valued functions</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
+  <h3><a href="#">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Cubature (<code class="docutils literal"><span class="pre">cubature</span></code>)</a></li>
+<li><a class="reference internal" href="#">Cubature (<code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code>)</a></li>
 <li><a class="reference internal" href="#more-examples">More Examples</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
@@ -420,21 +435,18 @@ even for single-valued functions</li>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.txt"
+      <li><a href="_sources/index.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -448,17 +460,14 @@ even for single-valued functions</li>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cubature 0.13.0-dev documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">cubature 0.14.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Saullo Castro.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2015, Saullo Castro.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
     </div>
   </body>
 </html>

@@ -1,33 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>cubature.cubature &mdash; cubature 0.13.0-dev documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>cubature.cubature &#8212; cubature 0.14.1 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.13.0-dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="cubature 0.13.0-dev documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
-  </head>
-  <body role="document">
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,13 +25,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">cubature 0.13.0-dev documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">cubature 0.14.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -51,11 +38,13 @@
           <div class="body" role="main">
             
   <h1>Source code for cubature.cubature</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">._cubature</span> <span class="kn">import</span> <span class="n">cubature</span> <span class="k">as</span> <span class="n">_cython_cubature</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">from</span> <span class="nn">._cubature</span> <span class="k">import</span> <span class="n">cubature</span> <span class="k">as</span> <span class="n">_cython_cubature</span>
+<span class="kn">from</span> <span class="nn">._cubature</span> <span class="k">import</span> <span class="n">cubature_raw_callback</span> <span class="k">as</span> <span class="n">_cython_cubature_raw_callback</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ERROR_INDIVIDUAL&#39;</span><span class="p">,</span> <span class="s">&#39;ERROR_PAIRED&#39;</span><span class="p">,</span> <span class="s">&#39;ERROR_L2&#39;</span><span class="p">,</span> <span class="s">&#39;ERROR_L1&#39;</span><span class="p">,</span>
-        <span class="s">&#39;ERROR_LINF&#39;</span><span class="p">,</span> <span class="s">&#39;cubature&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ERROR_INDIVIDUAL&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR_PAIRED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR_L2&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR_L1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ERROR_LINF&#39;</span><span class="p">,</span> <span class="s1">&#39;cubature&#39;</span><span class="p">]</span>
 
 <span class="n">ERROR_INDIVIDUAL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">ERROR_PAIRED</span> <span class="o">=</span> <span class="mi">1</span>
@@ -63,18 +52,18 @@
 <span class="n">ERROR_L1</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">ERROR_LINF</span> <span class="o">=</span> <span class="mi">4</span>
 
-<span class="c"># maps (adaptive, vectorized) to appropriate function call</span>
+<span class="c1"># maps (adaptive, vectorized) to appropriate function call</span>
 <span class="n">_call_map</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">):</span> <span class="s">&#39;hcubature_v&#39;</span><span class="p">,</span>
-    <span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span> <span class="s">&#39;hcubature&#39;</span><span class="p">,</span>
-    <span class="p">(</span><span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">):</span> <span class="s">&#39;pcubature_v&#39;</span><span class="p">,</span>
-    <span class="p">(</span><span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span> <span class="s">&#39;pcubature&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span> <span class="s1">&#39;hcubature_v&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span> <span class="s1">&#39;hcubature&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span> <span class="s1">&#39;pcubature_v&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span> <span class="s1">&#39;pcubature&#39;</span><span class="p">,</span>
     <span class="p">}</span>
 
 <div class="viewcode-block" id="cubature"><a class="viewcode-back" href="../../index.html#cubature.cubature">[docs]</a><span class="k">def</span> <span class="nf">cubature</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
              <span class="n">abserr</span><span class="o">=</span><span class="mf">1.e-8</span><span class="p">,</span> <span class="n">relerr</span><span class="o">=</span><span class="mf">1.e-8</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">ERROR_INDIVIDUAL</span><span class="p">,</span> <span class="n">maxEval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-             <span class="n">adaptive</span><span class="o">=</span><span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Numerical-integration using the cubature method.</span>
+             <span class="n">adaptive</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Numerical-integration using the cubature method.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -233,14 +222,14 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 
+<span class="sd">    &gt;&gt;&gt; # Volume of a sphere:</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from cubature import cubature</span>
-<span class="sd">    Volume of a sphere:</span>
-<span class="sd">    &gt;&gt;&gt;</span>
+
 <span class="sd">    &gt;&gt;&gt; def integrand_sphere(x_array, *args):</span>
 <span class="sd">    &gt;&gt;&gt;     r, theta, phi = x_array</span>
 <span class="sd">    &gt;&gt;&gt;     return np.array([r**2*sin(phi)])</span>
-<span class="sd">    &gt;&gt;&gt;</span>
+
 <span class="sd">    &gt;&gt;&gt; ndim = 3</span>
 <span class="sd">    &gt;&gt;&gt; fdim = 1</span>
 <span class="sd">    &gt;&gt;&gt; radius = 1.</span>
@@ -249,59 +238,67 @@
 <span class="sd">    &gt;&gt;&gt; val, err = cubature(integrand_sphere, ndim, fdim, xmin, xmax)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># checking xmin and xmax</span>
+    <span class="c1"># checking xmin and xmax</span>
     <span class="n">xmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xmin</span><span class="p">)</span>
     <span class="n">xmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xmax</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">xmin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ndim</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;xmin.shape[0] is not equal ndim&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;xmin.shape[0] is not equal ndim&#39;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">xmax</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ndim</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;xmax.shape[0] is not equal ndim&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;xmax.shape[0] is not equal ndim&#39;</span><span class="p">)</span>
 
-    <span class="c"># checking fdim</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">vectorized</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ndim</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">out</span><span class="p">])</span>
-            <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">fdim</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s">&#39;Length of func ouptut vector is different than fdim&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="n">ndim</span><span class="p">)),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">fdim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">use_raw_callback</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">_CFuncPtr</span><span class="p">)</span>
+
+    <span class="c1"># checking fdim</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">use_raw_callback</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">vectorized</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span><span class="o">*</span><span class="n">xmin</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span>
-                <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">fdim</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">out</span><span class="p">])</span>
+                <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">fdim</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s">&#39;Output vector does not have shape=(:, fdim)&#39;</span><span class="p">)</span>
+                    <span class="s1">&#39;Length of func ouptut vector is different than fdim&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s">&#39;Output vector does not return a valid array&#39;</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="n">ndim</span><span class="p">))</span><span class="o">*</span><span class="n">xmin</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fdim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span>
+                    <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">fdim</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s1">&#39;Output vector does not have shape=(:, fdim)&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+                    <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s1">&#39;Output vector does not return a valid array&#39;</span><span class="p">)</span>
 
-    <span class="n">method</span> <span class="o">=</span> <span class="n">_call_map</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">adaptive</span><span class="p">,</span> <span class="n">vectorized</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s">&#39;unknown combination of adaptive (`{!r}`) and vectorized (`{!r}`).&#39;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">_call_map</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">adaptive</span><span class="p">,</span> <span class="n">vectorized</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;unknown combination of adaptive (`</span><span class="si">{!r}</span><span class="s1">`) and vectorized (`</span><span class="si">{!r}</span><span class="s1">`).&#39;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adaptive</span><span class="p">,</span> <span class="n">vectorized</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">_cython_cubature</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">abserr</span><span class="p">,</span>
-                <span class="n">relerr</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">maxEval</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">use_raw_callback</span><span class="p">:</span>
+            <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">_cython_cubature_raw_callback</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span>
+                    <span class="n">method</span><span class="p">,</span> <span class="n">abserr</span><span class="p">,</span> <span class="n">relerr</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">maxEval</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">_cython_cubature</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">abserr</span><span class="p">,</span>
+                    <span class="n">relerr</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">maxEval</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">val</span><span class="p">,</span> <span class="n">err</span>
+    <span class="k">return</span> <span class="n">val</span><span class="p">,</span> <span class="n">err</span></div>
 
-<span class="c">#TODO</span>
-<span class="c"># - implement multiprocessing dividing the integration interval and spawning</span>
-<span class="c"># - a thread for each sub-interval...</span>
-<span class="c"># - perform a cProfile to see where the bottle nech actually is</span></div>
+<span class="c1">#TODO</span>
+<span class="c1"># - implement multiprocessing dividing the integration interval and spawning</span>
+<span class="c1"># - a thread for each sub-interval...</span>
+<span class="c1"># - perform a cProfile to see where the bottle nech actually is</span>
 </pre></div>
 
           </div>
@@ -310,16 +307,13 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -333,18 +327,15 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">cubature 0.13.0-dev documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">cubature 0.14.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Saullo Castro.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2015, Saullo Castro.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
     </div>
   </body>
 </html>
