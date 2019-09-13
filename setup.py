@@ -1,6 +1,6 @@
 import re
 import ast
-from setuptools import setup
+from setuptools import setup, find_packages
 import numpy
 from distutils.extension import Extension
 from Cython.Build import cythonize
@@ -53,7 +53,7 @@ extensions = [
 setup(
     name = 'cubature',
     version = version,
-    packages = ['cubature'],
+    packages = find_packages(),
     ext_modules = cythonize(extensions),
     include_dirs = [numpy.get_include()],
     author = 'Saullo G. P. Castro and Anton Loukianov',

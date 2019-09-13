@@ -15,7 +15,7 @@ install:
   - pip3 install coverage
   # Fix required to get Cython working
   - pip3 install --upgrade cython
-  - python3 setup.py install --user
+  - python3 setup.py install
 
 script:
   - coverage run --source cubature -m py.test
