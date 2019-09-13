@@ -22,8 +22,8 @@ from datetime import datetime
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.append('.')
 sys.path.append(os.path.realpath('../..'))
-print '\n'.join(sys.path)
-print 'os.path.realpath()', os.path.realpath('.')
+print('\n'.join(sys.path))
+print('os.path.realpath()', os.path.realpath('.'))
 
 import cubature
 
