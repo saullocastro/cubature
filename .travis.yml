@@ -11,13 +11,13 @@ python:
 install:
   - sudo apt-get update
   # Extra dependencies for testing and coverage
-  - pip3 install pytest
-  - pip3 install coveralls
-  - pip3 install coverage
+  - pip install pytest
+  - pip install coveralls
+  - pip install coverage
   # Fix required to get Cython working
-  - pip3 install --upgrade cython
-  - python3 setup.py build_ext --inplace
-  - python3 setup.py install
+  - pip install --upgrade cython
+  - python setup.py build_ext --inplace
+  - python setup.py install
 
 script:
   - coverage run --source cubature -m py.test
