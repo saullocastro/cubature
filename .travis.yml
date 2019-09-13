@@ -3,6 +3,7 @@ cache: false
 sudo: false
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
+  - "2.7"
   - "3.5"
   - "3.6"
   - "3.7"
@@ -15,6 +16,7 @@ install:
   - pip3 install coverage
   # Fix required to get Cython working
   - pip3 install --upgrade cython
+  - python3 setup.py build_ext --inplace
   - python3 setup.py install
 
 script:
