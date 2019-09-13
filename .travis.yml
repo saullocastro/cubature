@@ -1,6 +1,6 @@
 language: python
 cache: false
-sudo: true
+sudo: false
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "3.5"
@@ -15,7 +15,7 @@ install:
   - pip3 install coverage
   # Fix required to get Cython working
   - pip3 install --upgrade cython
-  - python3 setup.py install
+  - python3 setup.py install --user
 
 script:
   - coverage run --source cubature -m py.test
