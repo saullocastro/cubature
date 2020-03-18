@@ -51,11 +51,13 @@ extensions = [
         ),
 ]
 
+ext_modules = cythonize(extensions, compiler_directives={'linetrace': True})
+
 setup(
     name = 'cubature',
     version = version,
     packages = find_packages(),
-    ext_modules = cythonize(extensions),
+    ext_modules = ext_modules,
     include_dirs = [numpy.get_include()],
     author = 'Saullo G. P. Castro and Anton Loukianov',
     author_email = 'saullogiovani@gmail.com',
