@@ -35,8 +35,6 @@ cdef class Integrand:
              .format(self.f, self.ndim, self.fdim, self.args, self.kwargs)
         return s
 
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
     cdef int _call(self, const double *x, double *fval) except -1:
         cdef double [:] _x = <double [:self.ndim]>x
         cdef double [:] _f = <double [:self.fdim]>fval
@@ -56,8 +54,6 @@ cdef class Integrand:
             raise e
         return error
 
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
     cdef int _vcall(self, unsigned npts, const double *x, double *fval) except -1:
         cdef double [:, :] _x = <double [:npts, :self.ndim]>x
         cdef double [:, :] _f = <double [:npts, :self.fdim]>fval
@@ -97,24 +93,18 @@ cdef class Integrand:
         return np.asarray(fval)
 
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
 cdef int integrand_wrapper(unsigned int ndim, double *x, void *fdata,
         unsigned int fdim, double *fval):
-    wrapped = <Integrand>fdata;
+    cdef Integrand wrapped = <Integrand>fdata;
     return wrapped._call(x, fval)
 
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
 cdef int integrand_wrapper_v(unsigned int ndim, unsigned int npts, double *x,
         void *fdata, unsigned int fdim, double *fval):
-    wrapped = <Integrand>fdata;
+    cdef Integrand wrapped = <Integrand>fdata;
     return wrapped._vcall(npts, x, fval)
 
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
 def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
         double abserr, double relerr, int norm, unsigned maxEval, args=(),
         kwargs={}):
@@ -155,8 +145,6 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
 
     return np.asarray(val), np.asarray(err)
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
 def cubature_raw_callback(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
         double abserr, double relerr, int norm, unsigned maxEval, args=(),
         kwargs={}):
