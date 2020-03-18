@@ -1,0 +1,4 @@
+global-include *.pyx *.pxd *.py *.h
+recursive-include cubature/cpackage *.*
+include cubature/get_ptr.c
+global-exclude _*.c
