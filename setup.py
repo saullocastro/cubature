@@ -1,5 +1,7 @@
 import re
+import os
 import ast
+
 from setuptools import setup, find_packages
 import numpy
 from distutils.extension import Extension
@@ -33,6 +35,13 @@ with open('cubature/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
+if os.name == 'nt':
+    compile_args = ['/openmp', '/O2']
+    link_args = []
+else:
+    compile_args = ['-fopenmp', '-O2', '-static', '-static-libgcc', '-static-libstdc++']
+    link_args = ['-fopenmp', '-static-libgcc', '-static-libstdc++']
+
 extensions = [
     Extension('cubature._cubature',
         sources = [
@@ -42,11 +51,15 @@ extensions = [
             'cubature/_cubature.pyx',
             ],
         include_dirs = [numpy.get_include()],
+        extra_compile_args=compile_args,
+        extra_link_args=link_args,
         language='c',
         ),
     Extension('cubature._test_integrands',
         sources = ['cubature/_test_integrands.pyx'],
         include_dirs = [numpy.get_include()],
+        extra_compile_args=compile_args,
+        extra_link_args=link_args,
         language='c',
         ),
 ]

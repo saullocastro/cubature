@@ -2,6 +2,7 @@
 _cubature.c
 _test_integrands.c
 # Build files
+.coverage
 build
 cubature.egg*
 dist
