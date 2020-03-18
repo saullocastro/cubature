@@ -2,3 +2,4 @@ numpy
 cython
 coveralls
 pytest
+pytest-cov

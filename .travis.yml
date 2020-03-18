@@ -20,7 +20,7 @@ install:
   - python setup.py build_ext --inplace --force --define CYTHON_TRACE
 
 script:
-  - coverage run --source cubature -m py.test
+  - coverage run -m py.test .
   - coverage report
 
 after_success:
