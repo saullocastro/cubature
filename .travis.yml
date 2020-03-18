@@ -10,15 +10,11 @@ python:
   - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
 
 before_install:
   - sudo apt-get update
-  # Extra dependencies for testing and coverage
-  - pip install pytest
-  - pip install coveralls
-  - pip install coverage
   - pip install -r requirements.txt
-  # Fix required to get Cython working
 
 install:
   - python setup.py build_ext --inplace --force --define CYTHON_TRACE
