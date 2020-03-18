@@ -1,6 +1,8 @@
-# cython: profile=False
-# cython: boundscheck=False
-# cython: wraparound=False
+#cython: boundscheck=False
+#cython: wraparound=False
+#cython: cdivision=True
+#cython: nonecheck=False
+#cython: infer_types=False
 
 cimport numpy as np
 import numpy as np

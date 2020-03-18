@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         runs-on: [windows-latest]
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.5, 3.6, 3.7, 3.8]
     runs-on:  ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v1
@@ -26,14 +26,14 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
     - name: Publish source and wheel
-      if: matrix.python-version == 3.6
+      if: matrix.python-version == 3.7
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         twine upload dist/*
     - name: Publish only wheel
-      if: matrix.python-version != 3.6
+      if: matrix.python-version != 3.7
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
