@@ -62,7 +62,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'cubature'
-copyright = u'2015, Saullo Castro'
+copyright = u'2015-2020, Saullo Castro'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -284,7 +284,7 @@ texinfo_documents = [
 epub_title = u'cubature'
 epub_author = u'Saullo Castro'
 epub_publisher = u'Saullo Castro'
-epub_copyright = u'2015, Saullo Castro'
+epub_copyright = u'2015-2020, Saullo Castro'
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = u'cubature'
