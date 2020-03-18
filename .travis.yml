@@ -1,23 +1,27 @@
 language: python
+
+dist: xenial
+
 cache: false
+
 sudo: false
+
 python:
-  # We don't actually use the Travis Python, but this keeps it organized.
-  - "2.7"
   - "3.5"
   - "3.6"
   - "3.7"
 
-install:
+before_install:
   - sudo apt-get update
   # Extra dependencies for testing and coverage
   - pip install pytest
   - pip install coveralls
   - pip install coverage
+  - pip install -r requirements.txt
   # Fix required to get Cython working
-  - pip install --upgrade cython
-  - python setup.py build_ext --inplace
-  - python setup.py install
+
+install:
+  - python setup.py build_ext --inplace --force --define CYTHON_TRACE
 
 script:
   - coverage run --source cubature -m py.test
