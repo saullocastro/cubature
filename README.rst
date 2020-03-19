@@ -15,10 +15,6 @@ Cubature
 .. |Coverage| image:: https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master
      :target: https://coveralls.io/github/saullocastro/cubature?branch=master
 
-
-**Note**: Coverage not taking into account Cython / C files
-
-
     
 .. contents::
 
