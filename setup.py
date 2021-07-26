@@ -53,7 +53,10 @@ extensions = [
         ),
 ]
 
-ext_modules = cythonize(extensions, compiler_directives={'linetrace': True})
+ext_modules = cythonize(extensions,
+        compiler_directives={'linetrace': True}
+        language_level='3',
+        )
 
 setup(
     name = 'cubature',
