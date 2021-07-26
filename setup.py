@@ -72,7 +72,7 @@ setup(
     url = 'https://github.com/saullocastro/cubature',
     description = 'Numerical integration technique',
     long_description = open('README.rst').read(),
-    long_description_content_type = 'text/x-rst',
+    long_description_content_type = 'text/markdown',
     classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
     install_requires=install_requires,
 )

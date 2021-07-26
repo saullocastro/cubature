@@ -1,71 +1,57 @@
-.. image:: https://raw.github.com/saullocastro/cubature/master/cubature_logo.png
-    :align: center
+![Cubature](https://raw.github.com/saullocastro/cubature/master/cubature_logo.png "Cubature")
 
-========
 Cubature
 ========
 
-|Travis CI| 
+Travis-CI status:
+[![Build Status](https://travis-ci.com/saullocastro/cubature.svg?branch=master)](https://travis-ci.com/saullocastro/cubature)
 
-.. image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
-    :target: https://travis-ci.org/saullocastro/cubature
 
-|GitHub Actions| 
+Github Actions status:
 
-.. image:: https://github.com/saullocastro/cubature/workflows/pytest/badge.svg
-    :target: https://github.com/saullocastro/cubature/actions
+[![Actions Status](https://github.com/saullocastro/cubature/workflows/pytest/badge.svg)](https://github.com/saullocastro/cubature/actions)
 
-|Coverage| 
 
-.. image:: https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master
-    :target: https://coveralls.io/github/saullocastro/cubature?branch=master
+Coverage status:
 
-|Codecov| 
+[![Coverage Status](https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master)](https://coveralls.io/github/saullocastro/cubature?branch=master)
+[![Codecov Status](https://codecov.io/gh/saullocastro/cubature/branch/master/graph/badge.svg?token=167I3DVK2G)](https://codecov.io/gh/saullocastro/cubature)
 
-.. image:: https://codecov.io/gh/saullocastro/cubature/branch/master/graph/badge.svg?token=167I3DVK2G
-    :target: https://codecov.io/gh/saullocastro/cubature
+
     
-    
-.. contents::
-
-
 What is Cubature?
 -----------------
 
-It is a numerical integration technique.  From
-`MathWorld <http://mathworld.wolfram.com/Cubature.html>`_,
-Ueberhuber (1997, p. 71) and Krommer and Ueberhuber
-(1998, pp. 49 and 155-165) use the word "quadrature" to mean numerical
-computation of a univariate integral, and "cubature" to mean numerical
-computation of a multiple integral.
+It is a numerical integration technique.  From MathWorld
+http://mathworld.wolfram.com/Cubature.html, Ueberhuber (1997, p. 71) and
+Krommer and Ueberhuber (1998, pp. 49 and 155-165) use the word "quadrature" to
+mean numerical computation of a univariate integral, and "cubature" to mean
+numerical computation of a multiple integral.
 
 Cubature for Python
 -------------------
 
-This is a wrapper to Prof. Steven Johnson's C package, available at `https://github.com/stevengj/cubature <https://github.com/stevengj/cubature>`_.
+This is a wrapper to Prof. Steven Johnson's C package, available at https://github.com/stevengj/cubature.
 The current version is a wrapper to version 1.0.4 of Prof. Johnson's package.
 
 Documentation
 -------------
 
-Please, `see the module documentation here
-<http://saullocastro.github.io/cubature/>`_.
+Please, see the module documentation here http://saullocastro.github.io/cubature.
 
 Python wrapper for the Cubature package
 ---------------------------------------
 
-From the `Nanostructures and Computation Wiki at MIT
-<http://ab-initio.mit.edu/wiki/index.php/Cubature>`_, `Steven W. Johnson
-<http://math.mit.edu/~stevenj/>`_ has written a simple C package for
-adaptive multidimensional integration (cubature) of vector-valued
-functions over hypercubes and this is a
-Python wrapper for the referred C package.
+From the Nanostructures and Computation Wiki at MIT
+http://ab-initio.mit.edu/wiki/index.php/Cubature, Steven W. Johnson
+http://math.mit.edu/~stevenj has written a simple C package for adaptive
+multidimensional integration (cubature) of vector-valued functions over
+hypercubes and this is a Python wrapper for the referred C package.
 
 Installation
 ------------
 
 Installation from source code
-...
 
 You must have Cython installed. Then do::
 
@@ -77,7 +63,6 @@ or (usually in Linux)::
 
 
 Installation from pip repository
-...
 
 Just do::
 
@@ -124,7 +109,7 @@ Castro, S.G.P. et al. "A semi-analytical approach for linear and non-linear anal
 Examples
 --------
 
-Some examples are given in `./examples <https://github.com/saullocastro/cubature/tree/master/examples>`_.
+Some examples are given in "./examples" https://github.com/saullocastro/cubature/tree/master/examples.
 
 
 Fork me!
