@@ -1,5 +1,3 @@
-from __future__ import division
-
 from cubature._cubature import Integrand
 import numpy as np
 

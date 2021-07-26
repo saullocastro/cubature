@@ -1,11 +1,9 @@
-from __future__ import division
-
 import cubature._test_integrands as ti
 from cubature import cubature
 import math
 import numpy as np
 
-# test that the Genz oscillatory exact formula actually agrees at an 
+# test that the Genz oscillatory exact formula actually agrees at an
 # even and odd dimension
 def test_genz_oscillatory_exact_d3():
     exact = 4 * np.cos(1056 + np.pi/7)*np.sin(12)*np.sin(306)*np.sin(738)/6273
@@ -125,7 +123,7 @@ def test_cubature_two_exact():
     assert np.allclose([exact], [val])
 
 def test_hcubature_cubature_two():
-    radius = 0.68244456511919859846 
+    radius = 0.68244456511919859846
     d = 2
     xmin = -np.ones((d,))
     xmax = np.ones((d,))
