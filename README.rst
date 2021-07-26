@@ -6,18 +6,22 @@ Cubature
 ========
 
 |Travis CI| 
+
 .. image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
     :target: https://travis-ci.org/saullocastro/cubature
 
 |GitHub Actions| 
+
 .. image:: https://github.com/saullocastro/cubature/workflows/pytest/badge.svg
     :target: https://github.com/saullocastro/cubature/actions
 
 |Coverage| 
+
 .. image:: https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master
     :target: https://coveralls.io/github/saullocastro/cubature?branch=master
 
 |Codecov| 
+
 .. image:: https://codecov.io/gh/saullocastro/cubature/branch/master/graph/badge.svg?token=167I3DVK2G
     :target: https://codecov.io/gh/saullocastro/cubature
     
