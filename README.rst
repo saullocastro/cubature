@@ -7,14 +7,20 @@ Cubature
 
 |Build status|
 
-.. |Build status| image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
+.. |Travis CI| image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
     :target: https://travis-ci.org/saullocastro/cubature
+
+.. |GitHub Actions| image:: https://github.com/saullocastro/cubature/workflows/pytest/badge.svg
+    :target: https://github.com/saullocastro/cubature/actions
 
 |Coverage|
 
 .. |Coverage| image:: https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master
-     :target: https://coveralls.io/github/saullocastro/cubature?branch=master
+    :target: https://coveralls.io/github/saullocastro/cubature?branch=master
 
+.. |Codecov| image:: https://codecov.io/gh/saullocastro/cubature/branch/master/graph/badge.svg?token=167I3DVK2G
+    :target: https://codecov.io/gh/saullocastro/cubature
+    
     
 .. contents::
 
@@ -28,6 +34,12 @@ Ueberhuber (1997, p. 71) and Krommer and Ueberhuber
 (1998, pp. 49 and 155-165) use the word "quadrature" to mean numerical
 computation of a univariate integral, and "cubature" to mean numerical
 computation of a multiple integral.
+
+Cubature for Python
+-------------------
+
+This is a wrapper to Prof. Steven Johnson's C package, available at `https://github.com/stevengj/cubature <https://github.com/stevengj/cubature>`_.
+The current version is a wrapper to version 1.0.4 of Prof. Johnson's package.
 
 Documentation
 -------------
@@ -92,7 +104,7 @@ We kindly ask you to cite this Python library properly. Also, it would be
 helpful if you could cite the papers where this methods has been applied as
 well.
 
-Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541552. Version 0.14.3, 2020.
+Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541552. Version 0.14.6, 2021.
 
 
 
