@@ -71,7 +71,10 @@ Download
 --------
 
 The current version of the code can be downloaded from
-[github repository](https://github.com/stevengj/cubature).
+[github repository](https://github.com/stevengj/cubature), and the
+latest "official" version can be obtained from:
+
+* [cubature v1.0.3](https://github.com/stevengj/cubature/releases/tag/v1.0.3)
 
 Either way, you get a directory containing stand-alone `hcubature.c` and `pcubature.c` files
 (along with a couple of private header files) that you can compile and
@@ -85,7 +88,7 @@ you compile that file with `-DHCUBATURE` or `-DPCUBATURE` and link with
 
 B. Narasimhan wrote a [GNU R](w:GNU_R "wikilink") interface, which can
 be downloaded here:
-[<http://cran.r-project.org/web/packages/cubature/index.html>](http://cran.r-project.org/web/packages/cubature/index.html).
+[<http://cran.r-project.org/web/packages/cubature/index.html>](http://cran.r-project.org/web/packages/cubature/index.html).   Jonathan Schilling ported the code to Java: https://github.com/jonathanschilling/Cubature
 
 A [Julia](http://julialang.org/) interface can be obtained from
 [Cubature.jl](https://github.com/stevengj/Cubature.jl). A Python
@@ -205,7 +208,7 @@ value are identical to `hcubature`, above, except that now the integrand
 form. The integrand function `F` should now be a function of the form:
 
 ```c
-int f(unsigned ndim, unsigned npts, const double *x, void *fdata,
+int f(unsigned ndim, size_t npts, const double *x, void *fdata,
       unsigned fdim, double *fval);
 ```
 
@@ -350,7 +353,7 @@ To compile a test programs, just compile `hcubature.c` and/or
 GNU/Linux) via:
 
 ```
-cc -o htest test.c hcubature.c -l
+cc -o htest test.c hcubature.c -lm
 cc -o ptest -DPCUBATURE test.c pcubature.c -lm
 ```
 
