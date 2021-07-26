@@ -1,0 +1,33 @@
+name: auto-doc-deploy
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade -r requirements_doc.txt
+    - name: Install module
+      run: |
+        python setup.py install
+    - name: Building documentation
+      run: |
+        cd doc
+        make html
+    - name: Deplying documentation
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: ./doc/build/html # The folder the action should deploy.
