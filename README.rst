@@ -5,15 +5,11 @@
 Cubature
 ========
 
-|Build status|
-
 .. |Travis CI| image:: https://travis-ci.org/saullocastro/cubature.svg?branch=master
     :target: https://travis-ci.org/saullocastro/cubature
 
 .. |GitHub Actions| image:: https://github.com/saullocastro/cubature/workflows/pytest/badge.svg
     :target: https://github.com/saullocastro/cubature/actions
-
-|Coverage|
 
 .. |Coverage| image:: https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master
     :target: https://coveralls.io/github/saullocastro/cubature?branch=master
