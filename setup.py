@@ -54,7 +54,7 @@ extensions = [
 ]
 
 ext_modules = cythonize(extensions,
-        compiler_directives={'linetrace': True}
+        compiler_directives={'linetrace': True},
         language_level='3',
         )
 
