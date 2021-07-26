@@ -4,6 +4,7 @@ Cubature
 ========
 
 Travis-CI status:
+
 [![Build Status](https://travis-ci.com/saullocastro/cubature.svg?branch=master)](https://travis-ci.com/saullocastro/cubature)
 
 
@@ -48,10 +49,8 @@ http://math.mit.edu/~stevenj has written a simple C package for adaptive
 multidimensional integration (cubature) of vector-valued functions over
 hypercubes and this is a Python wrapper for the referred C package.
 
-Installation
-------------
-
 Installation from source code
+-----------------------------
 
 You must have Cython installed. Then do::
 
@@ -63,6 +62,7 @@ or (usually in Linux)::
 
 
 Installation from pip repository
+--------------------------------
 
 Just do::
 
@@ -93,12 +93,12 @@ We kindly ask you to cite this Python library properly. Also, it would be
 helpful if you could cite the papers where this methods has been applied as
 well.
 
-Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541552. Version 0.14.8, 2021.
+Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541552. Version 0.14.12, 2021.
 
 
 
 Citing Papers using this Python wrapper for Cubature
-.....................................................
+----------------------------------------------------
 
 Used to integrate tangent stiffness matrices in computational solid mechanics
 
