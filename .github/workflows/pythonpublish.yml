@@ -9,8 +9,8 @@ jobs:
   deploy:
     strategy:
       matrix:
-        runs-on: [windows-latest, ubuntu-latest]
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        runs-on: [windows-latest, ubuntu-latest, macos-latest]
+        python-version: [3.7, 3.8, 3.9, '3.10']
     runs-on: ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v2
@@ -19,30 +19,38 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      if: matrix.runs-on == 'windows-latest' || (matrix.runs-on == 'ubuntu-latest' && matrix.python-version == 3.9)
+      if: matrix.runs-on == 'windows-latest' || (matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.10') || (matrix.runs-on == 'macos-latest')
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install --upgrade setuptools wheel twine
         pip3 install -r requirements.txt
     - name: Build Windows Python wheels
-      if: matrix.runs-on == 'windows-latest'
+      if: matrix.runs-on == 'windows-latest' || matrix.runs-on == 'macos-latest'
       run: |
-        python3 setup.py sdist bdist_wheel
-    - name: Publish Windows Python wheels
-      if: matrix.runs-on == 'windows-latest'
+        python3 setup.py sdist
+        python3 setup.py bdist_wheel
+    - name: Publish Windows or MAC-OS Python wheels
+      if: matrix.runs-on == 'windows-latest' || matrix.runs-on == 'macos-latest'
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         python3 -m twine upload dist/*.whl
+    - name: Publish source
+      if: matrix.runs-on == 'windows-latest' && matrix.python-version == '3.10'
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        python3 -m twine upload dist/*.tar.gz
     - name: Build manylinux Python wheels
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == 3.9
-      uses: RalfG/python-wheels-manylinux-build@v0.3.3-manylinux2010_x86_64
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.10'
+      uses: RalfG/python-wheels-manylinux-build@v0.4.2-manylinux2014_x86_64
       with:
-        python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
+        python-versions: 'cp37-cp37m cp38-cp38 cp39-cp39 cp310-cp310'
         build-requirements: 'pip cython numpy setuptools wheel twine'
     - name: Publish manylinux Python wheels
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == 3.9
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.10'
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
