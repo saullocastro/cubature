@@ -56,6 +56,7 @@ You must have Cython installed. Then do::
 
    python setup.py install 
 
+
 or (usually in Linux)::
 
    python3 setup.py install
@@ -118,6 +119,7 @@ Fork me!
 You are welcome to fork this repository and modify it in whatever way you
 want. It will also be nice if you could send a pull request here in case
 you think your modifications are valuable for another person.
+
 
 License
 -------
