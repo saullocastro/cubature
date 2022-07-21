@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Cubature (cubature) &#8212; cubature 0.14.13 documentation</title>
+    <title>Cubature (cubature) &#8212; cubature 0.14.15 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -14,6 +14,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
@@ -28,7 +29,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cubature 0.14.13 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">cubature 0.14.15 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Cubature (<code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code>)</a></li> 
       </ul>
     </div>  
@@ -39,7 +40,7 @@
           <div class="body" role="main">
             
   <span class="target" id="module-cubature"></span><section id="cubature-cubature">
-<h1>Cubature (<a class="reference internal" href="#module-cubature" title="cubature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code></a>)<a class="headerlink" href="#cubature-cubature" title="Permalink to this headline">¶</a></h1>
+<h1>Cubature (<a class="reference internal" href="#module-cubature" title="cubature"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code></a>)<a class="headerlink" href="#cubature-cubature" title="Permalink to this heading">¶</a></h1>
 <p>There is one function that embodies all functionalities offered by Cubature.</p>
 <p>One of the nice things about Cubature is that you can perform
 multi-dimensional integrations at once, which can be achieved by defining:</p>
@@ -63,7 +64,7 @@ advantage of NumPy’s speed (see examples with <code class="docutils literal no
 <span class="sig-prename descclassname"><span class="pre">cubature.</span></span><span class="sig-name descname"><span class="pre">cubature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abserr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relerr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxEval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'h'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cubature/cubature.html#cubature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cubature.cubature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical-integration using the cubature method.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>func</strong><span class="classifier">callable</span></dt><dd><dl>
 <dt>If <code class="docutils literal notranslate"><span class="pre">vectorized=False</span></code> the callable must have the form:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">f(x_array,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p>
@@ -217,7 +218,7 @@ evaluation of different points.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>val</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The 1-D array of length <code class="docutils literal notranslate"><span class="pre">fdim</span></code> with the computed integral values</p>
 </dd>
@@ -234,11 +235,12 @@ results from the <code class="docutils literal notranslate"><span class="pre">te
 even for single-valued functions</p></li>
 </ul>
 <p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="r5d13c21c0770-1"><span class="brackets">1</span></dt>
-<dd><p><a class="reference external" href="http://ab-initio.mit.edu/wiki/index.php/Cubature">Cubature (Multi-dimensional integration)</a>.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="r5d13c21c0770-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="http://ab-initio.mit.edu/wiki/index.php/Cubature">Cubature (Multi-dimensional integration)</a>.</p>
+</div>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Volume of a sphere:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -262,7 +264,7 @@ even for single-valued functions</p></li>
 
 </section>
 <section id="more-examples">
-<h1>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h1>
+<h1>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this heading">¶</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
 
@@ -413,7 +415,7 @@ even for single-valued functions</p></li>
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -428,13 +430,15 @@ even for single-valued functions</p></li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Cubature (<code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code>)</a></li>
 <li><a class="reference internal" href="#more-examples">More Examples</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -451,7 +455,7 @@ even for single-valued functions</p></li>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -465,13 +469,13 @@ even for single-valued functions</p></li>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cubature 0.14.13 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">cubature 0.14.15 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Cubature (<code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code>)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015-2020, Saullo Castro.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
     </div>
   </body>
 </html>
