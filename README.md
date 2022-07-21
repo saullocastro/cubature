@@ -52,35 +52,42 @@ hypercubes and this is a Python wrapper for the referred C package.
 Installation from source code
 -----------------------------
 
-You must have Cython installed. Then do::
+You must have Cython installed. Then do:
 
-   python setup.py install 
+```
+python setup.py install 
+```
 
+or (usually in Linux):
 
-or (usually in Linux)::
-
-   python3 setup.py install
-
+```
+python3 setup.py install
+```
 
 Installation from pip repository
 --------------------------------
 
-Just do::
+Just do:
 
-   pip install cubature
+```
+python -m pip install cubature
+```
 
-or (usually in Linux)::
+or (usually in Linux):
 
-   pip3 install cubature
-
+```
+python3 -m pip install cubature
+```
 
 Running the tests
 -----------------
 
 To run the tests you will have to download the source code. After installing as
-explained above, go to the source code root folder and run::
+explained above, go to the source code root folder and run:
 
-    py.test .
+```
+py.test .
+```
 
 The Python wrapper has been proven using test integrands from the C
 package and some additional testing functions from Genz. The integrands
