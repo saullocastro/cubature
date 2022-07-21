@@ -3,11 +3,6 @@
 Cubature
 ========
 
-Travis-CI status:
-
-[![Build Status](https://travis-ci.com/saullocastro/cubature.svg?branch=master)](https://travis-ci.com/saullocastro/cubature)
-
-
 Github Actions status:
 
 [![Actions Status](https://github.com/saullocastro/cubature/workflows/pytest/badge.svg)](https://github.com/saullocastro/cubature/actions)
