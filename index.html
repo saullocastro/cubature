@@ -4,9 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Cubature (cubature) &#8212; cubature 0.15.0 documentation</title>
+    <title>Cubature (cubature) &#8212; cubature 0.16.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -29,7 +29,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cubature 0.15.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">cubature 0.16.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Cubature (<code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code>)</a></li> 
       </ul>
     </div>  
@@ -148,13 +148,25 @@ capabilities.</p>
 <dt><strong>fdim</strong><span class="classifier">integer</span></dt><dd><p>Length of the output vector given by <code class="docutils literal notranslate"><span class="pre">func</span></code>. It should be <code class="docutils literal notranslate"><span class="pre">1</span></code> if the
 function returns a scalar.</p>
 </dd>
-<dt><strong>xmin</strong><span class="classifier">array-like</span></dt><dd><p>A 1-D array carring the minimum integration limit for each
-variable being integrated. It must be have:
-<code class="docutils literal notranslate"><span class="pre">xmin.shape[0]=ndim</span></code>.</p>
-</dd>
-<dt><strong>xmax</strong><span class="classifier">array-like</span></dt><dd><p>A 1-D array carring the maximum integration limit for each
-variable being integrated. It must be have:
-<code class="docutils literal notranslate"><span class="pre">xmax.shape[0]=ndim</span></code>.</p>
+<dt><strong>xmin, xmax</strong><span class="classifier">array-like</span></dt><dd><p>These are 1-D arrays with the minimum and maximum integration limits
+for each variable being integrated. In cubature, if you are using
+<code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code>, it is also possible to have one integration limit
+per value in the vector-valued function.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">vectorized=False</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xmin,</span> <span class="pre">xmax</span></code> are vectors with the integration limits for each of
+the <code class="docutils literal notranslate"><span class="pre">ndim</span></code> dimensions, thus we must assert that <code class="docutils literal notranslate"><span class="pre">xmin.shape[0]</span> <span class="pre">==</span>
+<span class="pre">ndim</span></code>.</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xmin,</span> <span class="pre">xmax</span></code> are vectors with the integration limits for each of
+the <code class="docutils literal notranslate"><span class="pre">ndim</span></code> dimensions. With <code class="docutils literal notranslate"><span class="pre">vectorized=True</span></code> it is possible to
+use one integration limit per value in the vector-valued function. In
+this case, we must assert that <code class="docutils literal notranslate"><span class="pre">xmin.shape[0]</span> <span class="pre">==</span> <span class="pre">ndim*fdim</span></code>. Here,
+the limits are read in the order <code class="docutils literal notranslate"><span class="pre">xmin[i*ndim</span> <span class="pre">+</span> <span class="pre">j]</span></code>, meaning the
+j-th dimension of the i-th element of the vector-valued function.</p></li>
+</ul>
 </dd>
 <dt><strong>args</strong><span class="classifier">tuple or list, optional</span></dt><dd><p>Contains the extra arguments required by <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p>
 </dd>
@@ -178,15 +190,15 @@ threshold</p>
 determine convergence properties (irrelevant for
 single-valued functions).
 The <code class="docutils literal notranslate"><span class="pre">norm</span></code> argument takes one of the values:</p>
-<ul class="simple">
+<ul>
 <li><dl class="simple">
-<dt>ERROR_INDIVIDUAL: convergence is achieved only when each</dt><dd><p>integrand individually satisfies the requested error
+<dt>0 for ERROR_INDIVIDUAL: convergence is achieved only when each</dt><dd><p>integrand individually satisfies the requested error
 tolerances;</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>ERROR_PAIRED: like ERROR_INDIVIDUAL, except that the</dt><dd><p>integrands are grouped into consecutive pairs, with the error
+<dt>1 for ERROR_PAIRED: like ERROR_INDIVIDUAL, except that the</dt><dd><p>integrands are grouped into consecutive pairs, with the error
 tolerance applied in a L2 sense to each pair. This option is
 mainly useful for integrating vectors of complex numbers,
 where each consecutive pair of real integrans is the real
@@ -196,17 +208,17 @@ the error in the real and imaginary parts separately;</p>
 </dd>
 </dl>
 </li>
-<li><p>ERROR_L2</p></li>
-<li><p>ERROR_L1</p></li>
-<li><dl class="simple">
-<dt>ERROR_LINF</dt><dd><p>the absolute error is measured as <a href="#id2"><span class="problematic" id="id3">|e|</span></a> and the relative error
+<li><p>2 for ERROR_L2;</p></li>
+<li><p>3 for ERROR_L1;</p></li>
+<li><p>4 for ERROR_LINF,</p>
+<blockquote>
+<div><p>the absolute error is measured as <a href="#id2"><span class="problematic" id="id3">|e|</span></a> and the relative error
 as <a href="#id4"><span class="problematic" id="id5">|err|</span></a>/<a href="#id6"><span class="problematic" id="id7">|val|</span></a>, where <a href="#id8"><span class="problematic" id="id9">|...|</span></a> is the L1, L2, or L-infinity
 norm, respectively.  (<a href="#id10"><span class="problematic" id="id11">|x|</span></a> in the L1 norm is the sum of the
 absolute values of the components, in the L2 norm is the
 root mean square of the components, and in the L-infinity
 norm is the maximum absolute value of the components).</p>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </dd>
@@ -469,13 +481,13 @@ even for single-valued functions</p></li>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cubature 0.15.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">cubature 0.16.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Cubature (<code class="xref py py-mod docutils literal notranslate"><span class="pre">cubature</span></code>)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015-2020, Saullo Castro.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
     </div>
   </body>
 </html>
