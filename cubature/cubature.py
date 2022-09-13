@@ -100,14 +100,27 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     fdim : integer
         Length of the output vector given by `func`. It should be `1` if the
         function returns a scalar.
-    xmin : array-like
-        A 1-D array carring the minimum integration limit for each
-        variable being integrated. It must be have:
-        ``xmin.shape[0]=ndim``.
-    xmax : array-like
-        A 1-D array carring the maximum integration limit for each
-        variable being integrated. It must be have:
-        ``xmax.shape[0]=ndim``.
+    xmin, xmax : array-like
+        These are 1-D arrays with the minimum and maximum integration limits
+        for each variable being integrated. In cubature, if you are using
+        ``vectorized=True``, it is also possible to have one integration limit
+        per value in the vector-valued function.
+
+        If ``vectorized=False``:
+
+        - ``xmin, xmax`` are vectors with the integration limits for each of
+          the ``ndim`` dimensions, thus we must assert that ``xmin.shape[0] ==
+          ndim``.
+
+        If ``vectorized=True``:
+
+        - ``xmin, xmax`` are vectors with the integration limits for each of
+          the ``ndim`` dimensions. With ``vectorized=True`` it is possible to
+          use one integration limit per value in the vector-valued function. In
+          this case, we must assert that ``xmin.shape[0] == ndim*fdim``. Here,
+          the limits are read in the order ``xmin[i*ndim + j]``, meaning the
+          j-th dimension of the i-th element of the vector-valued function.
+
     args : tuple or list, optional
         Contains the extra arguments required by `func`.
     kwargs : dict-like, optional
@@ -132,10 +145,10 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
         single-valued functions).
         The `norm` argument takes one of the values:
 
-        - ERROR_INDIVIDUAL: convergence is achieved only when each
+        - 0 for ERROR_INDIVIDUAL: convergence is achieved only when each
             integrand individually satisfies the requested error
             tolerances;
-        - ERROR_PAIRED: like ERROR_INDIVIDUAL, except that the
+        - 1 for ERROR_PAIRED: like ERROR_INDIVIDUAL, except that the
             integrands are grouped into consecutive pairs, with the error
             tolerance applied in a L2 sense to each pair. This option is
             mainly useful for integrating vectors of complex numbers,
@@ -143,9 +156,10 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
             and imaginary parts of a single complex integrand, and you
             only care about the error in the complex plane rather than
             the error in the real and imaginary parts separately;
-        - ERROR_L2
-        - ERROR_L1
-        - ERROR_LINF
+        - 2 for ERROR_L2;
+        - 3 for ERROR_L1;
+        - 4 for ERROR_LINF,
+
             the absolute error is measured as |e| and the relative error
             as |err|/|val|, where |...| is the L1, L2, or L-infinity
             norm, respectively.  (|x| in the L1 norm is the sum of the
@@ -201,14 +215,12 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
     # checking xmin and xmax
     xmin = np.asarray(xmin)
     xmax = np.asarray(xmax)
-    try:
-        assert xmin.shape[0] == ndim
-    except:
-        raise ValueError('xmin.shape[0] is not equal ndim')
-    try:
-        assert xmax.shape[0] == ndim
-    except:
-        raise ValueError('xmax.shape[0] is not equal ndim')
+    if not vectorized:
+        assert xmin.shape[0] == ndim, 'xmin.shape[0] is not equal to ndim'
+        assert xmax.shape[0] == ndim, 'xmax.shape[0] is not equal to ndim'
+    else:
+        assert (xmin.shape[0] == ndim) | (xmin.shape[0] == ndim*fdim), 'xmin.shape[0] is not equal to ndim nor ndim*fdim'
+        assert (xmax.shape[0] == ndim) | (xmax.shape[0] == ndim*fdim), 'xmax.shape[0] is not equal to ndim nor ndim*fdim'
 
     use_raw_callback = isinstance(func, ctypes._CFuncPtr)
 
@@ -221,8 +233,7 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                     out = np.array([out])
                 assert out.shape[0] == fdim
             except:
-                raise ValueError(
-                    'Length of func ouptut vector is different than fdim')
+                raise ValueError('Length of func ouptut vector is different than fdim')
         else:
             out = func(np.ones((7, ndim))*(xmin+xmax)/2, *args, **kwargs)
             if fdim > 1:
@@ -230,15 +241,13 @@ def cubature(func, ndim, fdim, xmin, xmax, args=tuple(), kwargs=dict(),
                     assert out.shape[0] == 7
                     assert out.shape[1] == fdim
                 except:
-                    raise ValueError(
-                        'Output vector does not have shape=(:, fdim)')
+                    raise ValueError('Output vector does not have shape=(:, fdim)')
             else:
                 try:
                     assert out.ndim == 1
                     assert out.shape[0] == 7
                 except:
-                    raise ValueError(
-                        'Output vector does not return a valid array')
+                    raise ValueError('Output vector does not return a valid array')
 
     method = _call_map.get((adaptive, vectorized), None)
     if method is None:
