@@ -59,6 +59,8 @@ ext_modules = cythonize(extensions,
         language_level='3',
         )
 
+#NOTE package_data included using the MANIFEST.in file
+
 setup(
     name = 'cubature',
     version = version,
