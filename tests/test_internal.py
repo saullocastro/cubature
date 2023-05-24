@@ -1,5 +1,9 @@
-from cubature._cubature import Integrand
+import sys
+sys.path.append('..')
+
 import numpy as np
+
+from cubature._cubature import Integrand
 
 def test_call_1arg():
     def func(x, a, b, c, kw1=True, kw2=None):
