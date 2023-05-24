@@ -3,7 +3,6 @@ import os
 import ast
 
 from setuptools import setup, find_packages
-import numpy
 from distutils.extension import Extension
 from Cython.Build import cythonize
 
@@ -21,8 +20,10 @@ Programming Language :: Python :: 3.7
 Programming Language :: Python :: 3.8
 Programming Language :: Python :: 3.9
 Programming Language :: Python :: 3.10
+Programming Language :: Python :: 3.11
 Operating System :: Microsoft :: Windows
 Operating System :: Unix
+Operating System :: MAC-OS
 
 """
 
@@ -43,12 +44,12 @@ extensions = [
             'cubature/get_ptr.c',
             'cubature/_cubature.pyx',
             ],
-        include_dirs = [numpy.get_include()],
+        include_dirs = [],
         language='c',
         ),
     Extension('cubature._test_integrands',
         sources = ['cubature/_test_integrands.pyx'],
-        include_dirs = [numpy.get_include()],
+        include_dirs = [],
         language='c',
         ),
 ]
@@ -63,7 +64,6 @@ setup(
     version = version,
     packages = find_packages(),
     ext_modules = ext_modules,
-    include_dirs = [numpy.get_include()],
     author = 'Saullo G. P. Castro and Anton Loukianov',
     author_email = 'saullogiovani@gmail.com',
     license = 'GNU-GPL',
