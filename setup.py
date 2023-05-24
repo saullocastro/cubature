@@ -23,7 +23,7 @@ Programming Language :: Python :: 3.10
 Programming Language :: Python :: 3.11
 Operating System :: Microsoft :: Windows
 Operating System :: Unix
-Operating System :: MAC-OS
+Operating System :: POSIX :: BSD
 
 """
 
