@@ -3,17 +3,15 @@
 #cython: cdivision=True
 #cython: nonecheck=False
 #cython: infer_types=False
-
 import numpy as np
-cimport numpy as np
-# from bug #12, this gives compilation errors? I'm using the
-# python built in ones.
+
 from math import erf, gamma
 from libc.math cimport cos, sin, exp, sqrt
 from libc.math cimport M_PI as pi
 
 cimport cython
 from cpython.array cimport array, clone
+
 cdef array double_template = array('d')
 
 cdef double k2sqrtpi = 1.12837916709551257390
@@ -63,14 +61,21 @@ cpdef double genz_oscillatory_c(double [:] x,  double [:] a, double u):
     val = cos(2*pi*u + val)
     return val
 
-cpdef genz_oscillatory_exact(double n, np.ndarray a,
-        double u):
+cpdef genz_oscillatory_exact(double n, double [:] a, double u):
     '''calculate the exact integral of the Genz oscillatory function on the
     half interval (0, n) given an array of frequencies a and phase u'''
 
-    cdef unsigned m = a.shape[0]
-    return 2**m *np.cos(0.5 * np.sum(a) * n + 2*np.pi*u) * \
-            np.prod(np.sin(0.5 * a * n))/np.prod(a)
+    cdef unsigned int i
+    cdef unsigned int m = a.shape[0]
+    cdef double suma, prodsin, proda
+    suma = 0.
+    prodsin = 1.
+    proda = 1.
+    for i in range(m):
+        suma += a[i]
+        proda *= a[i]
+        prodsin *= np.sin(0.5*a[i]*n)
+    return 2**m *np.cos(0.5 * suma * n + 2*np.pi*u) * prodsin/proda
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

@@ -9,7 +9,7 @@ jobs:
       max-parallel: 4
       matrix:
         runs-on: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.7, 3.8, 3.9, '3.10']
+        python-version: [3.7, 3.8, 3.9, '3.10', '3.11']
     runs-on: ${{ matrix.runs-on }}
 
     steps:
@@ -35,7 +35,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest and coverage report
       run: |
-        coverage run -m py.test tests
+        coverage run -m pytest tests
         coverage report
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2

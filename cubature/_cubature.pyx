@@ -4,15 +4,18 @@
 #cython: nonecheck=False
 #cython: infer_types=False
 
-cimport numpy as np
+from cpython.ref cimport PyObject
+
 import numpy as np
 import cython
-from cpython.ref cimport PyObject
-from ._cubature cimport (error_norm, integrand, integrand_v, hcubature, pcubature,
-        hcubature_v, pcubature_v)
+
+from ._cubature cimport (error_norm, integrand, integrand_v, hcubature,
+                         pcubature, hcubature_v, pcubature_v)
+
 
 cdef extern from "get_ptr.h":
     void *get_ctypes_function_pointer(PyObject *obj)
+
 
 cdef class Integrand:
     cdef object f, args, kwargs
@@ -55,8 +58,8 @@ cdef class Integrand:
         return error
 
     cdef int _vcall(self, unsigned npts, const double *x, double *fval) except -1:
-        cdef double [:, :] _x = <double [:npts, :self.ndim]>x
-        cdef double [:, :] _f = <double [:npts, :self.fdim]>fval
+        cdef double [:, ::1] _x = <double [:npts, :self.ndim]>x
+        cdef double [:, ::1] _f = <double [:npts, :self.fdim]>fval
         cdef int error
         cdef unsigned i,j
 
@@ -84,9 +87,9 @@ cdef class Integrand:
         return np.asarray(fval)
 
     def vcall(self, xval):
-        cdef double [:, :] _xval = np.array(xval, dtype=np.float64)
+        cdef double [:, ::1] _xval = np.array(xval, dtype=np.float64)
         cdef unsigned npts = _xval.shape[0]
-        cdef double [:, :] fval = np.zeros((npts, self.fdim,), dtype=np.float64)
+        cdef double [:, ::1] fval = np.zeros((npts, self.fdim,), dtype=np.float64)
         err = self._vcall(npts, &_xval[0,0], &fval[0,0])
         if err != 0:
             raise RuntimeError('error while calling vcall()')
@@ -144,6 +147,7 @@ def cubature(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
         raise RuntimeError('integration failed')
 
     return np.asarray(val), np.asarray(err)
+
 
 def cubature_raw_callback(callable, unsigned ndim, unsigned fdim, xmin, xmax, str method,
         double abserr, double relerr, int norm, unsigned maxEval, args=(),
