@@ -22,7 +22,7 @@ jobs:
       if: matrix.runs-on == 'windows-latest' || (matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12') || (matrix.runs-on == 'macos-latest')
       run: |
         python3 -m pip install --upgrade pip
-        python3 -m pip install --upgrade setuptools wheel twine
+        python3 -m pip install --upgrade setuptools cython wheel twine
         python3 -m pip install -r requirements.txt
     - name: Upload source code
       if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12'
