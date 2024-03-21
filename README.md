@@ -5,15 +5,13 @@ Cubature
 
 Github Actions status:
 
-[![Actions Status](https://github.com/saullocastro/cubature/workflows/pytest/badge.svg)](https://github.com/saullocastro/cubature/actions)
-
+[![pytest and coverage](https://github.com/saullocastro/cubature/actions/workflows/pytest_and_coverage.yml/badge.svg)](https://github.com/saullocastro/cubature/actions/workflows/pytest_and_coverage.yml)
 
 Coverage status:
 
 [![Codecov Status](https://codecov.io/gh/saullocastro/cubature/branch/master/graph/badge.svg?token=167I3DVK2G)](https://codecov.io/gh/saullocastro/cubature)
 
 
-    
 What is Cubature?
 -----------------
 
