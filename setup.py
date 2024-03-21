@@ -21,6 +21,7 @@ Programming Language :: Python :: 3.8
 Programming Language :: Python :: 3.9
 Programming Language :: Python :: 3.10
 Programming Language :: Python :: 3.11
+Programming Language :: Python :: 3.12
 Operating System :: Microsoft :: Windows
 Operating System :: Unix
 Operating System :: POSIX :: BSD
