@@ -36,7 +36,7 @@ More Examples
 
 
 """
-__version__ = '0.18.4'
+__version__ = '0.18.5'
 
 from .cubature import *
 
