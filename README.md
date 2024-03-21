@@ -10,7 +10,6 @@ Github Actions status:
 
 Coverage status:
 
-[![Coverage Status](https://coveralls.io/repos/github/saullocastro/cubature/badge.svg?branch=master)](https://coveralls.io/github/saullocastro/cubature?branch=master)
 [![Codecov Status](https://codecov.io/gh/saullocastro/cubature/branch/master/graph/badge.svg?token=167I3DVK2G)](https://codecov.io/gh/saullocastro/cubature)
 
 
@@ -96,7 +95,7 @@ We kindly ask you to cite this Python library properly. Also, it would be
 helpful if you could cite the papers where this methods has been applied as
 well.
 
-Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541552. Version 0.17.2, 2023.
+Castro, S.G.P.; Loukianov, A.; et al. "Python wrapper for Cubature: adaptive multidimensional integration". DOI:10.5281/zenodo.2541552. Version 0.18.0, 2024.
 
 
 

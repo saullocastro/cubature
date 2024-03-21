@@ -62,7 +62,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'cubature'
-copyright = u'2015-2020, Saullo Castro'
+copyright = u'2015-2024, Saullo Castro et al.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
