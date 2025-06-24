@@ -1,6 +1,6 @@
 setuptools
 numpy
 cython
-coveralls
+coverage
 pytest
 pytest-cov

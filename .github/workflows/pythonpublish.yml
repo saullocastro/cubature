@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         runs-on: [windows-latest, ubuntu-latest, macos-latest]
-        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
     runs-on: ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v4
@@ -19,13 +19,13 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      if: matrix.runs-on == 'windows-latest' || (matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12') || (matrix.runs-on == 'macos-latest')
+      if: matrix.runs-on == 'windows-latest' || (matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13') || (matrix.runs-on == 'macos-latest')
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install --upgrade setuptools wheel twine
         python3 -m pip install -r requirements.txt
     - name: Upload source code
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12'
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
@@ -44,17 +44,17 @@ jobs:
       run: |
         python3 -m twine upload dist/*.whl
     - name: Build Linux Python wheels, install cibuildwheel
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12'
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
       run: |
         python3 -m pip install cibuildwheel==2.17.0
     - name: Build Linux Python wheels
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12'
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
       env:
-        CIBW_BUILD: cp37-* cp38-* cp39-* cp310-* cp311-* cp312-*
+        CIBW_BUILD: cp38-* cp39-* cp310-* cp311-* cp312-* cp313-*
       run: |
         python3 -m cibuildwheel --output-dir dist
     - name: Publish Linux Python wheels
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12'
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
