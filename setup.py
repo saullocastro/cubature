@@ -16,12 +16,12 @@ Intended Audience :: Developers
 Intended Audience :: Education
 Topic :: Scientific/Engineering :: Mathematics
 License :: OSI Approved :: BSD License
-Programming Language :: Python :: 3.7
 Programming Language :: Python :: 3.8
 Programming Language :: Python :: 3.9
 Programming Language :: Python :: 3.10
 Programming Language :: Python :: 3.11
 Programming Language :: Python :: 3.12
+Programming Language :: Python :: 3.13
 Operating System :: Microsoft :: Windows
 Operating System :: Unix
 Operating System :: POSIX :: BSD
