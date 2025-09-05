@@ -12,18 +12,18 @@ jobs:
         runs-on: [windows-latest, ubuntu-latest, macos-latest]
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
     runs-on: ${{ matrix.runs-on }}
+
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      if: matrix.runs-on == 'windows-latest' || (matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13') || (matrix.runs-on == 'macos-latest')
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install --upgrade setuptools wheel twine
-        python3 -m pip install -r requirements.txt
+        python3 -m pip install -r ci_requirements.txt
     - name: Upload source code
       if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
       env:
@@ -44,17 +44,53 @@ jobs:
       run: |
         python3 -m twine upload dist/*.whl
     - name: Build Linux Python wheels, install cibuildwheel
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
+      if: matrix.runs-on == 'ubuntu-latest'
       run: |
-        python3 -m pip install cibuildwheel==2.17.0
+        python3 -m pip install cibuildwheel==2.23.3
+    - name: Build Linux Python wheels
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.8'
+      env:
+        CIBW_BUILD: cp38-manylinux_x86_64
+        CIBW_SKIP: "*-manylinux_i686"
+      run: |
+        python3 -m cibuildwheel --output-dir dist
+    - name: Build Linux Python wheels
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.9'
+      env:
+        CIBW_BUILD: cp39-manylinux_x86_64
+        CIBW_SKIP: "*-manylinux_i686"
+      run: |
+        python3 -m cibuildwheel --output-dir dist
+    - name: Build Linux Python wheels
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.10'
+      env:
+        CIBW_BUILD: cp310-manylinux_x86_64
+        CIBW_SKIP: "*-manylinux_i686"
+      run: |
+        python3 -m cibuildwheel --output-dir dist
+    - name: Build Linux Python wheels
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.11'
+      env:
+        CIBW_BUILD: cp311-manylinux_x86_64
+        CIBW_SKIP: "*-manylinux_i686"
+      run: |
+        python3 -m cibuildwheel --output-dir dist
+    - name: Build Linux Python wheels
+      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.12'
+      env:
+        CIBW_BUILD: cp312-manylinux_x86_64
+        CIBW_SKIP: "*-manylinux_i686"
+      run: |
+        python3 -m cibuildwheel --output-dir dist
     - name: Build Linux Python wheels
       if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
       env:
-        CIBW_BUILD: cp38-* cp39-* cp310-* cp311-* cp312-* cp313-*
+        CIBW_BUILD: cp313-manylinux_x86_64
+        CIBW_SKIP: "*-manylinux_i686"
       run: |
         python3 -m cibuildwheel --output-dir dist
     - name: Publish Linux Python wheels
-      if: matrix.runs-on == 'ubuntu-latest' && matrix.python-version == '3.13'
+      if: matrix.runs-on == 'ubuntu-latest'
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}

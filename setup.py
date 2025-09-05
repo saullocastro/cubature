@@ -30,7 +30,6 @@ Operating System :: POSIX :: BSD
 
 install_requires = [
         "numpy",
-        "cython",
         ]
 
 with open('cubature/__init__.py', 'rb') as f:
